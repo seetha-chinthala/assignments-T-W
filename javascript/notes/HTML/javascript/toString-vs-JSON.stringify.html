@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var ob1 = {
+            firstname: "hema",
+            lastname: "lata"
+        }
+        var b = ob1.toString();
+        console.log(b);
+
+        var ar = [11, 22]
+        var c = ar.toString();
+        console.log(c);
+
+        var br = [{
+            firstname: 'divya',
+            lastname: "asdjah"
+        }, {
+            firstname: 'priya',
+            lastname: "kdjfh"
+        }]
+        var cr = br.toString();
+        console.log(cr);
+
+        var dr = JSON.stringify(br)
+        console.log(dr);
+
+        var hh = JSON.parse(dr)
+        console.log(hh);
+
+        let obj = {
+            name: "Seetha",
+            age: undefined,
+            greet: function() {}
+        };
+
+        console.log(JSON.stringify(obj));
+    </script>
+</body>
+
+</html>

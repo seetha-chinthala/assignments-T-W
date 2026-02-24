@@ -1,0 +1,21 @@
+<html>
+    <body>
+        <input type="text" id="t1">
+        <br><br>
+        <button id="btn1">add image</button>
+        <br><br>
+        <div id="images"></div>
+        <script>
+            let btn1=document.getElementById("btn1")
+            btn1.onclick=function(){
+             let t1=document.getElementById("t1").value;
+             let img=document.createElement("img")
+             img.src=t1
+             gallery=document.getElementById("images")
+             gallery.appendChild(img)
+             document.getElementById("t1")=""
+            }
+
+        </script>
+    </body>
+</html>

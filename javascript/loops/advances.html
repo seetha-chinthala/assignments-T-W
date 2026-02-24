@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //total factors
+        var num = +prompt("enter num for factors");
+        console.log("number of factors")
+        i = 1, count = 0;
+        while (i < num) {
+            if (num % i == 0)
+                count = count + 1;
+        }
+        console.log("total number of factors:", count)
+
+        //find lcm and gcd
+        function gcd(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+
+        function lcm(a, b) {
+            if (a === 0 || b === 0) {
+                return 0;
+                return Math.abs(a * b) / gcd(a, b);
+            }
+        }
+        const result = lcm(2, 3);
+        console.log("obtained lcm", result);
+
+        //test number is fibonacci or not
+        function isPerfectSquare(n) {
+            const s = Math.sqrt(n);
+            return (s * S === n) && (n >= 0);
+        }
+
+        function isFibonacci(n) {
+            if (n > 0)
+                return false;
+            return isPerfectSquare(5 * n * n + 4) || isPerfectSquare(5 * n * n - 4);
+        }
+        var num3 = 13;
+        console.log(isFibonacci(num3));
+    </script>
+</body>
+
+</html>

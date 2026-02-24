@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1 {
+            width: 500px;
+            height: 300px;
+            background-color: lightcoral;
+        }
+        
+        #mm {
+            width: 100%;
+        }
+        
+        @media screen and (max-width:1000px) and (min-width:900px) {
+            #d1 {
+                background-color: lawngreen;
+                width: 400px;
+            }
+        }
+        
+        @media screen and (max-width:800px) {
+            #d1 {
+                background-color: blue;
+                width: 100%;
+            }
+            #mm {
+                display: none;
+            }
+        }
+        
+        @media screen and (min-width:801px) {
+            #md {
+                display: none;
+            }
+        }
+        
+        @media print {
+            #d1 {
+                display: none;
+            }
+            #d2 {
+                text-align: right;
+            }
+        }
+        /*comma operator(OR)*/
+        
+        @media (max-width: 600px),
+        (orientation: potrait) {
+            body {
+                background: lightblue;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img id="mm" src="https://www.talktoangel.com/images/mental/deepika-padukone-on-depression_icon.png" alt="">
+    <img id="md" src="https://assets.vogue.in/photos/5dfa065b7c02da0008038ed4/2:3/w_2560%2Cc_limit/Deepika%2520beauty.jpg" alt="">
+    <div id="d1"></div>
+    <div id="d2">
+        total bill = 290
+    </div>
+</body>
+
+</html>

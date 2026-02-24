@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movies Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial;
+        }
+        
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        img {
+            width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <table id="employees">
+    </table>
+
+    <script>
+        const employees = [{
+            firstname: "John",
+            lastname: "Doe",
+            age: 30,
+            gender: "Male",
+            city: "New York",
+            salary: 60000
+        }, {
+            firstname: "Jane",
+            lastname: "Smith",
+            age: 25,
+            gender: "Female",
+            city: "Los Angeles",
+            salary: 75000
+        }, {
+            firstname: "Peter",
+            lastname: "Jones",
+            age: 35,
+            gender: "Male",
+            city: "Chicago",
+            salary: 80000
+        }, {
+            firstname: "Alice",
+            lastname: "Williams",
+            age: 28,
+            gender: "Female",
+            city: "Houston",
+            salary: 70000
+        }, {
+            firstname: "Bob",
+            lastname: "Brown",
+            age: 40,
+            gender: "Male",
+            city: "Dallas",
+            salary: 90000
+        }, {
+            firstname: "Charlie",
+            lastname: "Davis",
+            age: 32,
+            gender: "Male",
+            city: "Miami",
+            salary: 65000
+        }, {
+            firstname: "Diana",
+            lastname: "Miller",
+            age: 29,
+            gender: "Female",
+            city: "Seattle",
+            salary: 82000
+        }, {
+            firstname: "Eve",
+            lastname: "Wilson",
+            age: 31,
+            gender: "Female",
+            city: "Boston",
+            salary: 78000
+        }];
+
+
+
+
+        var table = document.getElementById("employees");
+
+        // Create table header
+        var headerRow = document.createElement("tr");
+        var headers = ["firstname", "Last name", "age", "Gender", "city", "salary"];
+
+        headers.forEach(function(head) {
+            var th = document.createElement("th");
+            th.innerText = head;
+            th.onclick = function() {
+                sort()
+            }
+            headerRow.appendChild(th);
+
+        });
+
+        table.appendChild(headerRow);
+
+        // Create table rows
+        employees.forEach(function(emp) {
+            var row = document.createElement("tr");
+
+            var fname = document.createElement("td");
+            fname.innerText = emp.firstname;
+
+            var lname = document.createElement("td");
+            lname.innerText = emp.lastname;
+
+            var age = document.createElement("td");
+            age.innerText = emp.age;
+
+            var gender = document.createElement("td");
+            gender.innerText = emp.gender;
+
+            var city = document.createElement("td");
+            city.innerText = emp.city;
+
+            var sal = document.createElement("td");
+            sal.innerText = emp.salary;
+
+
+            row.append(
+                fname, lname, age, gender, city, sal
+            );
+
+            table.appendChild(row);
+        });
+
+        //sort on click
+        table.sort(function(a1, a2) {
+            if (a1.age < a2.age) {
+                return -1;
+            } else
+                return 1
+        })
+    </script>
+
+</body>
+
+</html>

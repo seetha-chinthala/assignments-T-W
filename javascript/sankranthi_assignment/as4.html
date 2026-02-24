@@ -1,0 +1,20 @@
+<html>
+    <body>
+        <fieldset id="box" style="width:250px;height:250px"></fieldset>
+        <button id="btn1">toggle</button>
+        <script>
+let btn1=document.getElementById("btn1")
+let box=document.getElementById("box")
+let clicked=false
+btn1.onclick=function(){
+    if(!clicked){
+    box.style.backgroundColor="yellow"
+clicked=true
+}
+else{
+     box.style.backgroundColor="white"
+     clicked=false
+}};
+        </script>
+    </body>
+</html>

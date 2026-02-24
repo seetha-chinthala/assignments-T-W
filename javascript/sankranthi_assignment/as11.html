@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact App</title>
+
+<style>
+body {
+    font-family: Arial;
+}
+
+label {
+    display: inline-block;
+    width: 70px;
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+#addBtn {
+    background: #1e90ff;
+    color: white;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.card {
+    background: yellow;
+    border: 3px solid red;
+    width: 380px;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.card img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: block;
+    margin: auto;
+}
+
+.delete {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.edit {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: #1e90ff;
+    color: white;
+    border-radius: 5px;
+}
+</style>
+</head>
+
+<body>
+
+<h3>Add Contact</h3>
+
+<label>Name:</label>
+<input type="text" id="name"><br>
+
+<label>Number:</label>
+<input type="text" id="number"><br>
+
+<label>Email:</label>
+<input type="email" id="email"><br>
+
+<label>Image:</label>
+<input type="file" id="image"><br>
+
+<button id="addBtn" onclick="addContact()">Add Contact</button>
+
+<div id="contacts"></div>
+
+<script>
+let editCard = null;
+
+function addContact() {
+    const name = document.getElementById("name").value;
+    const number = document.getElementById("number").value;
+    const email = document.getElementById("email").value;
+    const img = document.getElementById("image").files[0];
+
+    if (!name || !number || !email) {
+        alert("Fill all fields");
+        return;
+    }
+
+    const imgURL = img ? URL.createObjectURL(img) : "";
+
+    if (editCard) {
+        editCard.querySelector(".cname").innerText = name;
+        editCard.querySelector(".cnumber").innerText = number;
+        editCard.querySelector(".cemail").innerText = email;
+        if (img) editCard.querySelector("img").src = imgURL;
+
+        editCard = null;
+        document.getElementById("addBtn").innerText = "Add Contact";
+        clearInputs();
+        return;
+    }
+
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+        <span class="delete" onclick="deleteContact(this)">❌</span>
+        <img src="${imgURL}">
+        <p><b>Name:</b> <span class="cname">${name}</span></p>
+        <p><b>Number:</b> <span class="cnumber">${number}</span></p>
+        <p><b>Email:</b> <span class="cemail">${email}</span></p>
+        <button class="edit" onclick="editContact(this)">Edit</button>
+    `;
+
+    document.getElementById("contacts").appendChild(card);
+    clearInputs();
+}
+
+function deleteContact(el) {
+    if (confirm("Are you sure you want to delete this contact?")) {
+        el.parentElement.remove();
+    }
+}
+
+function editContact(btn) {
+    editCard = btn.parentElement;
+
+    document.getElementById("name").value =
+        editCard.querySelector(".cname").innerText;
+    document.getElementById("number").value =
+        editCard.querySelector(".cnumber").innerText;
+    document.getElementById("email").value =
+        editCard.querySelector(".cemail").innerText;
+
+    document.getElementById("addBtn").innerText = "Update Contact";
+}
+
+function clearInputs() {
+    document.getElementById("name").value = "";
+    document.getElementById("number").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("image").value = "";
+}
+</script>
+
+</body>
+</html>

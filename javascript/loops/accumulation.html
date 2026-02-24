@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="d1">
+
+    </ul>
+    <script>
+        //creating list item
+        var students = ["aparna", "seetha", "Mahesh", "gopasri", "lidiya"];
+        var i = 0;
+        while (i <= students.length) {
+            var std = document.createElement("li");
+            std.innerText = students[i];
+            document.getElementById("d1").appendChild(std);
+            i++;
+        }
+    </script>
+</body>
+
+</html>

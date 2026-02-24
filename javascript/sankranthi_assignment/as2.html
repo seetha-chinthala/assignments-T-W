@@ -1,0 +1,19 @@
+<html>
+    <body>
+        <button id="btn1">toggle</button>
+        <span id="state">false</span>
+        <script>
+ let x=document.getElementById("btn1")
+ let y=document.getElementById("state")
+ let clicked=false;
+ x.onclick=function(){
+    if(!clicked){y.innerText="true"
+        clicked=true
+    }
+    else{y.innerText="false"
+        clicked=false
+    }
+ }
+        </script>
+    </body>
+</html>

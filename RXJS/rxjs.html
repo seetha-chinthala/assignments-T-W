@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/rxjs@7.8.2/dist/bundles/rxjs.umd.min.js"></script>
+</head>
+
+<body>
+    <button id="d1">click
+    </button>
+    <script>
+        console.log(rxjs)
+        var ob1 = rxjs.fromEvent(document.getElementById("d1"), "click")
+        ob1.pipe(rxjs.throttleTime(4000)).subscribe(function() {
+            console.log("hello");
+        })
+
+        //api call
+        rxjs.ajax.ajax("http://dummyjson.com/products").subscribe(function(res) {
+            console.log(res);
+        })
+    </script>
+</body>
+
+</html>

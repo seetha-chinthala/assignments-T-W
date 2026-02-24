@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var people = [{
+            "firstname": "praveen",
+            "lastname": "gubbala",
+            "age": 36,
+            "gender": "male",
+            "city": "hyd",
+            "salary": 10000
+        }, {
+            "firstname": "srikanth",
+            "lastname": "gubbala",
+            "age": 32,
+            "gender": "male",
+            "city": "bengaluru",
+            "salary": 20000
+        }, {
+            "firstname": "pradeep",
+            "lastname": "reddy",
+            "age": 21,
+            "gender": "male",
+            "city": "hyd",
+            "salary": 25000
+        }, {
+            "firstname": "mounika",
+            "lastname": "mudiraj",
+            "age": 20,
+            "gender": "female",
+            "city": "nalgonda",
+            "salary": 30000
+        }, {
+            "firstname": "nikhil",
+            "lastname": "m",
+            "age": 22,
+            "gender": "male",
+            "city": "guntur",
+            "salary": 2000
+        }, {
+            "firstname": "riya",
+            "lastname": "bhadouria",
+            "age": 14,
+            "gender": "female",
+            "city": "indore",
+            "salary": 40000
+        }];
+
+        //print all the f names
+        people.forEach(function(person) {
+            console.log(person.firstname)
+        });
+
+        //print the full names of all the people
+        people.forEach(function(person) {
+            console.log(person.firstname + person.lastname)
+        });
+
+        //print the persons whose having age >25
+        people.filter(function(person) {
+            if (person.age > 25)
+                console.log("those are:", person.firstname + " " + person.lastname)
+        });
+
+        //print all female names
+        console.log("female names are")
+        people.filter(function(person) {
+            if (person.gender == "female")
+                console.log(person.firstname + " " + person.lastname)
+        });
+
+        //print only the names whose salary >25000 and hike sal to 15 percent
+        console.log("those persons are")
+        people.map(function(person) {
+            if (person.salary > 25000) {
+                person.salary = person.salary + person.salary * 0.15
+                console.log(person.firstname + " " + person.lastname)
+            }
+        });
+
+        //use prompt and print only names whose city is hyd
+        city = prompt("enter city")
+        people.filter(function(person) {
+            if (person.city == city)
+                console.log(person.firstname)
+        });
+
+        //print sal of all 
+        people.forEach(function(person) {
+            console.log(person.salary)
+        });
+
+        //print f names of whose sal>25000
+        people.filter(function(person) {
+            if (person.salary > 25000 && person.gender == "female")
+                console.log(person.firstname)
+        });
+
+        //print full names in alphabetical order
+        console.log("alphabetical orders")
+        people
+            .map(p => p.firstname + " " + p.lastname)
+            .sort()
+            .forEach(name => console.log(name));
+
+        //print names as per increasing order of their ages
+        console.log("according to  increasing ages")
+        people.sort((a, b) => a.age - b.age).forEach(function(person) {
+            console.log(person.firstname)
+        });
+
+        //print names as per decreasing order of their ages
+        console.log("according to  decreasing ages")
+        people.sort((a, b) => b.age - a.age).forEach(function(person) {
+            console.log(person.firstname)
+        });
+
+        //print names according to reverse of alphabetical order
+        console.log("reverse alphabetic order")
+        people.map(person => person.firstname + " " + person.lastname).sort().reverse().forEach(name => console.log(name));
+
+        //print male names whose age>25
+        console.log("male persons age>25")
+        people.filter(function(person) {
+            if (person.age > 25 && person.gender == "male")
+                console.log(person.firstname)
+        });
+
+        //print names whose name starts with "p" and convert to uppercase
+        console.log("names with p to uppercase")
+        people.filter(person => person.firstname.toLowerCase().startsWith("p")).forEach(person => console.log(person.firstname.toUpperCase()));
+
+        //print average of ages of students
+        var sum = 0
+        var avg = people.reduce((sum, person) => sum + person.age, 0) / people.length;
+        console.log("average of all the ages is", avg);
+
+        //print cities without duplicates
+        console.log("removing duplicate cities")
+        var cities = [...new Set(people.map(person => person.city))]
+        console.log(cities);
+
+        // advanced problems
+
+        //print names according to ascending order of sal
+        console.log("ascending of sal")
+        people.sort((a, b) => a.salary - b.salary).forEach(person => console.log(person.firstname + " " + person.lastname));
+
+        //print male and female names in two arrays
+        var male = [],
+            female = [];
+        console.log("separate male and female names")
+        people.map(function(person) {
+            if (person.gender == "male")
+                male += " " + person.firstname;
+            else
+                female += " " + person.firstname;
+        });
+        console.log("male names:", [male])
+        console.log("female names:", [female])
+
+        //print all names but 1st letter is uppercase
+        var fname, lname;
+        people.map(person => {
+            var fname = person.firstname.charAt(0).toUpperCase + person.firstname.slice(1).toLowerCase();
+            var lname = person.lastname.charAt(0).toUpperCase + person.lastname.slice(1).toLowerCase()
+            console.log(fname + " " + lname)
+        });
+
+        //print male names in alphabetical order
+        console.log("names of males in alphabetical order")
+        people.filter(person => person.gender === "male").sort((a, b) => a.firstname.localeCompare(b.firstname)).forEach(person => console.log(person));
+
+        //print female names in alphabetical order
+        console.log("names of females in alphabetical order")
+        people.filter(person => person.gender === "female").sort((a, b) => a.firstname.localeCompare(b.firstname)).reverse().forEach(person => console.log(person));
+
+        //hike sal to 15% and print all
+        console.log("hike 15%")
+        var people = people.map(function(person) {
+            person.salary = person.salary + person.salary * 0.15;
+            return person;
+        })
+        console.log(people);
+
+        //whether k is existed or not
+        people.forEach(function(person) {
+            if (person.firstname.includes("k"))
+                console.log(person)
+        });
+
+        //sort array based on lastnames
+        console.log("according to lastnames sort()")
+        people.sort((a, b) => a.lastname.localeCompare(b.lastname))
+        console.log(people)
+
+        //add property as role
+        console.log("role property")
+        people = people.map(function(person) {
+            person.role = "load Engineer"
+            return person;
+        })
+        console.log(people)
+
+        //check lastname of have "a" or not
+        var flag = false
+        console.log("a exists or not in all")
+        flag = people.every(person => person.lastname.includes("a"))
+        console.log(flag)
+        var s = 0;
+        console.log(s)
+        if (true) {
+            var s = 100;
+            console.log(s)
+        }
+    </script>
+</body>
+
+</html>

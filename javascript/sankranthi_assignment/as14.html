@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Management</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input { margin: 5px; padding: 5px; }
+    button { padding: 6px 12px; margin: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+
+  <h2>Contact Details</h2>
+  <label>FullName:</label>
+  <input type="text" id="fullName" />
+  <label>ContactNo:</label>
+  <input type="text" id="contactNo" />
+  <label>EmailId:</label>
+  <input type="email" id="emailId" />
+  <button onclick="addContact()">Add Details</button>
+
+  <table id="contactTable">
+    <thead>
+      <tr>
+        <th>FullName</th>
+        <th>ContactNo</th>
+        <th>EmailId</th>
+        <th>Modify</th>
+        <th>Remove</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    function addContact() {
+      const fullName = document.getElementById('fullName').value;
+      const contactNo = document.getElementById('contactNo').value;
+      const emailId = document.getElementById('emailId').value;
+
+      if (!fullName || !contactNo || !emailId) {
+        alert("Please fill all fields.");
+        return;
+      }
+
+      const table = document.getElementById('contactTable').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow();
+
+      newRow.innerHTML = `
+        <td>${fullName}</td>
+        <td>${contactNo}</td>
+        <td>${emailId}</td>
+        <td><button onclick="modifyContact(this)">Modify</button></td>
+        <td><button onclick="removeContact(this)">Remove</button></td>
+      `;
+
+      document.getElementById('fullName').value = '';
+      document.getElementById('contactNo').value = '';
+      document.getElementById('emailId').value = '';
+    }
+
+    function removeContact(button) {
+      const row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+
+    function modifyContact(button) {
+      const row = button.parentNode.parentNode;
+      document.getElementById('fullName').value = row.cells[0].innerText;
+      document.getElementById('contactNo').value = row.cells[1].innerText;
+      document.getElementById('emailId').value = row.cells[2].innerText;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+
+</body>
+</html>

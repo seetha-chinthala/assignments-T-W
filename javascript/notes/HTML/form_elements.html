@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <label for="d1">Enter Your Name:</label>
+        <input id="d1" type="text" name="fullname">
+        <br>
+        <label for="d2">Enter Your Email:</label>
+        <input id="d2" type="email" name="email">
+        <br>
+        <label for="d3">Enter Your Pincode:</label>
+        <input id="d3" type="number" name="pincode" max="999999" min="100000">
+        <br>
+        <label for="d4">Enter Your Password</label>
+        <input id="d4" type="password" name="pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+        <br>
+        <label>Enter Your Date of Birth</label>
+        <input type="date" name="pwd" min="2025-08-11" required>
+        <br>
+        <label>Gender:
+        
+        <input type="radio" name="gen" value="male">:Male
+        <input type="radio" name="gen" value="female">:Female
+        <input type="radio" name="gen" value="others">:Others
+        </label>
+        <br>
+        <label>Technologies:
+        <input type="checkbox" value="NodeJS">NodeJS
+        <input type="checkbox" value="Angular" checked>Angular
+        <input type="checkbox" value="ReactJS">ReactJS
+        </label>
+        <br>
+        <select name="skills" size="1" multiple>
+            <option value="html" >HTML</option>
+            <option value="css" >CSS</option>
+            <option value="js">JavaScript</option>
+          </select>
+        <br>
+        <label>Address:
+            <br>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+       </label>
+        <br>
+        <select name="country" id="">
+            <option value="null" disabled selected>Please select</option>
+            <option value="IND">India</option>
+            <option value="PAK">Pakistan</option>
+            <option value="SRI">Srilanka</option>
+        </select>
+        <br>
+        <select name="course" size="2">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="react">React</option>
+          </select>
+        <br>
+        <button>Emito</button>
+    </form>
+    <h1 style="position:absolute;">Hello Saritha</h1>
+    <h1>Hello Balaji</h1>
+</body>
+
+</html>

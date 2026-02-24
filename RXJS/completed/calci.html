@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Calculator with Callback</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url(https://www.shutterstock.com/image-photo/new-peaceful-desktop-wallpaper-green-260nw-3496381.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
+        
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(63, 62, 62);
+            padding: 5px;
+            width: 100%;
+            position: fixed;
+            color: whitesmoke;
+        }
+        
+        #logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        
+        #navbar {
+            padding-left: 10px;
+        }
+        
+        #logo-container {
+            display: flex;
+            gap: 30px;
+            padding-left: 50px;
+        }
+        
+        #menubar {
+            display: flex;
+            list-style: none;
+            padding-right: 100px;
+        }
+        
+        #menubar li {
+            padding-right: 50px;
+            gap: 30px;
+        }
+        
+        #menubar li:hover {
+            color: #198754;
+        }
+        
+        #hamburger,
+        #toggle-menu {
+            display: none;
+        }
+        
+        @media screen and (max-width:768px) {
+            #menubar {
+                top: 0px;
+                left: 0px;
+                width: 80%;
+                position: absolute;
+                margin-top: 90px;
+                background-color: rgb(63, 62, 62);
+                color: whitesmoke;
+                height: 0px;
+                gap: 5px;
+                padding-top: 10px 0;
+                opacity: 0.5;
+            }
+            #menubar li {
+                padding-left: 10%;
+                padding-top: 40px;
+            }
+            #menubar li:hover {
+                color: rgb(5, 5, 5);
+            }
+            #hamburger {
+                display: flex;
+                padding-right: 50px;
+            }
+            #menubar {
+                display: none;
+            }
+            #toggle-menu:checked~#menubar {
+                display: flex;
+                top: 20px;
+                left: 50%;
+                flex-direction: column;
+                transition: 2s;
+                height: 600px;
+                background-color: rgb(76, 98, 138);
+            }
+        }
+        
+        #parent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        
+        .main {
+            color: black;
+            border: 2px solid black;
+            border-radius: 20px;
+            width: 400px;
+            height: 400px;
+        }
+        
+        .main h2 {
+            text-align: center;
+            color: rgb(62, 64, 62);
+            font-size: 40px;
+        }
+        
+        .main input {
+            height: 30px;
+            border-radius: 10px;
+            background-color: none;
+        }
+        
+        .input {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        
+        .btn {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+        
+        .btn button {
+            border-radius: 10px;
+            height: 50px;
+            width: 60px;
+            background-color: rgb(99, 227, 122);
+            box-shadow: 0 0 10px black;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn button:hover {
+            animation: bounce 0.6s;
+        }
+        
+        @keyframes bounce {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        .main h3 {
+            padding-left: 40px;
+        }
+        
+        #footer-section {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgb(63, 62, 62);
+            color: whitesmoke;
+            text-align: center;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="navbar">
+        <div id="logo-container">
+            <img id="logo" src="https://www.logodesign.net/logo/abacus-in-circle-with-swooshes-5681ld.png?nwm=1&nws=1&industry=calculator&sf=&txt_keyword=All">
+            <h1 class="logo">Calci</h1>
+        </div>
+        <input type="checkbox" id="toggle-menu">
+        <label for="toggle-menu">
+            <h1 id="hamburger">&#9776;</h1>
+        </label>
+        <ul id="menubar">
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+
+    <div id="parent">
+        <div class="main">
+            <br>
+            <h2>Calci</h2>
+            <br>
+
+            <div class="input">
+                <input type="number" id="num1" placeholder="Number 1">
+                <input type="number" id="num2" placeholder="Number 2">
+            </div>
+            <br><br><br>
+            <div class="btn">
+                <button data-op="add">Add</button>
+                <button data-op="sub">Subtract</button>
+                <button data-op="mul">Multiply</button><br>
+                <br>
+
+                <button data-op="div">Divide</button>
+                <button data-op="mod">Modulus</button>
+            </div><br>
+            <br>
+
+            <h3>Result: <span id="result">0</span></h3>
+        </div>
+    </div>
+    <div id="footer-section">© 2026 Calci. All rights reserved.</div>
+
+    <script>
+        $(document).ready(function() {
+
+            function calculate(a, b, operation, callback) {
+                let result;
+
+                switch (operation) {
+                    case "add":
+                        result = a + b;
+                        break;
+
+                    case "sub":
+                        result = a - b;
+                        break;
+
+                    case "mul":
+                        result = a * b;
+                        break;
+
+                    case "div":
+                        result = b !== 0 ? a / b : "Cannot divide by zero";
+                        break;
+
+                    case "mod":
+                        result = b !== 0 ? a % b : "Cannot mod by zero";
+                        break;
+                }
+
+                // callback executed after calculation
+                callback(result);
+            }
+
+            $("button").click(function() {
+                let a = Number($("#num1").val());
+                let b = Number($("#num2").val());
+                let operation = $(this).data("op");
+
+                calculate(a, b, operation, function(output) {
+                    $("#result").text(output);
+                });
+            });
+
+        });
+    </script>
+</body>
+
+</html>

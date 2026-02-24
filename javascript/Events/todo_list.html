@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="d1">
+    <button onclick="addto()" id="d2">Add To</button>
+    <ul id="d3">
+
+    </ul>
+    <script>
+        var todos = [];
+
+        function genUI() {
+            document.getELementById("d3").innerText = "";
+            todos.forEach(function(event) {
+                var nli = document.createElement("li")
+                nli.innerText = todos;
+
+                //delete buttons
+                //var delbtn = document.createElement("btn");
+                //delbtn.innerText = "Delete";
+                //nli.appendChild(delbtn);
+
+                document.getElementById("d3").appendChild(nli);
+            })
+        }
+
+        //add to function
+        function addTO() {
+            var c = document.createELement("d2").value;
+            todos.push(c);
+            genUI()
+            document.getElementById("d1").value
+        }
+
+        //delete finction
+        //function delete() {
+        //  var d = document.getElementById("d3").value;
+        //d.slice(index, d)
+        //genUI();
+        //}
+    </script>
+</body>
+
+</html>

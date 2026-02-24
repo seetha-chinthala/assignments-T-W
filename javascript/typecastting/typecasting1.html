@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //string to int method 1
+        var string = prompt("enter string value")
+        console.log(typeof(string))
+        var num = parseInt(string)
+        console.log(typeof(num))
+            //method 2
+        var str = +prompt("enter string")
+        console.log(typeof(str))
+            //method 3
+        var num2 = string - 0
+        console.log(typeof(num2))
+        console.log(typeof(string * 1))
+            //number to string
+        var f = 12.5
+        console.log(typeof(f))
+        console.log(typeof(f.toString()))
+            //float to int
+        var i = 112.35
+        console.log(typeof(i))
+        console.log(typeof(parseInt(i)))
+            //boolean to string and number
+        var b = true
+        console.log(typeof(b))
+        console.log(typeof(Number(b)))
+        console.log(typeof(String(b)))
+            //array to string
+        var arr = [10, 20, 30]
+        console.log(typeof(arr))
+        console.log(typeof(String(arr)))
+    </script>
+</body>
+
+</html>

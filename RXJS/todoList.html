@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Todo App</title>
+
+    <style>
+        .main-box {
+            width: 1000px;
+            border: 2px solid rgb(195, 13, 13);
+            padding: 15px;
+            margin: 30px auto;
+        }
+        
+        .title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .todo-box {
+            border: 2px solid rgb(13, 133, 212);
+            padding: 15px;
+        }
+        
+        .todo-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        #d4 {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            margin-bottom: 5px;
+        }
+        
+        li button {
+            margin-left: 56px;
+        }
+    </style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="main-box">
+        <div class="title">Task</div>
+
+        <div class="todo-box">
+            <div class="todo-title">Todo List</div>
+
+            <input type="text" id="d1" placeholder="enter Task">
+            <button onclick="addTodo()">Add Todo</button>
+
+            <ul id="d4"></ul>
+        </div>
+    </div>
+
+    <script>
+        var todos = ["understand problem", "break it tasks", "find all available solutions", "think for unique one", "develop the code", "test it ", "combine all tasks to one", "test it ", "implement"];
+
+        function genUI() {
+            document.getElementById("d4").innerHTML = "";
+
+            todos.forEach(function(todo, index) {
+                var li = document.createElement("li");
+                li.innerText = todo + " ";
+
+                var delBtn = document.createElement("button");
+                delBtn.innerText = "Delete";
+                delBtn.onclick = function() {
+                    deleteTodo(index);
+                };
+
+                li.appendChild(delBtn);
+                document.getElementById("d4").appendChild(li);
+            });
+        }
+
+        function addTodo() {
+            var nt = document.getElementById("d1").value;
+            if (nt === "") return;
+
+            todos.push(nt);
+            document.getElementById("d1").value = "";
+            genUI();
+        }
+
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            genUI();
+        }
+
+        genUI();
+    </script>
+
+</body>
+
+</html>

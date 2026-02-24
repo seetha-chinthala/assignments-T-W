@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //increment value by 1
+        var i = 23
+        console.log(++i)
+            //ternary operator even or odd and positive or negative
+        var num = +prompt("enter num")
+        console.log(num % 2 == 0 ? "even" : "odd")
+        console.log(num >= 0 ? "positive" : "negative")
+        console.log(num % 4 == 0 ? "multiple" : "not a multiple")
+            //print power
+        console.log(math.pow(2, 2))
+
+
+        var s = "seetha"
+        var x = ""
+        var ch = 0
+        for (var i = 0; i < s.length - 1; i++) {
+            if (ch != "a" && ch != "e" && ch != "i" && ch != "o" && ch != "u")
+                x = x + s[i]
+        }
+        s = x
+        console.log(s)
+
+        var ar = [];
+        for (let i = 0; i <= 3; i++) {
+            ar.push(function() {
+                console.log(i);
+            });
+        }
+        console.log(ar);
+    </script>
+</body>
+
+</html>

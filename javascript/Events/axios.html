@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+
+<body>
+    <h1 id="d2"></h1>
+    <table border="2">
+        <tbody id="d1"></tbody>
+    </table>
+
+    <script>
+        function genTable(products) {
+            document.getElementById("d1").innerText = ""
+            products.forEach(function(product) {
+                var ntr = document.createElement("tr")
+                var titletd = document.createElement("td")
+                titletd.innerText = product.title
+                var categorytd = document.createElement("td")
+                categorytd.innerText = product.category
+                ntr.appendChild(titletd)
+                ntr.appendChild(categorytd)
+                document.getElementById("d1").appendChild(ntr)
+            })
+        }
+
+        //api call
+        axios.get("https://dummyjson.com/product").then(function(response) {
+            var products = response.data.products;
+            genTable(products)
+        })
+    </script>
+</body>
+
+</html>

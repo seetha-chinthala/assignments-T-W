@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav_bar {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            padding: 20px;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(83, 81, 81);
+            color: whitesmoke;
+        }
+        
+        .menu_bar {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            list-style: none;
+            gap: 10px;
+            color: whitesmoke;
+        }
+        
+        .menu_bar li:hover {
+            color: lightblue;
+        }
+        
+        .nav_bar button {
+            width: 100px;
+            height: 50px;
+            background-color: blue;
+            border: 2px solid black;
+            color: whitesmoke;
+            border-radius: 10px;
+        }
+        /*hero content*/
+        
+        .hero_content {
+            width: 50%;
+            height: 300px;
+            background-color: lightcoral;
+            padding: 20px;
+        }
+        
+        .hero_content li {
+            color: blue;
+        }
+        
+        .hero_button {
+            display: flex;
+            justify-content: space-evenly;
+            color: black;
+        }
+        
+        .hero_button button {
+            border-radius: 20px;
+            background-color: lightblue;
+        }
+        
+        .hero_button button:hover {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class=container>
+        <div class="nav_bar">
+            <h1>Orbit</h1>
+            <nav class="menu_bar">
+                <li>Home
+                </li>
+                <li>About</li>
+                <li>Services</li>
+                <li>Portfolio</li>
+                <li>Team</li>
+                <li>Dropdown</li>
+                <li>contact</li>
+            </nav>
+            <button>get Strarted</button>
+        </div>
+
+        <div class="hero">
+            <div class="hero_content">
+                <li>PREMIUM DIGITAL SOLUTIONS</li>
+                <h1>Crafting Exceptional Digital Experiences</h1>
+                <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas Vestibulum tortor quan Teugiat vitae ultricies eget</p>
+                <div class="hero_button">
+                    <button>Explore services</button>
+                    <button>Watch Video</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

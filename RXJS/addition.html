@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Addition with Callback</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+
+<body>
+
+    <h2>Addition using Callback (jQuery)</h2>
+
+    <input type="number" id="num1" placeholder="Number 1">
+    <input type="number" id="num2" placeholder="Number 2">
+
+    <br><br>
+
+    <button id="addBtn">Add</button>
+
+    <h3>Result: <span id="result">0</span></h3>
+
+    <script>
+        $(document).ready(function() {
+
+            function addNumbers(a, b, callback) {
+                let sum = a + b;
+
+                // callback is called after calculation
+                callback(sum);
+            }
+
+            $("#addBtn").click(function() {
+                let a = Number($("#num1").val());
+                let b = Number($("#num2").val());
+
+                addNumbers(a, b, function(result) {
+                    $("#result").text(result);
+                });
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

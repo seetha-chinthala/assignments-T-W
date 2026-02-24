@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            border: 5px solid green;
+            gap: 10px;
+            padding: 10px;
+            background-color: rgb(43, 42, 42);
+            color: white;
+        }
+        
+        .item {
+            border: 2px solid red;
+            padding: 20px;
+        }
+        
+        .header {
+            /* grid-column: 1/6; */
+            grid-column-start: 1;
+            grid-column-end: 6;
+        }
+        
+        .row2content {
+            /* grid-column: 1/4; */
+            grid-column-start: 1;
+            grid-column-end: 4;
+        }
+        
+        .row2extra {
+            grid-column-start: 4;
+            grid-column-end: 5;
+        }
+        
+        .sidebar {
+            grid-column-start: 5;
+            grid-column-end: 6;
+            grid-row-start: 2;
+            grid-row-end: 5;
+        }
+        
+        .row3content {
+            grid-column-start: 1;
+            grid-column-end: 2;
+        }
+        
+        .row3extra {
+            grid-column-start: 2;
+            grid-column-end: 5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="item header">Header</div>
+        <div class="item row2content">Row 2 Content</div>
+        <div class="item row2extra">Row 2 Extra</div>
+        <div class="item sidebar">Sidebar</div>
+        <div class="item row3content">Row3 Content</div>
+        <div class="item row3extra">row3extra</div>
+        <div class="item">Item 7</div>
+        <div class="item">Item 8</div>
+        <div class="item">Item 9</div>
+        <div class="item">Item 10</div>
+
+    </div>
+
+
+</body>
+
+</html>

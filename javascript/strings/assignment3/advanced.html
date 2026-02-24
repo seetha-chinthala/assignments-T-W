@@ -1,0 +1,327 @@
+<html>
+
+<body>
+    <!--41. Use a for loop to randomly shuffle the elements in the array. <script>
+        const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+        for(let i=animals.length-1;i>0;i--){
+            let j=Math.floor(Math.random()*(i+1));
+            let temp=animals[i]
+            animals[i]=animals[j]
+            animals[j]=temp
+        }
+        console.log(animals)
+</script>-->
+    <!--42. Use a for loop to find all animals that contain at least three vowels
+<script>
+            const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+            var arr=[]
+            count=0
+            for(i=0;i<=animals.length-1;i++){
+                let str=animals[i].toLowerCase()
+                let v=0
+                for(j=0;j<=str.length-1;j++){
+                if('aeiouAEIOU'.includes(str[j])){
+                    v+=1
+                }
+            }
+                if(v>=3){
+                    arr.push(animals[i])
+                }
+            }console.log(arr)
+            
+          </script>-->
+    <!--43. Use a for loop to split each animal name into an array of characters
+<script>
+const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+                       var arr=[]
+                       for(i=0;i<=animals.length-1;i++){
+                let str=animals[i].toLowerCase()
+                let v=0
+                for(j=0;j<=str.length-1;j++){
+                    arr.push(str[j])}}
+                    console.log(arr)
+</script>-->
+    <!--44. Use a for loop to replace all vowels in animal names with "*".
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+            for(let i=0;i<animals.length;i++){
+               animals[i]=animals[i].replace(/[aeiouAEIOU]/gi,'*');}
+               console.log(animals)
+</script> -->
+    <!--45. Use a for loop to find all animals whose names are palindromes 
+<script>
+    const animals = ["Lion","Tiger","zoz","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","level",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+                       var arr=[]
+for(let i=0;i<animals.length;i++){
+    var s=animals[i].toUpperCase();
+    var pal=true;
+    for(var j=0;j<s.length/2;j++){
+        if(s[j]!==s[s.length-1-j]){
+        pal=false;
+        break;
+    }
+}if(pal){
+    arr.push(animals[i])}}
+    console.log(arr)
+</script>-->
+    <!--47. Use a for loop to create an array where each animal has its length appended
+<script>
+    const animals = ["Lion","Tiger","zoz","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","level",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+    var arr=[]
+    for(let i=0;i<animals.length;i++){
+        arr.push(animals[i]+"-"+animals[i].length);
+    }
+    console.log(arr)
+</script>-->
+    <!--48. Use a for loop to create an array where each animal is listed twice
+<script>
+    const animals = ["Lion","Tiger","zoz","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","level",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+    var arr=[]
+    for(let i=0;i<animals.length;i++){
+        arr.push(animals[i]+animals[i]);
+    }
+    console.log(arr)
+    </script>-->
+    <!--49. Use a for loop to find the most common starting letter in all animal names
+<script>
+    const animals = ["Lion","Tiger","zoz","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda","level",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+    var arr=[]
+    for(let i=0;i<animals.length;i++){
+    arr.push(animals[i][0])}
+    let maxcount=0
+    let result=""
+    for(let i=0;i<arr.length;i++){
+        let count=0;
+        for(let j=0;j<arr.length;j++){
+            if(arr[i]===arr[j]){
+                count+=1
+            }}
+            if(count>maxcount){
+            result=arr[i]
+            }
+    }
+    console.log(result)
+</script>-->
+    <!--50. Use a for loop to create a lookup object where each animal's index is its value
+<script>
+  var obj={}
+  const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+  for(var i=0;i<animals.length;i++){
+      obj[animals[i]]=i
+    }
+  console.log(obj)
+</script>-->
+    <!---51. Use a for loop to create an object where the last letter is the key.
+<script>
+var obj={}
+  const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+  for(var i=0;i<animals.length;i++){
+    let animal=animals[i]
+    let key=animal[animal.length-1]
+    if(!obj[key]){
+        obj[key]=[];
+    }
+    obj[key].push(animal)}
+    console.log(JSON.stringify(obj))
+    </script>-->
+    <!--52. Use a for loop to count how many animals contain the letter "p"
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+let count=0;
+for(let i=0;i<animals.length;i++){
+    let name=animals[i].toLowerCase();
+    if(name.includes('p')){
+        count+=1
+    }
+}console.log(count)
+</script>-->
+    <!--53. Use a for loop to print animals sorted by their last letter
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+let obj={}
+ for(var i=0;i<animals.length;i++){
+    let animal=animals[i]
+    let last=animal[animal.length-1];
+    if(!obj[last]){
+       obj[last]=[]}
+       obj[last].push(animal);
+       let keys=Object.keys(obj)
+       keys.sort();
+       for (let i = 0; i < keys.length; i++) {
+  let key = keys[i];
+  for (let j = 0; j < obj[key].length; j++) {
+    console.log(obj[key][j]);
+  }
+}} 
+        </script>-->
+    <!--54. Use a for loop to find the longest common prefix among all names
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+let prefix = animals[0];
+
+for (let i = 1; i < animals.length; i++) {
+  while (animals[i].indexOf(prefix) !== 0) {
+    prefix = prefix.slice(0, -1);
+    if (prefix === "") break;
+  }
+}
+if (prefix === "") {console.log("no common")}
+else{
+console.log("Longest Common Prefix:", prefix);}
+</script>-->
+    <!--55. Use a for loop to create an array where the first letter of each animal is capitalized.
+<script>
+     const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+    let capitalizedAnimals = [];
+
+for (let i = 0; i < animals.length; i++) {
+  let word = animals[i];
+  capitalizedAnimals.push(word.charAt(0).toUpperCase() + word.slice(1));
+}
+console.log(capitalizedAnimals);
+</script>-->
+    <!--56. Use a for loop to create an array of animals grouped by odd or even length
+<script>
+     const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+let groupedAnimals = { even: [], odd: [] };
+
+for (let i = 0; i < animals.length; i++) {
+  if (animals[i].length % 2 === 0) {
+    groupedAnimals.even.push(animals[i]);
+  } else {
+    groupedAnimals.odd.push(animals[i]);
+  }
+}
+console.log(JSON.stringify(groupedAnimals));
+</script>-->
+    <!--57. Use a for loop to count how many animals have more consonants than vowels.
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+    let count = 0;
+let vowels = "aeiouAEIOU";
+for (let i = 0; i < animals.length; i++) {
+  let v = 0, c = 0;
+  for (let ch of animals[i]) {
+    if (vowels.includes(ch)) v++;
+    else c++;
+  }
+  if (c > v) count++;
+}
+console.log("Animals with more consonants than vowels:", count);
+</script>-->
+    <!--58. Use a for loop to check if all animal names have at least one vowel
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+    let allHaveVowel = true;
+let vowels = "aeiou";
+for (let i = 0; i < animals.length; i++) {
+  let hasVowel = false;
+  for (let ch of animals[i]) {
+    if (vowels.includes(ch)) {
+      hasVowel = true;
+      break;
+    }
+  }
+  if (!hasVowel) {
+    allHaveVowel = false;
+    break;
+  }
+}
+console.log("All animals have at least one vowel:", allHaveVowel);
+</script>-->
+    <!--59. Use a for loop to print every third animal in the list
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+                       let allHaveVowel = true;
+let vowels = "aeiou";
+for (let i = 0; i < animals.length; i++) {
+  let hasVowel = false;
+  for (let ch of animals[i]) {
+    if (vowels.includes(ch)) {
+      hasVowel = true;
+      break;
+    }
+  }
+  if (!hasVowel) {
+    allHaveVowel = false;
+    break;
+  }
+}
+console.log("All animals have at least one vowel:", allHaveVowel);
+</script>-->
+    <!--60. Use a for loop to create a fighting game, where two random animals "battle" each
+other
+<script>
+    const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+    for (let i = 0; i < 3; i++) {
+  let a1 = animals[Math.floor(Math.random() * animals.length)];
+  let a2 = animals[Math.floor(Math.random() * animals.length)];
+
+  while (a1 === a2) {
+    a2 = animals[Math.floor(Math.random() * animals.length)];
+  }
+
+  let winner = Math.random() > 0.5 ? a1 : a2;
+  console.log(`${a1} vs ${a2} → Winner: ${winner}`);
+}
+</script>-->
+</body>
+
+</html>

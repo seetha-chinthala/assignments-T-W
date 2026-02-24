@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Categorized Todo App</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            width: 95%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        
+        .input-section {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        input,
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            flex: 1;
+        }
+        
+        button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #667eea;
+            color: white;
+        }
+        
+        button:disabled {
+            background: gray;
+        }
+        
+        .filters {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .category-heading {
+            margin-top: 15px;
+            font-weight: bold;
+            background: #f1f1f1;
+            padding: 6px;
+            border-radius: 5px;
+        }
+        
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        li {
+            background: #f9f9f9;
+            margin: 6px 0;
+            padding: 8px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+        
+        @media(max-width:500px) {
+            .input-section {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Todo App</h2>
+
+        <div class="input-section">
+            <input type="text" id="todoInput" placeholder="Enter todo..." onkeyup="checkInput(event)">
+            <select id="categoryInput">
+        <option value="Work">Work</option>
+        <option value="Personal">Personal</option>
+        <option value="Study">Study</option>
+        <option value="Study">Finance</option>
+        <option value="Study">Travel<ption>
+       <option value="Study">Other</option>
+    </select>
+            <button id="addBtn" onclick="addTodo()" disabled>Add</button>
+        </div>
+
+        <div class="filters">
+            <div>
+                <label><input type="radio" name="statusFilter" value="all" checked onchange="genUI()"> All</label>
+                <label><input type="radio" name="statusFilter" value="completed" onchange="genUI()"> Completed</label>
+                <label><input type="radio" name="statusFilter" value="notcompleted" onchange="genUI()"> Not Completed</label>
+            </div>
+
+            <div>
+                <select id="categoryFilter" onchange="genUI()">
+            <option value="All">All Categories</option>
+            <option value="Work">Work</option>
+            <option value="Personal">Personal</option>
+            <option value="Study">Study</option>
+            <option value="Study">Finance</option>
+            <option value="Study">Travel<ption>
+                <option value="Study">Other</option>
+
+
+        </select>
+            </div>
+        </div>
+
+        <div id="displayArea"></div>
+
+    </div>
+
+    <script>
+        let todos = JSON.parse(localStorage.getItem("todos")) || [];
+
+        function saveToLocal() {
+            localStorage.setItem("todos", JSON.stringify(todos));
+        }
+
+        function addTodo() {
+            const title = document.getElementById("todoInput").value.trim();
+            const category = document.getElementById("categoryInput").value;
+
+            if (title === "") return;
+
+            todos.push({
+                title,
+                category,
+                status: false
+            });
+
+            saveToLocal();
+            document.getElementById("todoInput").value = "";
+            document.getElementById("addBtn").disabled = true;
+            genUI();
+        }
+
+        function toggleStatus(index) {
+            todos[index].status = !todos[index].status;
+            saveToLocal();
+            genUI();
+        }
+
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            saveToLocal();
+            genUI();
+        }
+
+        function checkInput(ev) {
+            const value = ev.target.value.trim();
+            document.getElementById("addBtn").disabled = value === "";
+
+            if (ev.key === "Enter" && value !== "") {
+                addTodo();
+            }
+        }
+
+        function genUI() {
+
+            const display = document.getElementById("displayArea");
+            display.innerHTML = "";
+
+            const statusFilter = document.querySelector('input[name="statusFilter"]:checked').value;
+            const categoryFilter = document.getElementById("categoryFilter").value;
+
+            let filteredTodos = todos.filter(todo => {
+
+                // status filter
+                if (statusFilter === "completed" && !todo.status) return false;
+                if (statusFilter === "notcompleted" && todo.status) return false;
+
+                // category filter
+                if (categoryFilter !== "All" && todo.category !== categoryFilter) return false;
+
+                return true;
+            });
+
+            // Group by category
+            const grouped = {};
+
+            filteredTodos.forEach((todo, index) => {
+                if (!grouped[todo.category]) {
+                    grouped[todo.category] = [];
+                }
+                grouped[todo.category].push(todo);
+            });
+
+            for (let category in grouped) {
+
+                const heading = document.createElement("div");
+                heading.classList.add("category-heading");
+                heading.innerText = category;
+                display.appendChild(heading);
+
+                const ul = document.createElement("ul");
+
+                grouped[category].forEach(todo => {
+
+                    const actualIndex = todos.indexOf(todo);
+
+                    const li = document.createElement("li");
+
+                    const span = document.createElement("span");
+                    span.innerText = todo.title;
+                    if (todo.status) span.classList.add("completed");
+
+                    const btnDiv = document.createElement("div");
+
+                    const toggleBtn = document.createElement("button");
+                    toggleBtn.innerText = todo.status ? "Undo" : "Done";
+                    toggleBtn.onclick = () => toggleStatus(actualIndex);
+
+                    const delBtn = document.createElement("button");
+                    delBtn.innerText = "Delete";
+                    delBtn.style.background = "#e74a3b";
+                    delBtn.onclick = () => deleteTodo(actualIndex);
+
+                    btnDiv.appendChild(toggleBtn);
+                    btnDiv.appendChild(delBtn);
+
+                    li.appendChild(span);
+                    li.appendChild(btnDiv);
+
+                    ul.appendChild(li);
+                });
+
+                display.appendChild(ul);
+            }
+        }
+
+        genUI();
+    </script>
+
+</body>
+
+</html>

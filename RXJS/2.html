@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/rxjs@7.8.2/dist/bundles/rxjs.umd.min.js"></script>
+
+</head>
+
+<body>
+    <script>
+        function add(a, b) {
+            let sum = 0;
+            for (var i = a; i <= b; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+        async
+
+        function addSeries(a, b) {
+            var result = await add(a, b)
+            return result;
+        }
+
+        addSeries(1, 20).then(function(res) {
+            console.log(res);
+        })
+        console.log("hi")
+
+
+
+
+
+
+
+        <
+        html >
+            <
+            body >
+            <
+            script >
+            function Series(a, b) {
+                let sum = 0;
+                for (var i = a; i <= b; i++) {
+                    sum += i;
+                }
+                return sum;
+            }
+        async function addSeries(a, b) {
+            var res = await Series(a, b)
+            return res;
+        }
+        addSeries(1, 10).then(function(result) {
+            console.log(result);
+        })
+        console.log("hello")
+    </script>
+</body>
+
+</html>
+</script>
+</body>
+
+</html>

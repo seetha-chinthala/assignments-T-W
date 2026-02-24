@@ -1,0 +1,61 @@
+<html>
+
+<body>
+    <!--  6.Use a for loop to reverse each fruit name
+          <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            for(i=0;i<=fruits.length-1;i++){
+                let reversedfruit=fruits[i].split("").reverse().join("")
+                console.log(reversedfruit)
+            }
+          </script>
+        -->
+    <!--  7.use a for loop to create a new array containing fruit names in uppercase
+          <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            var ar=[]
+            for(i=0;i<=fruits.length-1;i++){
+                let upper=fruits[i].toUpperCase()
+                ar.push(upper)
+            }console.log(ar)
+          </script>
+        -->
+    <!--   8.Use a for loop to add "Delicious" before each fruit name
+           <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            var ar=[]
+            for(i=0;i<=fruits.length-1;i++){
+                let str="Delicious "+fruits[i]
+                ar.push(str)
+            }
+            console.log(ar)
+           </script>
+        -->
+    <!--  9.Use a for loop to find how many fruits have more than 5 letters
+          <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            count=0
+            for(i=0;i<=fruits.length-1;i++){
+                if(fruits[i].length>5){
+                    count=count+1
+                }
+            }console.log("The fruits have more than 5 letters are",count)
+          </script>
+        -->
+    <!--  10.Use a for loop to remove all fruits thatcontain the letter 'o'-->
+    <script>
+        const fruits = ["Apple", "Banana", "Cherry", "Mango", "Orange", "Grapes"]
+        ar = []
+        for (i = 0; i <= fruits.length - 1; i++) {
+            if (fruits[i].includes("o")) {
+                r = fruits[i].replaceAll("o", "")
+                ar.push(r)
+            } else {
+                ar.push(fruits[i])
+            }
+        }
+        console.log("After removing all fruits that contain the letter 'o' is", ar)
+    </script>
+</body>
+
+</html>

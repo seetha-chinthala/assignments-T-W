@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //string to number
+        var a = "abc"
+        console.log(typeof(a))
+        console.log(typeof(Number(a)))
+            //undefined to number, string, and boolean
+        var b
+        console.log(typeof(b))
+        console.log(typeof(Number(b)))
+        console.log(typeof(String(b)))
+        console.log(typeof(Boolean(b)))
+            //null to number,string and boolean
+        var c = null
+        console.log(typeof(c))
+        console.log(typeof(Number(c)))
+        console.log(typeof(String(c)))
+        console.log(typeof(Boolean(c)))
+            //array and empty array to number and string
+        var arr = []
+        console.log(typeof(arr))
+        console.log(typeof(Number(arr)))
+        console.log(typeof(String(arr)))
+        var arr2 = [10, 20, 30]
+        console.log(typeof(arr2))
+        console.log(typeof(Number(arr2)))
+        console.log(typeof(String(arr2)))
+            //isNaN for valid conversions
+        var x = "123"
+        console.log(isNaN(Number(x)))
+    </script>
+</body>
+
+</html>

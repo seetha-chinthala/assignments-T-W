@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*descedant selector*/
+        
+        p:nth-of-type(2) {
+            color: yellow;
+        }
+        
+        div p {
+            color: red;
+        }
+        
+        ol>h1 {
+            color: red;
+        }
+        
+        tr:nth-child(3n) {
+            background-color: lightcoral;
+        }
+        
+        tr:nth-child(3n+1) {
+            background-color: rgb(253, 208, 208);
+        }
+        
+        tr:nth-child(3n+2) {
+            background-color: rgb(244, 169, 169);
+        }
+        
+        tr:hover {
+            color: white;
+            background-color: red;
+        }
+        /*pseudo element selectors*/
+        
+        p::first-letter {
+            font-size: 3em;
+        }
+        
+        p::before {
+            content: "👉 ";
+        }
+        /*adjacent sibling selector*/
+        
+        #d2+li {
+            background-color: lightcoral;
+        }
+        /* child selector*/
+        
+        div>p {
+            color: blue;
+        }
+        /*general sibling selector*/
+        
+        .active~li {
+            color: green;
+        }
+        /* #d2~li {
+            background-color: lightcoral;
+        } */
+        /* 1. decendents 2.children 3.siblings */
+        /*pseudo class selectors*/
+        
+        input:not([type="text"]) {
+            background-color: gray;
+        }
+        /*multiple conditional selector*/
+        
+        div.box>p:first-child {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>Paragraph 1</p>
+        <section>
+            <p>Paragraph 2</p>
+        </section>
+    </div>
+    <input type="text">
+    <input type="chckbox">tech
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores debitis ipsa perferendis est doloribus, quasi, reiciendis neque in velit eaque repudiandae qui totam deserunt tempore architecto officiis, magni voluptate aspernatur.
+    </p>
+    <table border="2" width="300px" align="center">
+
+        <tbody>
+            <tr>
+                <td>Praveen</td>
+                <td>Hyderabad</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>Ramesh</td>
+                <td>Vijayawada</td>
+                <td>44</td>
+            </tr>
+            <tr>
+                <td>Balaji</td>
+                <td>Hyderabad</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>Chiranjeevi</td>
+                <td>Secunderabad</td>
+                <td>62</td>
+            </tr>
+            <tr>
+                <td>Fathima</td>
+                <td>Bejawada</td>
+                <td>24</td>
+            </tr>
+            <tr>
+                <td>Durga</td>
+                <td>Bapatla</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>Praveen</td>
+                <td>Hyderabad</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>Kiran</td>
+                <td>Guntur</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>Mahesh</td>
+                <td>Tirupathi</td>
+                <td>32</td>
+            </tr>
+            <tr>
+                <td>Hema</td>
+                <td>Razole</td>
+                <td>49</td>
+            </tr>
+            <tr>
+                <td>Punith</td>
+                <td>Vizag</td>
+                <td>44</td>
+            </tr>
+            <tr>
+                <td>Jayaram</td>
+                <td>Hyderabad</td>
+                <td>92</td>
+            </tr>
+        </tbody>
+
+    </table>
+    <ul>
+        <h1>Sweets</h1>
+        <li>Gulab Jamoon</li>
+        <li>Palakova</li>
+        <li id="d2">Rasmalai</li>
+        <li>Malpuri</li>
+        <li>Kalakand</li>
+        <li>Kaju katli</li>
+    </ul>
+    <ol>
+        <h1 class="active">Cities</h1>
+        <li>
+            Milan
+            <h1>City of colors</h1>
+        </li>
+        <li>Paris</li>
+        <li>Newyork</li>
+        <li>London</li>
+    </ol>
+    <div>
+        <p>Paragraph 1</p>
+        <section>
+            <p>Paragraph 2</p>
+        </section>
+    </div>
+
+</body>
+
+</html>

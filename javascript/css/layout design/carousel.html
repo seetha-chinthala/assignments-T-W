@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .header {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 15px 40px;
+            background: #34495e;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 35px;
+            color: white;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        
+        .home {
+            color: white;
+            pointer-events: auto;
+        }
+        
+        .nav {
+            opacity: 0.4;
+        }
+        
+        .nav:hover {
+            opacity: 1;
+        }
+        
+        .header-right {
+            position: absolute;
+            top: 20px;
+            right: 15%;
+        }
+        
+        #search {
+            color: green;
+            background-color: black;
+            border: 2px solid green;
+        }
+        
+        #search:hover {
+            color: white;
+            background-color: green;
+            border: 2px solid black;
+        }
+        
+        .parent {
+            margin: 0 auto;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        
+        #d1 {
+            height: 500px;
+            width: 100%;
+            background-color: lightgrey;
+            /*border: 1px solid black;*/
+            display: flex;
+            padding-left: 80px;
+            overflow: hidden;
+        }
+        
+        .cart {
+            padding-top: 15%;
+        }
+        
+        #s1 {
+            align-items: flex-start;
+        }
+        
+        #s2 {
+            align-items: center;
+        }
+        
+        #s3 {
+            align-items: flex-end;
+        }
+        
+        .cart button {
+            background-color: rgb(149, 219, 247);
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        .cart button:hover {
+            background-color: rgb(7, 69, 93);
+        }
+        
+        #d2 {
+            display: flex;
+            justify-content: center;
+            background-color: white;
+            padding: 20px;
+            width: 100%;
+            /*border: 2px solid black;*/
+        }
+        
+        #circle {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            background-color: lightgrey;
+            text-align: center;
+        }
+        
+        #circle h2 {
+            text-align: center;
+        }
+        
+        .flex button:hover {
+            background-color: grey;
+        }
+        
+        .flex {
+            width: 400px;
+            height: 200px;
+            padding: 20px;
+        }
+        
+        #d3 {
+            height: 100%;
+            width: 100%;
+            background-color: white;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-top: 20%;
+        }
+        
+        .feature {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 100px;
+            /*max-width: 1200px;*/
+            padding: 40px;
+        }
+        
+        #pixel {
+            height: 300px;
+            width: 500px;
+            font-size: 20px;
+        }
+        
+        #box {
+            width: 400px;
+            height: 400px;
+            background-color: lightgrey;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <h1>Carousel</h1>
+        <nav class="navigate">
+            <a href="#" class=" home">Home</a>
+            <a href="#" class="nav">Link</a>
+            <a href="#" class="nav">Disabled</a>
+        </nav>
+
+        <div class="header-right">
+            <input type="text" placeholder="Search..." class="search">
+            <button id="search">search</button>
+        </div>
+    </header>
+    <div class="parent">
+        <div id="d1">
+            <div class="cart" id="s1">
+                <h1>Example headline.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <button>Signup today</button>
+            </div>
+
+            <div class="cart" id="s2">
+                <h1>Another example headline.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <button>Learn more</button>
+            </div>
+
+            <div class="cart" id="s3">
+                <h1>One more for good measure.</h1>
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                <button>Browse gallery</button>
+            </div>
+
+        </div>
+
+        <div class="child" id="d2">
+
+            <div class="flex">
+                <div id="circle"></div>
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                <button>View Details >></button>
+            </div>
+
+            <div class="flex">
+                <div id="circle"></div>
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                <button>View Details >></button>
+            </div>
+
+            <div class="flex">
+                <div id="circle"></div>
+                <h2>Heading</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet
+                    risus. </p>
+                <button>View Details >></button>
+            </div>
+
+        </div>
+
+
+        <div class="child" id="d3">
+
+            <div class="feature">
+                <div id="pixel">
+                    <h2>First Feature heading.It'll blow your mind.</h2>
+                    <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div id="box">
+                    <h2>500X500</h2>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div id="pixel">
+                    <h2>Oh yeah,it's that good.See for yourself.</h2>
+                    <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div id="box">
+                    <h2>500X500</h2>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div id="pixel">
+                    <h2>And lastly, this one.Checkmate.</h2>
+                    <p>Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                </div>
+                <div id="box">
+                    <h2>500X500</h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

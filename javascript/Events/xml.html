@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="d2"></h1>
+    <table border="2">
+        <tbody id="d1"></tbody>
+    </table>
+    <button onclick="nextset()">Next</button>
+    <script>
+        var s = 0;
+
+        function genTable(products) {
+            document.getElementById("d1").innerText = ""
+            products.forEach(function(product) {
+                var ntr = document.createElement("tr")
+                var titletd = document.createElement("td")
+                titletd.innerText = product.title
+                var categorytd = document.createElement("td")
+                categorytd.innerText = product.category
+                ntr.appendChild(titletd)
+                ntr.appendChild(categorytd)
+                document.getElementById("d1").appendChild(ntr)
+            })
+        }
+
+        function getProducts() {
+            var http = new XMLHttpRequest()
+            http.open("GET", "https://dummyjson.com/product?limit=10&skip=" + s, true)
+            http.send()
+            console.log(http.response);
+            http.onreadystatechange = function() {
+                if (http.readyState == 4) {
+                    var products = JSON.parse(http.response).products;
+                    genTable(products)
+                }
+            }
+        }
+
+        function nextset() {
+            s = s + 10;
+            getProducts();
+        }
+
+        getProducts()
+            // http.onloadend = function () {
+            //     console.log(http.response);
+            // }
+
+        // console.log(http.readyState);
+        // console.dir(http)
+        // http.onreadystatechange = function () {
+        //     if (http.readyState === 1) {
+        //         document.getElementById("d1").innerText = "request sent"
+        //     }
+        //     if (http.readyState === 2) {
+        //         document.getElementById("d1").innerText = "request accepted"
+        //     }
+        //     if (http.readyState === 3) {
+        //         document.getElementById("d1").innerText = "Loading...."
+        //     }
+        //     if (http.readyState === 4) {
+        //         document.getElementById("d1").innerText = "Ipoindira chusko"
+        //     }
+        // }
+
+
+        // http.onload = function () {
+        //     // alert("Load Vachindi ramana")
+        //     document.getElementById("d1").innerText = "Loadinguuu.."
+        // }
+        // http.onloadend = function () {
+        //     // alert("Load Ethali ramana")
+        //     document.getElementById("d1").innerText = "Over.."
+
+        // }
+    </script>
+</body>
+
+</html>

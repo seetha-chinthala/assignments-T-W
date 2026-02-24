@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <h1>like and dislike button</h1>
+        <button onclick="like()" id="btn1" style="background-color:lightgreen; height:90px; width:200px">LIKE</button>
+        <span id="s1">0</span>
+        <br><br>
+        <button  onclick="dislike()" id="btn2"  style="background-color:yellow; height:90px; width:200px">DISLIKE</button>
+        <span id="s2">0</span>
+        <script>
+            let s1=document.getElementById("s1")
+            let s2=document.getElementById("s2")
+            let i=0
+function like(){
+i++
+s1.innerText=i
+}let j=0
+function dislike(){
+j++
+s2.innerText=j
+}
+
+        </script>
+    </body>
+</html>

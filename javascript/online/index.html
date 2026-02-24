@@ -1,0 +1,220 @@
+<html>
+
+<head>
+    <style>
+        .like-btn {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>E-Commerce</h1>
+
+    <!-- NAVIGATION -->
+    <div style="margin-bottom:15px;">
+        <button onclick="showPage('productsPage')">Products</button>
+        <button onclick="showPage('wishlistPage')">Wishlist ❤️</button>
+    </div>
+
+    <div id="ecom">
+
+        <!-- PRODUCTS PAGE -->
+        <div id="productsPage">
+            <div id="products"></div>
+        </div>
+
+        <!-- WISHLIST PAGE -->
+        <div id="wishlistPage" style="display:none;">
+            <h2>Wishlist ❤️</h2>
+            <div id="wishlist"></div>
+        </div>
+
+        <!-- CART -->
+        <div id="cart">
+            <h2>Cart</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cartBody"></tbody>
+            </table>
+            <div class="total" id="grandTotal">Total: $0</div>
+        </div>
+
+    </div>
+    <script>
+        let productsData = [];
+        let cart = [];
+        let wishlist = [];
+
+        /* ---------- NAVIGATION ---------- */
+        function showPage(pageId) {
+            document.getElementById("productsPage").style.display = "none";
+            document.getElementById("wishlistPage").style.display = "none";
+            document.getElementById(pageId).style.display = "block";
+        }
+
+        /* ---------- FETCH PRODUCTS ---------- */
+        function getProducts() {
+            axios.get("https://dummyjson.com/products?limit=12")
+                .then(res => {
+                    productsData = res.data.products;
+                    renderProducts();
+                });
+        }
+
+        /* ---------- PRODUCTS ---------- */
+        function renderProducts() {
+            const productsDiv = document.getElementById("products");
+            productsDiv.innerHTML = "";
+
+            productsData.forEach(p => {
+                const cartItem = cart.find(i => i.id === p.id);
+                const liked = wishlist.some(w => w.id === p.id);
+
+                let controls = `
+                    <button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+                `;
+
+                if (cartItem) {
+                    controls = `
+                        <div class="qty-box">
+                            <button onclick="changeQty(${p.id}, -1)">-</button>
+                            <span>${cartItem.qty}</span>
+                            <button onclick="changeQty(${p.id}, 1)">+</button>
+                        </div>
+                    `;
+                }
+
+                productsDiv.innerHTML += `
+                    <div class="card">
+                        <img src="${p.thumbnail}">
+                        <h4>${p.title}</h4>
+                        <p>$${p.price}</p>
+        
+                        <button class="like-btn" onclick="toggleWishlist(${p.id})">
+                            ${liked ? "❤️" : "🤍"}
+                        </button>
+        
+                        ${controls}
+                    </div>
+                `;
+            });
+        }
+
+        /* ---------- WISHLIST ---------- */
+        function toggleWishlist(id) {
+            const product = productsData.find(p => p.id === id);
+            const index = wishlist.findIndex(w => w.id === id);
+
+            if (index === -1) {
+                wishlist.push(product);
+            } else {
+                wishlist.splice(index, 1);
+            }
+            renderProducts();
+            renderWishlist();
+        }
+
+        function renderWishlist() {
+            const wishDiv = document.getElementById("wishlist");
+            wishDiv.innerHTML = "";
+
+            if (wishlist.length === 0) {
+                wishDiv.innerHTML = "<p>No items in wishlist</p>";
+                return;
+            }
+
+            wishlist.forEach(p => {
+                wishDiv.innerHTML += `
+                    <div class="card">
+                        <img src="${p.thumbnail}">
+                        <h4>${p.title}</h4>
+                        <p>$${p.price}</p>
+                        <button onclick="addToCart(${p.id})">Add to Cart</button>
+                        <button onclick="toggleWishlist(${p.id})">Remove ❤️</button>
+                    </div>
+                `;
+            });
+        }
+
+        /* ---------- CART ---------- */
+        function addToCart(id) {
+            const product = productsData.find(p => p.id === id);
+            const found = cart.find(i => i.id === id);
+
+            if (found) {
+                found.qty++;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    qty: 1
+                });
+            }
+            renderProducts();
+            renderCart();
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            item.qty += delta;
+
+            if (item.qty === 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            renderProducts();
+            renderCart();
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            renderProducts();
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartBody = document.getElementById("cartBody");
+            cartBody.innerHTML = "";
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.qty * item.price;
+                total += itemTotal;
+
+                cartBody.innerHTML += `
+                    <tr>
+                        <td>${item.title}</td>
+                        <td>
+                            <button onclick="changeQty(${item.id}, -1)">-</button>
+                            ${item.qty}
+                            <button onclick="changeQty(${item.id}, 1)">+</button>
+                        </td>
+                        <td>${item.price}</td>
+                        <td>${itemTotal.toFixed(2)}</td>
+                        <td><button onclick="removeItem(${item.id})">X</button></td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById("grandTotal").innerText =
+                "Total: $" + total.toFixed(2);
+        }
+
+        getProducts();
+    </script>
+</body>
+
+</html>

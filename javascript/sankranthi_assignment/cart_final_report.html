@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        #ecom {
+            display: flex;
+        }
+        
+        #cart {
+            border: 1px solid;
+            width: 26%
+        }
+        
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 70%;
+        }
+        
+        #products div {
+            width: 150px;
+            text-align: center;
+            box-shadow: 1px 1px 3px 1px;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px;
+        }
+        
+        #products div img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="d2"></h1>
+    <h3>products</h3>
+    <div id="ecom">
+
+        <div id="products">
+        </div>
+        <div id="cart">
+            <h3>Cart<span id="sp1"> 0</span></h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="tb"></tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total:</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <button onclick="nextset()">Next</button>
+    <script>
+        var s = 0;
+        var cartItems = [];
+        var count = 0
+
+        function genTable(products) {
+            document.getElementById('products').innerHTML = ""
+            products.forEach(function(product) {
+                var productCard = document.createElement("div")
+                var productImg = document.createElement("img")
+                productImg.src = product.thumbnail
+                productCard.appendChild(productImg)
+                var productTitle = document.createElement("h4")
+                productTitle.innerText = product.title
+                productCard.appendChild(productTitle)
+                var addToCartBtn = document.createElement("button")
+                addToCartBtn.innerText = 'Add To Cart'
+                addToCartBtn.onclick = function() {
+                    addToCart(product)
+                }
+                productCard.appendChild(addToCartBtn)
+
+                document.getElementById('products').appendChild(productCard)
+            })
+        }
+
+        function addToCart(item) {
+            var found = null;
+            for (var i = 0; i < cartItems.length; i++) {
+                if (cartItems[i].id === item.id) {
+                    found = cartItems[i];
+                    break;
+                }
+            }
+            if (found !== null) {
+                found.quantity = found.quantity + 1;
+            } else {
+                cartItems.push({
+                    id: item.id,
+                    title: item.title,
+                    price: item.price,
+                    quantity: 1
+                });
+            }
+            count = count + 1;
+            document.getElementById("sp1").innerText = count;
+            genCart();
+        }
+
+        function genCart() {
+            var totalCount = 0
+            var grandTotal = 0
+            document.getElementById("tb").innerHTML = ""
+            cartItems.forEach(function(item) {
+                var cli = document.createElement("tr")
+
+                var td1 = document.createElement("td")
+                td1.innerText = item.title
+                cli.appendChild(td1)
+
+                var td2 = document.createElement("td")
+                td2.innerText = item.quantity
+                cli.appendChild(td2)
+
+                var td3 = document.createElement("td")
+                td3.innerText = item.price
+                cli.appendChild(td3)
+
+                var td4 = document.createElement("td")
+                td4.innerText = item.price * item.quantity
+                cli.appendChild(td4)
+                document.getElementById("tb").appendChild(cli)
+
+                totalCount += item.quantity;
+                grandTotal += item.price * item.quantity;
+            });
+            document.getElementById("sp1").innerText = totalCount;
+            document.querySelector("#cart tfoot tr td").innerText = "Total: " + grandTotal;
+        }
+
+        function getProducts() {
+            fetch("https://dummyjson.com/product?limit=40&skip=" + s)
+                .then(function(res) {
+                    return res.json()
+                })
+                .then(function(data) {
+                    genTable(data.products);
+                })
+            console.log("HI");
+        }
+
+        function nextset() {
+            s = s + 10;
+            getProducts();
+        }
+
+        function updateQuantity(id, change) {
+            let product = cartItems.find(p => p.id === id);
+            if (product) {
+                product.quantity += change;
+                if (product.quantity <= 0) {
+                    cartItems = cartItems.filter(p => p.id !== id);
+                }
+            }
+            genCart();
+        }
+
+
+        getProducts()
+    </script>
+</body>
+
+</html>

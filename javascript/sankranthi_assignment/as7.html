@@ -1,0 +1,28 @@
+<html>
+    <body>
+        <img id="img" src=""></img>
+        <br><br>
+        <button id="prev" onclick="prev()">prev</button>
+        <button id="next" onclick="next()">next</button>
+        <script>
+        let ar=["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9sFun13aMnNKLGFSncpnTJLkaSvXc5NHmVA&s",
+       " https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm0fpOsykX2a-N6H2Anrt0okHCcRh5MBK7WA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvedgdkYa1oRr4WKrVIwIclH9pOvYLF5VHdQ&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGwWFpClQOSj9tAHzUDQrXgBG82oPZAnr1GA&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQft438yhy4aLrHip0dMqNQIL_8wKOS2478jw&s"
+        ]     
+         let index=0
+        let img=document.getElementById("img")
+        img.src=ar[index]
+         function prev(){
+        index--;
+    if(index<0){index=ar.length-1}   
+img.src=ar[index]};
+ function next(){
+    index++;
+    if(index>=ar.length){index=0}
+img.src=ar[index]};
+
+        </script>
+    </body>
+</html>

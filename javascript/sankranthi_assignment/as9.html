@@ -1,0 +1,22 @@
+<html>
+<style>
+    body {
+        background-color: pink;
+    }
+</style>
+
+<body>
+    <h1>Add Students</h1>
+    <input type="text" id="t1">
+    <button id="btn1" onclick="add()" style="background-color: aqua;">Add Students</button>
+    <ul id="d1" style="color:red;size: 10px;"></ul>
+    <script>
+        function add() {
+            var nli = document.createElement("li")
+            nli.innerText = document.getElementById("t1").value
+            document.getElementById("d1").appendChild(nli)
+        }
+    </script>
+</body>
+
+</html>

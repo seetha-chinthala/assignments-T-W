@@ -1,0 +1,84 @@
+<html>
+
+<body>
+    <!--  18.Write a program to replace all vowels in a string with 8
+          <script>
+            a=prompt("Enter a string")
+            str=" "
+            for(i=0;i<=a.length-1;i++){
+                if('aeiouAEIOU'.includes(a[i])){
+                    str+='8'
+                }else{
+                    str+=a[i]
+                }
+            }
+            console.log("After replacing all vowels into 8",str)     
+          </script>
+        -->
+    <!--   19.Write a program to take a 16-digit credit card number and replace the first 12 digits with x
+           <script>
+            a=prompt("Enter a 16 digit credit card number")
+            if(a.length===16&&!isNaN(a)){
+                let r="XXXXXXXXXXXX"+a.slice(12)
+                console.log("the 16 digit credit card number",r)
+            }else{
+                console.log("Please enter a valid credit card numbers")
+            }            
+           </script>
+        -->
+    <!--   20.Write a program to hide the middle six digits of a phone number
+           <script>
+            a=prompt("Enter a phone number")
+            if(a.length===10&&!isNaN(a)){
+                let r=a.slice(0,2)+"XXXXXX"+a.slice(8)
+                console.log("The phone number you entered",r)
+            }else{
+                console.log("Invalid phone numbers")
+            }
+           </script>
+        -->
+    <!--    21.Append the Indian calling code +91 to a given phone number
+            <script>
+                a=prompt("Enter a phone number")
+                if(a.length===10&&!isNaN(a)){
+                    let r="+91"+a.slice(0)
+                    console.log("The phone number you enter",r)
+                }else{
+                    console.log("Invalid phone number")
+                }
+            </script>
+        -->
+    <!--   22.Check if a number is a valid phone number 1.Must be 10 digits 2.must not contains letters
+           <script>
+                a=prompt("Enter a phone number")
+                if(a.length===10&&!isNaN(a)){
+                    console.log("Valid number",a)
+                }else{
+                    console.log("Invalid number",a)
+                }
+            </script>
+        -->
+    <!--   23.Check if a number is a valid credit card number 1.Must be 16 digits 2.Must not contain letters
+           <script>
+            a=prompt("Enter a phone number")
+                if(a.length===16&&!isNaN(a)){
+                    console.log("Valid credit card number",a)}
+                else{
+                    console.log("Invalid credit card number",a)
+                }
+           </script>
+        -->
+    <!--   24.Write a program to add hypens(-) between groups of 4 digits in a credit card number-->
+    <script>
+        a = prompt("Enter a phone number")
+        if (a.length === 16 && !isNaN(a)) {
+            let r = a.slice(0, 4) + '-' + a.slice(4, 8) + '-' + a.slice(8, 12) + '-' + a.slice(12)
+            console.log("The credit card number you entered", r)
+        } else {
+            console.log("Invalid credit card number")
+        }
+    </script>
+
+</body>
+
+</html>

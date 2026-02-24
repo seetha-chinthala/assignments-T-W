@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="radio">:All
+    <input type="radio">:Completed
+    <input type="radio">:Not-Completed
+    <br>
+    <br>
+    <button onclick="addTodolist()">Add Todolist</button>
+    <script>
+        class Todolist {
+            //properties
+            category;
+            todos = [];
+            //methods
+            constructor(cat) {
+                this.category = cat;
+                this.initTodolist();
+
+            }
+            initTodolist() {
+                var ntlist = document.createElement("ul")
+                ntlist.setAttribute("id", this.category)
+                var catHeader = document.createElement("h3")
+                catHeader.innerText = this.category;
+                ntlist.appendChild(catHeader)
+                var ntdbox = document.createElement("input")
+                ntdbox.setAttribute("id", this.category + "box")
+                ntlist.appendChild(ntdbox)
+                var addTodoBtn = document.createElement("button")
+                addTodoBtn.innerText = "Add Todo";
+
+                addTodoBtn.onclick = () => {
+                    var newtodoitem = document.getElementById(this.category + "box").value;
+                    this.addTodo(newtodoitem)
+                }
+                ntlist.appendChild(addTodoBtn)
+                document.body.appendChild(ntlist)
+            }
+            addTodo(todo) {
+                this.todos.push(todo)
+                var ntd = document.createElement("li")
+                ntd.innerText = todo;
+                document.getElementById(this.category).appendChild(ntd)
+
+                var dbtn = document.createElement("button")
+                dbtn.innerText = "delete"
+                dbtn.addEventListener("click", function() {
+                    deleteTodo(index)
+                })
+                ntd.appendChild(dbtn)
+
+            }
+            deleteTodo(index) {
+                todos.splice(index, 1)
+                console.log(todos);
+                genUI();
+
+            }
+        }
+        var todolist1 = new Todolist("Finance")
+        todolist1.addTodo("pay rent")
+        todolist1.addTodo("clear waterbill")
+        todolist1.addTodo("Send Bank Statements")
+
+        var todolist2 = new Todolist("Food")
+        todolist2.addTodo("have a tea")
+        todolist2.addTodo("plan birthday platter")
+
+        function addTodolist() {
+            var ncat = prompt("Enter the category name")
+            var newtodolist = new Todolist(ncat)
+        }
+    </script>
+</body>
+
+</html>
+<!-- 
+Building Blocks of OOPs:
+    1. class
+    2. object
+Features(Principles):
+    1. Ecapsulation
+    2. Abstraction
+    3. Inheritance
+    4. Polymorphism
+-->

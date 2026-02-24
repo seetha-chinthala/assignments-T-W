@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class TodoApp {
+            category;
+            todos = [];
+            constructor(category) {
+                this.category = category;
+                this.initTodoApp();
+            }
+            initTodoApp() {
+                var ntlist = document.createElement("ul")
+                ntlist.setAttribute("id", this.category)
+                var catHeader = document.createElement("h4")
+                catHeader.innerText = this.category;
+                ntlist.appendChild(catHeader)
+                document.body.appendChild(ntlist)
+            }
+
+            addTodo(todo) {
+                this.todos.push(todo)
+                var ntd = document.createElement("li")
+                ntd.innerText = todo;
+                document.getElementById(this.category).appendChild(ntd)
+            }
+            deleteTodo(index) {
+                this.todos.splice(index, 1)
+            }
+        }
+
+        var ob1 = new TodoApp();
+        ob1.category = "finance";
+        ob1.addTodo("pay rent")
+        ob1.addTodo("medical bill")
+
+        var ob2 = new TodoApp();
+        ob2.category = "claases"
+        ob2.addTodo("ThoughtWorks")
+        ob2.addTodo("LawCET")
+        ob2.addTodo("ECET")
+    </script>
+</body>
+
+</html>

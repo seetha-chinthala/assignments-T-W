@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Scorecard</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Indian team background */
+            background-image: url("https://www.google.com/imgres?q=t20%20mens%20cricket%20team%20in%202024%20images&imgurl=https%3A%2F%2Fi.pinimg.com%2F736x%2Ffe%2Fa9%2Fbe%2Ffea9be0381df98628f81aae4811885dd.jpg&imgrefurl=https%3A%2F%2Fin.pinterest.com%2Fpin%2Ficc-t20-world-cup-2024-men--561613016052360039%2F&docid=CM7GCIeysC74WM&tbnid=8SgXutulvYmBvM&vet=12ahUKEwigwMr0uN2SAxXyS2wGHevDAsUQnPAOegQIHBAB..i&w=736&h=920&hcb=2&ved=2ahUKEwigwMr0uN2SAxXyS2wGHevDAsUQnPAOegQIHBAB");
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .score-box {
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+        
+        button {
+            margin: 5px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="score-box">
+        <h1 id="score">Score: 0/0</h1>
+        <b id="scoreline">Score Line:</b>
+
+        <br><br>
+
+        <button onclick="add('.')">DOT</button>
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('3')">3</button>
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('6')">6</button>
+        <button onclick="add('W')">W</button>
+        <button onclick="add('1wd')">Wide</button>
+        <button onclick="add('1nb')">No Ball</button>
+    </div>
+
+    <script>
+        let total = 0;
+        let wickets = 0;
+        let scoreline = "";
+        let overballs = 6;
+
+        function updateUI() {
+            document.getElementById("score").innerText = `Score: ${total}/${wickets}`;
+            document.getElementById("scoreline").innerText = "Score Line: " + scoreline;
+        }
+
+        function add(s) {
+
+            // Over ball logic
+            if (s !== '1wd' && s !== '1nb') {
+                overballs--;
+            }
+
+            if (overballs === 0) {
+                scoreline += " " + s + " |";
+                overballs = 6;
+            } else {
+                scoreline += " " + s;
+            }
+
+            // Score logic
+            switch (s) {
+                case '1':
+                    total += 1;
+                    break;
+                case '2':
+                    total += 2;
+                    break;
+                case '3':
+                    total += 3;
+                    break;
+                case '4':
+                    total += 4;
+                    break;
+                case '5':
+                    total += 5;
+                    break;
+                case '6':
+                    total += 6;
+                    break;
+                case '1wd':
+                    total += 1;
+                    break;
+                case '1nb':
+                    total += 1;
+                    break;
+                case 'W':
+                    wickets += 1;
+                    break;
+            }
+
+            updateUI();
+        }
+
+        updateUI();
+    </script>
+
+</body>
+
+</html>

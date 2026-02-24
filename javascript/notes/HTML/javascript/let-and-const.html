@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var x = 100;
+        let y = 200;
+        const z = 300;
+
+
+        const greetings = function() {
+            console.log("Hi!!");
+        }
+
+        greetings() //Hi
+
+        /*greetings = function() {
+            console.log("Hello!!");
+        }*/
+
+        greetings() //Hi
+
+        const ob1 = {
+            firstname: "Praveen",
+            lastname: "Gubbala",
+            age: 34
+        }
+
+        Object.freeze(ob1)
+
+        //ob1.age = 44
+
+        console.log(ob1);
+    </script>
+</body>
+
+</html>

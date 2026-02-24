@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Counter {
+            count;
+            title;
+            constructor(t, i) {
+                this.count = i;
+                this.title = t;
+                this.createCounter();
+            }
+            createCounter() {
+                var ch1 = document.createElement("h1")
+                ch1.innerText = this.title + ":" + this.count;
+                var incBtn = document.createElement("button")
+                incBtn.innerText = "Increment"
+                incBtn.onclick = () => {
+                    this.count++;
+                    ch1.innerText = this.title + ":" + this.count;
+                }
+                document.body.appendChild(ch1)
+                document.body.appendChild(incBtn)
+            }
+        }
+        var counter1 = new Counter("India", 0)
+        var counter1 = new Counter("Pakistan", 0)
+    </script>
+</body>
+
+</html>

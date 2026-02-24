@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist</title>
+
+    <style>
+        body {
+            font-family: Arial;
+        }
+        
+        .card {
+            width: 180px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+        }
+        
+        img {
+            width: 100%;
+            height: 120px;
+            object-fit: contain;
+        }
+        
+        button {
+            margin: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Wishlist</h1>
+    <a href="mart1.html">Home</a>
+
+    <div id="wishlist"></div>
+
+    <script>
+        let wishlist = (localStorage.getItem("wishlist") || "").split("|").filter(Boolean);
+        let cart = (localStorage.getItem("cart") || "").split("|").filter(Boolean);
+
+        function saveWishlist() {
+            localStorage.setItem("wishlist", wishlist.join("|"));
+        }
+
+        function saveCart() {
+            localStorage.setItem("cart", cart.join("|"));
+        }
+
+        function loadWishlist() {
+            const div = document.getElementById("wishlist");
+            div.innerHTML = "";
+
+            wishlist.forEach(id => {
+                fetch("https://dummyjson.com/products/" + id)
+                    .then(r => r.json())
+                    .then(p => {
+                        div.innerHTML += `
+                    <div class="card">
+                        <img src="${p.thumbnail}">
+                        <h4>${p.title}</h4>
+                        <p>$${p.price}</p>
+                        <button onclick="addToCart('${p.id}')">Add to Cart</button>
+                        <button onclick="removeWish('${p.id}')">Remove</button>
+                    </div>
+                `;
+                    });
+            });
+        }
+
+        function addToCart(id) {
+            cart.push(id);
+            saveCart();
+            alert("Added to cart");
+        }
+
+        function removeWish(id) {
+            wishlist = wishlist.filter(x => x !== id);
+            saveWishlist();
+            loadWishlist();
+        }
+
+        loadWishlist();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // print 1 to 10 even and odd numbers
+        var i = 0;
+        while (i <= 10) {
+            if (i % 2 == 0)
+                console.log("even", i)
+            else
+                console.log("odd", i)
+            i++;
+        }
+
+        //multiples of 4
+        var i = 1;
+        console.log("multiples of 4")
+        while (i <= 10) {
+            console.log(4 * i);
+        }
+
+        //multiplication table of 6
+        var i = 1;
+        console.log("6 table")
+        while (i <= 10) {
+            console.log(6, "X", i, "=", 6 * i)
+            i++;
+        }
+
+        //find factors og number
+        var num = +prompt("enter number")
+        var i = 0;
+        console.log("factors:")
+        while (i < num) {
+            if (num % i == 0)
+                console.log(i)
+            i++;
+        }
+
+
+        // Function to find max and min numbers in an array
+        function findMaxMin(numbers) {
+            // Initialize max and min with the first number in the array
+            let max = numbers[0];
+            let min = numbers[0];
+
+            // Loop through the array starting from the second element (index 1)
+            for (let i = 1; i < numbers.length; i++) {
+                // If the current number is greater than the current max, update max
+                if (numbers[i] > max) {
+                    max = numbers[i];
+                }
+                // If the current number is less than the current min, update min
+                if (numbers[i] < min) {
+                    min = numbers[i];
+                }
+            }
+
+            return {
+                max: max,
+                min: min
+            };
+        }
+
+        // 1. Read 5 numbers (using an array for simplicity in a non-interactive environment)
+        // In a real application, you might get these from user input
+        const inputNumbers = [22, 5, 8, 120, 3];
+
+        // 2. Find the maximum and minimum numbers
+        const results = findMaxMin(inputNumbers);
+
+        // 3. Print the results
+        console.log("The input numbers are:", inputNumbers);
+        console.log("The maximum number is:", results.max);
+        console.log("The minimum number is:", results.min);
+
+        //even numbers in ascending order
+
+        function printEvenDescending(limit) {
+            // Ensure the limit is a valid number
+            if (typeof limit !== 'number' || limit < 0) {
+                console.log("Please provide a positive number.");
+                return;
+            }
+
+            // Start the loop from the limit and decrement
+            for (let i = limit; i >= 0; i--) {
+                // Check if the current number is even
+                if (i % 2 === 0) {
+                    console.log(i);
+                }
+            }
+        }
+
+
+        const givenNumber = 25;
+
+        console.log(`Even numbers up to ${givenNumber} in descending order:`);
+        printEvenDescending(givenNumber);
+
+        //get number in ten's place
+        var num2 = +prompt("enter number for digits");
+        console.log("number at ten's place")
+        const tens = Math.floor(num2 / 10) % 10;
+        const hund = Math.floor(num2 / 100) % 10;
+        const thous = Math.floor(num2 / 1000) % 10;
+        const tenthous = Math.floor(num2 / 10000) % 10;
+        console.log("ten thousand's place", tenthous);
+        console.log("thousand's place", thous);
+        console.log("hundred's place", hund);
+        console.log("ten's", tens);
+
+        //print odd digits in number
+        var x = +prompt("enter number for finding digits:")
+        let odd = [];
+        var numstr = String(x);
+        for (var i = 0; i < numstr.length; i++) {
+            const digit = parseInt(numstr[i]);
+            if (digit % 2 != 0) {
+                odd.push(digit);
+            }
+        }
+        if (odd.length > 0) {
+            console.log(odd.join(','));
+        } else
+            console.log("no digits found");
+    </script>
+</body>
+
+</html>

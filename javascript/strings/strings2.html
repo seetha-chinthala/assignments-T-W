@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var s = `seetha`
+        var x = "hello"
+            //static methods
+        console.log(String.fromCharCode(68))
+        console.log(String.raw `${s} hello`)
+        console.log(String.fromCharCode(0x1F600))
+            //instance methods
+        console.log(s.at(-3))
+        console.log(s.charAt(3))
+        console.log(s.charCodeAt(2))
+        console.log(s.codePointAt(5))
+        console.log(s.concat(x))
+        console.log(s.endsWith('/0'))
+        console.log(s.startsWith(" "))
+        console.log(s.includes("a"))
+        console.log(s.indexOf("e"))
+            // console.log(String.isWellFormed(s))
+        console.log(s.lastIndexOf("e"))
+    </script>
+</body>
+
+</html>

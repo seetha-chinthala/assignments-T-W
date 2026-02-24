@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //begginer level
+        var num = +prompt("enter num")
+        if (num % 2 == 0)
+            console.log("even")
+        else
+            console.log("odd")
+            // positive or negative
+        if (num > 0)
+            console.log("positive")
+        else if (num < 0)
+            console.log("negative")
+        else
+            console.log("zero")
+            //divisible by 7
+        if (num % 7 == 0)
+            console.log("divisible")
+        else
+            console.log("not divisible")
+            //factor or not
+        if (84 % num == 0)
+            console.log("factor")
+        else
+            console.log("not a factor")
+            //check unit place is 4
+        digit = num % 10
+        if (digit == 4)
+            console.log("true")
+        else
+            console.log("false")
+            // count digits
+        var count = 0,
+            sum = 0
+        while (num >= 0) {
+            digit = num % 10
+            sum = sum + digit
+            count = count + 1
+            num = num / 10
+        }
+        if (count == 3)
+            console.log("yes");
+        else
+            console.log("no");
+    </script>
+</body>
+
+</html>

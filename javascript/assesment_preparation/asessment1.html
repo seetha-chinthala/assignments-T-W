@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Exam is on Javascript operators, datatypes, declerations, expressions, statements, arrays, objects, strings, functions
+
+
+
+
+        //declarations
+
+        //1 local var a shadows global var a so it is undefined
+        var a = 1;
+
+        function test() {
+            console.log(a); //undefined
+            var a = 2;
+        }
+        test();
+
+        //2 const doesnt allow re assignment so it is error
+        const obj = {
+            x: 10
+        };
+        obj = {
+            x: 20
+        };
+
+        //3 it doesnt allow var,let with same name within same scope so it is error
+        var b = 10;
+        let b = 20;
+
+
+
+        //datatypes
+
+        //1 
+        console.log("Hello".charAt(10)); //" " due to empty string
+
+        //2 
+        console.log("Hello".substr(1, 4)); //ello   due to substr allows end also
+
+        //3
+        console.log("Hello" [1]); //e 
+
+        //4
+        console.log("5".padStart(3, "0")); //005
+
+
+        //1
+        true + true //2
+
+        //2
+        Boolean([]) //true
+
+        //3
+        Boolean({}) //true
+
+        //4
+        //  [] == true//false
+
+        //5
+        !!0 //false
+            !!1 //true
+
+
+        //difference between null and undefined
+        var i = 1 + undefined;
+        console.log(i);
+        //NaN
+
+        var i = 1 + null;
+        console.log(i);
+        //1
+
+        console.log(1 * undefined)
+            //NaN
+
+        console.log(1 * null)
+            //0
+
+
+        typeof undefined //undefined
+
+        null === undefined //false
+
+        //In JavaScript, empty strings and null values return 0. For example,
+        // Note: String() takes null and undefined and converts them to string. However, toString() gives error when null are passed
+
+
+
+        //operators
+
+        //Note: String() takes null and undefined and converts them to string. However, toString() gives error when null are passed.
+
+        console.log(false + "10"); //FALSE10 AS A STRING
+        console.log(+"10a"); //NaN
+        console.log([] + 1); //"1"
+        console.log([1] + 1); //"11"
+        console.log(5 > 4 > 3); //false 5>4 output:true=1,1>3output:false
+        console.log(10 && 0 || 5); //10&&0 =>0||5 =>5
+
+        console.log(null == undefined); //true
+        console.log(null === undefined); //false
+
+        let x = 5;
+        console.log(x++ + ++x); //12
+        let obj = {
+            a: 10
+        };
+        console.log("a" in obj); //true
+
+        let obj = {
+            a: 10
+        };
+        console.log(delete obj.a, obj.a); //true,undefined
+
+
+
+
+        //statements and expressions
+
+        function test() {
+            return //here automatically semicolon is inserted so ot returns undefined
+            10;
+        }
+        console.log(test()); //undefined
+
+
+        function demo() {
+            console.log("A");
+            return; //returns only A
+            console.log("B");
+        }
+        demo();
+
+        console.log("5" - -"2"); //-"2" =>"5"-(-2) =>7
+
+        console.log({} + []); //{}->empty block+[]=>+0=>0
+
+
+
+        //array and its methds
+
+        let a = [1, 2, 3];
+        let b = a;
+        b.length = 0;
+        console.log(a); //[]
+
+        let a = [1, 2, 3];
+        let b = a.reduce((x, y) => x + y, 10);
+        console.log(b); //16
+
+
+        let a = [1, 2, 3];
+        let b = a.map(x => {
+            x * 2;
+        });
+        console.log(b); //[undefined,undefined,undefined] due to without having return
+
+
+        let a = [0, 1, 2];
+        console.log(a.filter(x => x)); //[1,2] due to 0 is falsy value
+
+
+
+        //functions
+    </script>
+</body>
+
+</html>

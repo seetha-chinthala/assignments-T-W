@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            border: 0.5px solid black;
+            border-radius: 2px;
+            padding: 10px;
+        }
+        
+        .child {
+            height: 300px;
+            width: 300px;
+            position: relative;
+            padding: 10px;
+        }
+        
+        .img {
+            height: 100%;
+            width: 100%;
+            border-radius: 15px;
+        }
+        
+        .text {
+            width: 250px;
+            height: 50px;
+            position: absolute;
+            top: 40%;
+            left: 15%;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+        }
+        
+        .new {
+            height: 50px;
+            width: 50px;
+            position: absolute;
+            top: 80%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%
+        }
+        
+        .bulb {
+            height: 30px;
+            width: 30px;
+            position: absolute;
+            top: 80%;
+            left: 60%;
+            border-radius: 50%;
+        }
+        
+        p {
+            color: white;
+            font-size: 10px;
+            position: absolute;
+            top: 80%;
+            left: 70%
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Custom Cards</h1>
+    <div class="parent">
+
+        <div class="child">
+            <img class="img" src="https://img.freepik.com/free-photo/closeup-scarlet-macaw-from-side-view-scarlet-macaw-closeup-head_488145-3540.jpg?semt=ais_user_personalization&w=740&q=80">
+            <h1 class="text">Short title,Long jacket</h1>
+            <img class="new" src="https://cdn.vectorstock.com/i/500p/75/32/royal-s-crown-logo-vector-30097532.jpg">
+            <img class="bulb" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLDY2KjwIwB5h7tUO03IGnS0FQBd9g6d35Q&s">
+            <p class="ind">Indian</p>
+        </div>
+
+        <div class="child">
+            <img class="img" src="https://thumbs.dreamstime.com/b/beautiful-rain-forest-ang-ka-nature-trail-doi-inthanon-national-park-thailand-36703721.jpg">
+            <h1 class="text">Much longer title that wraps to multiple lines</h1>
+            <img class="new" src="https://cdn.vectorstock.com/i/500p/75/32/royal-s-crown-logo-vector-30097532.jpg">
+            <img class="bulb" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLDY2KjwIwB5h7tUO03IGnS0FQBd9g6d35Q&s">
+            <p class="ind">Indian</p>
+        </div>
+
+        <div class="child">
+            <img class="img" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTAJCnOdmGgcClmrOxX1rPZH-HkGMsDKBJVHfc8YvxQCKS4mGly">
+            <h1 class="text">Another longer title belongs here</h1>
+            <img class="new" src="https://cdn.vectorstock.com/i/500p/75/32/royal-s-crown-logo-vector-30097532.jpg">
+            <img class="bulb" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLDY2KjwIwB5h7tUO03IGnS0FQBd9g6d35Q&s">
+            <p class="ind">Indian</p>
+        </div>
+
+
+        <div class="child">
+            <img class="img" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSEDaMEoX0Tkzqw74YSBab3HI2czZ14hUpGxq1Wuko5h6hGPVhF">
+            <h1 class="text">Welcome! to my world</h1>
+            <img class="new" src="https://cdn.vectorstock.com/i/500p/75/32/royal-s-crown-logo-vector-30097532.jpg">
+            <img class="bulb" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLDY2KjwIwB5h7tUO03IGnS0FQBd9g6d35Q&s">
+            <p class="ind">Indian</p>
+        </div>
+
+
+        <div class="child">
+            <img class="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN1a1UHl7ytFvMPBME59RmvDOZ0IXffPR_Ug&s">
+            <h1 class="text">PATH - which plays a crucial role in everyone`s life </h1>
+            <img class="new" src="https://cdn.vectorstock.com/i/500p/75/32/royal-s-crown-logo-vector-30097532.jpg">
+            <img class="bulb" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDLDY2KjwIwB5h7tUO03IGnS0FQBd9g6d35Q&s">
+            <p class="ind">Indian</p>
+
+        </div>
+    </div>
+</body>
+
+</html>

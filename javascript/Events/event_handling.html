@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="2" id="d1">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>City</th>
+                <th>Salary</th>
+            </tr>
+        </thead>
+        <tbody id="d2">
+
+        </tbody>
+
+    </table>
+    <script>
+        const employees = [{
+            firstname: "John",
+            lastname: "Doe",
+            age: 30,
+            gender: "Male",
+            city: "New York",
+            salary: 60000
+        }, {
+            firstname: "Jane",
+            lastname: "Smith",
+            age: 25,
+            gender: "Female",
+            city: "Los Angeles",
+            salary: 75000
+        }, {
+            firstname: "Peter",
+            lastname: "Jones",
+            age: 35,
+            gender: "Male",
+            city: "Chicago",
+            salary: 80000
+        }, {
+            firstname: "Alice",
+            lastname: "Williams",
+            age: 28,
+            gender: "Female",
+            city: "Houston",
+            salary: 70000
+        }, {
+            firstname: "Bob",
+            lastname: "Brown",
+            age: 40,
+            gender: "Male",
+            city: "Dallas",
+            salary: 90000
+        }, {
+            firstname: "Charlie",
+            lastname: "Davis",
+            age: 32,
+            gender: "Male",
+            city: "Miami",
+            salary: 65000
+        }, {
+            firstname: "Diana",
+            lastname: "Miller",
+            age: 29,
+            gender: "Female",
+            city: "Seattle",
+            salary: 82000
+        }, {
+            firstname: "Eve",
+            lastname: "Wilson",
+            age: 31,
+            gender: "Female",
+            city: "Boston",
+            salary: 78000
+        }];
+
+        var tb = document.getElementById("d2");
+
+        function ui() {
+            employees.forEach(function(emp) {
+                var table = document.createElement("tr")
+
+                var fname = document.createElement("td")
+                fname.innerText = employees.firstname;
+                table.appendChild(fname)
+
+                var lname = document.createElement("td")
+                lname.innerText = employees.lastname;
+                table.appendChild(lname)
+
+                var age = document.createElement("td")
+                age.innerText = employees.age;
+                table.appendChild(age)
+
+                var gender = document.createElement("td")
+                gender.innerText = employees.gender;
+                table.appendChild(gender)
+
+                var city = document.createElement("td")
+                city.innerText = employees.city;
+                table.appendChild(city)
+
+                var sal = document.createElement("td")
+                sal.innerText = employees.salary;
+                table.appendChild(sal)
+
+                tb.appendChild(table)
+            });
+        }
+    </script>
+</body>
+
+</html>

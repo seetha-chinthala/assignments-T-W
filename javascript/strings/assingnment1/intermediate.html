@@ -1,0 +1,106 @@
+<html>
+
+<body>
+    <!-- 9.print the number of words in a given string
+        <script>
+            a=prompt("enter a sentence")
+            var ar=[]
+            ar=a.split(" ")
+            console.log("The words in given sentence",ar.length)
+        </script>
+    -->
+    <!--  10.Write a program to eliminate all numeric characters from a string
+          <script>
+            a=prompt("Enter a string ")
+            str=""
+            for(i=0;i<=a.length-1;i++){
+                if(/^[a-zA-Z]$/.test(a[i])){
+                    str+=a[i]
+                }
+            }
+            console.log("The entered string removing all numbers is",str)
+          </script>
+        -->
+    <!--   11.Write a program to print only numeric characters from a string
+           <script>
+            a=prompt("Enter a string")
+            str=""
+            for(i=0;i<=a.length-1;i++){
+                if(/^[0-9]$/.test(a[i])){
+                    str+=a[i]
+                }
+            }
+            console.log("The entered string after removing all alphabets",str)
+           </script>
+        -->
+    <!--  12.Check if a given string is a valid Gmail ID 
+          <script>
+            a=prompt("Enter gmail")
+            if(/@/g.test(a)){
+                console.log("the given email is valid")
+            }else{
+                console.log("The given email is not valid")
+            }
+          </script>
+        -->
+    <!--  13.Write a program to count all alphabets in given string(not words)
+          <script>
+            a=prompt("enter a string")
+            count=0
+            for(var i=0;i<=a.length-1;i++){
+                if(/^[a-zA-Z]$/.test(a[i])){
+                    count+=1
+                }
+            }
+            console.log("The total alphabets in given string is",count)
+          </script>
+        -->
+    <!--  14.Write a program to sort the characters of a given string alphabetically
+          <script>
+            a=prompt("Enter a string")
+            var ar=[]
+            ar=a.toLowerCase().split("").sort().join("")
+            console.log("The sort characters of a given string is",ar)
+          </script>
+        -->
+    <!--   15.Eliminate duplicate characters in a given string
+           <script>
+            a=prompt("enter a string")
+            str=" "
+            for(i=0;i<=a.length-1;i++){
+                if(!str.includes(a[i])){
+                    str+=a[i]
+                }
+            }
+            console.log("After removing duplicates",str)
+           </script>
+        -->
+    <!--   16.Write a program to print all words in a string in alphabetical order
+           <script>
+            a=prompt("Enter a sentence")
+            ar=[]
+            ar=a.split(" ")
+            ar.sort()
+            console.log("The given string contians all words in alphabetical order",ar.join(" "))
+           </script>
+          -->
+    <!--    17.Write a program to print unique words and repetitions in a string-->
+    <script>
+        a = prompt("Enter a string")
+        let str = []
+        let str2 = []
+        ar = a.split(" ")
+        for (i = 0; i <= ar.length - 1; i++) {
+            if (!str.includes(ar[i])) {
+                str.push(ar[i])
+            } else {
+                str2.push(ar[i])
+            }
+        }
+        console.log("Repition words", str2)
+        console.log("Unique words", str)
+    </script>
+
+</body>
+
+</html>

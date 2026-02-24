@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<table border="2">
+    <tbody id="d1">
+
+    </tbody>
+
+</table>
+
+<body>
+    <script>
+        function getProducts() {
+            console.log("hi")
+            var ob = new XMLHttpRequest()
+            console.log("hi")
+            ob.open = ("GET", "https://dummyjson.com/docs/products:", true)
+            ob.send()
+            console.log("hi")
+            console.log(ob.response)
+        }
+
+        //ui generation
+        function genUI() {
+            var table = document.getElementById("d1") = ""
+            var tr = document.createElement("tr");
+
+            var title = document.createElement("td")
+            title.innerText = products.title;
+
+            var category = document.createElement("td")
+            category.innerText = products.category;
+
+            tr.appendChild(title)
+            tr.appendChild(category)
+
+            table.appendChild(tr);
+
+        }
+    </script>
+</body>
+
+</html>

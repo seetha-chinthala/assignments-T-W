@@ -1,0 +1,53 @@
+<html>
+
+<body>
+    <!--  1.Use for loop to print each fruit in fruits array
+          <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            for(i=0;i<=fruits.length-1;i++){
+                console.log(fruits[i])
+            }
+          </script>
+        -->
+    <!--   2.Use a for loop to print the index and value of each fruit
+           <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            for(i=0;i<=fruits.length-1;i++){
+                console.log("index:",i,"value:",fruits[i])
+            }
+           </script>
+        -->
+    <!--   3.Use a for loop to count how many fruits are in the array
+           <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            count=0
+            for(i=0;i<=fruits.length-1;i++){
+                count++
+            }
+            console.log("The total number of fruits are in the array are",count)
+           </script>
+        -->
+    <!--    4.Use a for loop to find and print the longest fruit name
+            <script>
+            const fruits=["Apple","Banana","Cherry","Mango","Orange","Grapes"]
+            count=fruits[0]
+            for(i=0;i<=fruits.length-1;i++){
+                if(fruits[i].length>count.length){
+                    count=fruits[i]
+                }
+            }
+            console.log("Longest fruit name",count)
+            </script>
+        -->
+    <!--    5.Use a for loop to print only fruits that contain the letter 'a'-->
+    <script>
+        const fruits = ["Apple", "Banana", "Cherry", "Mango", "Orange", "Grapes"]
+        for (i = 0; i <= fruits.length - 1; i++) {
+            if (fruits[i].includes("a")) {
+                console.log(fruits[i])
+            }
+        }
+    </script>
+</body>
+
+</html>

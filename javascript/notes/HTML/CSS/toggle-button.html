@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #toggle {
+            display: none;
+        }
+        
+        img {
+            width: 100px;
+        }
+        
+        #on {
+            display: none;
+        }
+        
+        #toggle:checked~#off {
+            transform: scale(1.10);
+            #off {
+                display: none;
+            }
+        }
+        
+        #toggle:checked~#on {
+            display: block;
+            width: 100%;
+            transition: 2s;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="toggle">
+    <label for="toggle" id="on">
+        <img src="on.png" alt="">
+    </label>
+    <label for="toggle" id="off">
+        <img  src="off.png" alt="">
+    </label>
+    <br>
+    <br>
+    <br>
+    <h1 id="abc">Hello</h1>
+</body>
+
+</html>

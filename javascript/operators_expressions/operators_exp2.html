@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //increment
+        var a = 5
+        console.log(++a)
+            //decrement
+        var b = 10
+        console.log(--b)
+            //divisible by 7
+        var num = 121
+        if (num % 7 == 0) {
+            console.log(num)
+        }
+        console.log("not divisible")
+            //check num is factor or nots
+        var num1 = +prompt("enter num")
+        val = 84
+        if (num % val == 0) {
+            console.log(num, "is factor of ", val)
+        }
+        console.log(num, "is not a factor of", val)
+            //positive or negative
+        var num2 = +prompt("enter num")
+        if (num2 > 0) {
+            console.log("positive")
+        } else if (num2 < 0) {
+            console.log("negative")
+        } else
+            console.log("zero")
+            //even or not
+        var num3 = +prompt("enter num")
+        if (num3 % 2 == 0)
+            console.log(num3, "is even")
+        else
+            console.log(num3, "is odd")
+            //check unit place is 4 or not
+        var num4 = +prompt("enter num")
+        if (num4 > 0) {
+            unit = num4 % 10
+            if (unit == 4)
+                console.log("units place is", unit)
+            else
+                console.log("unit place is not a 4", unit)
+        } else
+            console.log("not valid")
+            //greatest of twos
+        var num5 = 56
+        var num6 = 34
+        if (num5 > num6)
+            console.log(num5, "is greatest")
+        else
+            console.log(num6, "is greatest")
+            //least of two
+        if (num5 < num6)
+            console.log(num5, "is least")
+        else
+            console.log(num6, "is the least")
+            //check number is three digit number or not
+        var num7 = +prompt("enter num")
+        count = 0
+        while (num7 > 0) {
+            digit = num7 % 10
+            if (digit != null)
+                count = count + 1
+            num7 = num7 / 10
+        }
+        console.log(count)
+    </script>
+</body>
+
+</html>

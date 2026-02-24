@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hero {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 100px 100px;
+        }
+        
+        .hero .herocontent {
+            width: 40%;
+            height: 200px;
+            background-color: coral;
+        }
+        
+        .herotabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            padding: 20px 0px;
+            gap: 20px;
+            width: 50%;
+            background-color: rgb(13, 114, 139);
+            list-style: none;
+        }
+        
+        .herotabs li {
+            width: 40%;
+            height: 100px;
+            border: 2px solid;
+            background-color: lightblue;
+            border-radius: 20px;
+            min-width: 100px;
+            flex-grow: 1;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="herocontent">hello</div>
+        <ul class="herotabs">
+            <li>abcd</li>
+            <li>abcd</li>
+            <li>abcd</li>
+            <li>abcd</li>
+        </ul>
+    </div>
+
+</body>
+
+</html>

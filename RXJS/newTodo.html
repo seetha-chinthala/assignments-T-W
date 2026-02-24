@@ -1,0 +1,44 @@
+<htm>
+
+    <body>
+        <script>
+            class todolist {
+                category;
+                todos = [];
+                constructor(cat) {
+                    this.category = cat;
+                    this.inittodolist();
+                }
+                inittodolist() {
+                    var nlist = document.createElement("ul")
+                    nlist.setAttribute("id", this.category)
+                    var catheader = document.createElement("h3")
+                    catheader.innerText = this.category;
+                    nlist.appendChild(catheader)
+                    ntdbox = document.createElement("input")
+                    ntdbox.setAttribute("id", this.category + "box")
+                    var addTodoBtn = document.createElement()
+                }
+                addtodo(todo) {
+                    this.todos.push(todo)
+                    var ntd = document.createElement("li")
+                    ntd.innerText = todo;
+                    document.getElementById(this.category).appendChild(ntd)
+
+                }
+                deletetodo(i) {
+                    this.todos.splice(i, 1)
+                }
+            }
+            var ob1 = new todolist("finance")
+            ob1.addtodo("rent")
+            ob1.addtodo("mediscal bill")
+            ob1.addtodo("electricity bill")
+
+            var ob2 = new todolist("travel")
+            ob2.addtodo("chennai")
+            ob2.addtodo("Goa")
+            ob2.addtodo("Manali")
+        </script>
+    </body>
+</htm>

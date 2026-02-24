@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="ntd" onkeyup="checkEnter(event)" onchange="checkEmpty(event)">
+    <button onclick="addTodo()" id="btn1">Add Todo</button>
+    <br>
+    <br>
+    <input type="radio">:All
+    <input type="radio">:Completed
+    <input type="radio">:Not-Completed
+    <ul id="d1"></ul>
+    <script>
+        document.getElementById("btn1").disabled = true
+        var todos = JSON.parse(window.localStorage.getItem("todos")) || []
+
+        function addTodo() {
+            var newTodo = document.getElementById('ntd').value;
+            todos.push({
+                title: newTodo,
+                status: false
+            })
+            window.localStorage.setItem("todos", JSON.stringify(todos))
+            genUI();
+            document.getElementById("ntd").value = ""
+            document.getElementById("btn1").disabled = true
+        }
+
+        function delTodo(index) {
+            todos.splice(index, 1)
+            console.log(todos);
+            genUI();
+        }
+
+        function genUI() {
+            document.getElementById("d1").innerHTML = ""
+
+            todos.forEach(function(t, i) {
+                var ntd = document.createElement("li")
+                ntd.innerText = t.title;
+                ntd.style.textDecoration = t.status ? "line-through" : ""
+
+                var dbtn = document.createElement("button")
+                dbtn.innerText = "delete"
+                dbtn.addEventListener("click", function() {
+                    delTodo(i)
+                })
+                ntd.appendChild(dbtn)
+
+                var toggleBtn = document.createElement("button")
+                toggleBtn.innerText = t.status ? "UNDO" : "DONE"
+                toggleBtn.onclick = function() {
+                    todos[i].status = !todos[i].status
+                    genUI();
+                }
+                ntd.appendChild(toggleBtn)
+                document.getElementById("d1").appendChild(ntd)
+            })
+        }
+        genUI()
+
+        function checkEnter(ev) {
+            if (ev.target.value == "") {
+                document.getElementById("btn1").disabled = true
+            } else {
+                document.getElementById("btn1").disabled = false
+            }
+            if (ev.key == 'Enter') {
+                addTodo();
+            }
+        }
+
+        function checkEmpty(ev) {
+
+        }
+    </script>
+</body>
+
+</html>
+<!-- 
+    1. state
+    2. action
+-->

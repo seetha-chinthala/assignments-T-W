@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>People Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+        
+        th,
+        td {
+            border: 1px solid black;
+            padding: 6px 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>People Information</h2>
+    <div id="output"></div>
+
+    <script>
+        var people = [{
+            firstname: "praveen",
+            lastname: "gubbala",
+            age: 36,
+            gender: "male",
+            city: "hyd",
+            salary: 10000
+        }, {
+            firstname: "srikanth",
+            lastname: "gubbala",
+            age: 32,
+            gender: "male",
+            city: "bengaluru",
+            salary: 20000
+        }, {
+            firstname: "pradeep",
+            lastname: "reddy",
+            age: 21,
+            gender: "male",
+            city: "hyd",
+            salary: 30000
+        }, {
+            firstname: "mounika",
+            lastname: "mudiraj",
+            age: 20,
+            gender: "female",
+            city: "nalgonda",
+            salary: 30000
+        }, {
+            firstname: "nikhil",
+            lastname: "m",
+            age: 22,
+            gender: "male",
+            city: "guntur",
+            salary: 2000
+        }, {
+            firstname: "riya",
+            lastname: "bhadouria",
+            age: 14,
+            gender: "female",
+            city: "indore",
+            salary: 40000
+        }];
+
+        function createTable(title, conditionFn) {
+            var container = document.getElementById("output");
+
+            var heading = document.createElement("h3");
+            heading.innerText = title;
+            container.appendChild(heading);
+
+            var table = document.createElement("table");
+            var headerRow = document.createElement("tr");
+
+            var headers = ["First Name", "Last Name", "Age", "Gender", "City", "Salary"];
+            for (var h of headers) {
+                var th = document.createElement("th");
+                th.innerText = h;
+                headerRow.appendChild(th);
+            }
+            table.appendChild(headerRow);
+
+            for (var i = 0; i < people.length; i++) {
+                if (conditionFn(people[i])) {
+                    var row = document.createElement("tr");
+
+                    for (var key in people[i]) {
+                        var td = document.createElement("td");
+                        td.innerText = people[i][key];
+                        row.appendChild(td);
+                    }
+
+                    table.appendChild(row);
+                }
+            }
+
+            container.appendChild(table);
+        }
+
+        /* 1. All people */
+        createTable("All People", function() {
+            return true;
+        });
+
+        /* 2. Male and Female separately */
+        createTable("Male People", function(p) {
+            return p.gender === "male";
+        });
+
+        createTable("Female People", function(p) {
+            return p.gender === "female";
+        });
+
+        /* 3. Salary more than 20000 */
+        createTable("Salary Greater Than 20000", function(p) {
+            return p.salary > 20000;
+        });
+
+        /* 4. Male people above age 25 */
+        createTable("Male People Above Age 25", function(p) {
+            return p.gender === "male" && p.age > 25;
+        });
+    </script>
+
+</body>
+
+</html>

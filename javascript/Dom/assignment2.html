@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1 {
+            border: 2px;
+        }
+        
+        #d1 li {
+            list-style: none;
+            border: 1px solid gray;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+        }
+        
+        .hero {
+            background-color: lightblue;
+        }
+        
+        .heroine {
+            background-color: lightpink;
+        }
+    </style>
+
+    </style>
+</head>
+
+<body>
+    <ul id="d1">
+
+    </ul>
+    <script>
+        var students = [
+
+            {
+
+                name: 'jaya',
+
+                gender: 'female',
+
+                place: 'gachibowli',
+
+            },
+
+            {
+
+                name: 'dasu',
+
+                gender: 'male',
+
+                place: 'kphb'
+
+            },
+
+            {
+
+                name: 'swati',
+
+                gender: 'female',
+
+                place: 'pune'
+
+            },
+
+            {
+
+                name: 'pallavi',
+
+                gender: 'female',
+
+                place: 'assam'
+
+            },
+
+            {
+
+                name: 'kiran',
+
+                gender: 'male',
+
+                place: 'kondapur'
+
+            },
+
+            {
+
+                name: 'thirumala',
+
+                gender: 'male',
+
+                place: 'madhapur'
+
+            },
+
+            {
+
+                name: 'priya',
+
+                gender: 'female',
+
+                place: 'hitech'
+
+            },
+
+        ]
+        for (var i = 0; i < students.length; i++) {
+            var x = document.createElement("li");
+
+            var xname = document.createElement("h1")
+            xname.innerText = students[i].name;
+
+
+            var xgen = document.createElement("h5")
+            xgen.innerText = students[i].gender;
+
+
+            var xplace = document.createElement("h5")
+            xplace.innerText = students[i].place;
+
+            x.appendChild(xname);
+            x.appendChild(xgen);
+            x.appendChild(xplace);
+
+            if (students[i].gender == "male") {
+                x.classList.add("hero");
+            }
+            if (students[i].gender == "female") {
+                x.classList.add("heroine");
+            }
+
+            document.getElementById("d1").appendChild(x)
+
+
+        }
+    </script>
+</body>
+
+</html>

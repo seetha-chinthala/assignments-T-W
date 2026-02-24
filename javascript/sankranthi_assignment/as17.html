@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <input type="text" id="t1"/>
+        <button id="btn1" onclick="add()">add task</button>
+        <ul id="ul"> </ul>
+        <script>
+function add(){
+    let ul=document.getElementById("ul")
+    let li=document.createElement("li")
+    li.innerText=document.getElementById("t1").value;
+    let btn2= document.createElement("button")
+   btn2.innerText="Done";
+   btn2.onclick=function(){
+    if(btn2.innerText=="Done"){
+    li.style.textDecoration="line-through"
+    btn2.innerText="undo"}else{
+    li.style.textDecoration="none"
+        btn2.innerText="Done"
+    }
+   }
+   let btn3= document.createElement("button")
+   btn3.innerText="Delete"
+   btn3.onclick=function(){
+    li.remove()
+   }
+    li.appendChild(btn2)
+    li.appendChild(btn3)
+    ul.appendChild(li)
+    
+}
+        </script>
+    </body>
+</html> 

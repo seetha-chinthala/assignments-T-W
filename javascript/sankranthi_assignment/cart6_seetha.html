@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Point Of Sale</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        #ecom {
+            display: flex;
+        }
+        
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 70%;
+        }
+        
+        .card {
+            width: 150px;
+            text-align: center;
+            box-shadow: 1px 1px 3px 1px;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px;
+        }
+        
+        .card img {
+            width: 100%;
+        }
+        
+        .qty-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 5px;
+        }
+        
+        .qty-box button,
+        td button {
+            background: black;
+            color: white;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        #cart {
+            border: 1px solid;
+            width: 26%;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>NovaStore</h3>
+
+    <div id="ecom">
+
+        <!-- PRODUCTS -->
+        <div id="products"></div>
+
+        <!-- CART -->
+        <div id="cart">
+            <h3>Cart</h3>
+            <table border="2" width="100%">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cartList"></tbody>
+            </table>
+
+            <h3>Total: ₹<span id="total">0</span></h3>
+        </div>
+
+    </div>
+
+    <script>
+        let productsData = [];
+        let cart = [];
+
+        function getProducts() {
+            axios.get("https://dummyjson.com/products")
+                .then(res => {
+                    productsData = res.data.products;
+                    renderProducts();
+                });
+        }
+
+        function renderProducts() {
+            const productsDiv = document.getElementById("products");
+            productsDiv.innerHTML = "";
+
+            productsData.forEach(p => {
+                const cartItem = cart.find(i => i.id === p.id);
+
+                const card = document.createElement("div");
+                card.className = "card";
+
+                let controls = `
+                <button onclick="addToCart(${p.id})">Add To Cart</button>
+            `;
+
+                if (cartItem) {
+                    controls = `
+                    <div class="qty-box">
+                        <button onclick="changeQty(${p.id}, -1)">-</button>
+                        <span>${cartItem.qty}</span>
+                        <button onclick="changeQty(${p.id}, 1)">+</button>
+                    </div>
+                `;
+                }
+
+                card.innerHTML = `
+                <img src="${p.thumbnail}">
+                <h4>${p.title}</h4>
+                <p>₹${p.price}</p>
+                ${controls}
+            `;
+
+                productsDiv.appendChild(card);
+            });
+        }
+
+        function addToCart(id) {
+            const product = productsData.find(p => p.id === id);
+            const found = cart.find(i => i.id === id);
+
+            if (found) {
+                found.qty++;
+            } else {
+                cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: product.price,
+                    qty: 1
+                });
+            }
+            renderProducts();
+            renderCart();
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            item.qty += delta;
+
+            if (item.qty === 0) {
+                cart = cart.filter(i => i.id !== id);
+            }
+            //renderProducts();
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartList = document.getElementById("cartList");
+            cartList.innerHTML = "";
+            let total = 0;
+
+            cart.forEach(item => {
+                const itemTotal = item.qty * item.price;
+                total += itemTotal;
+
+                const tr = document.createElement("tr");
+
+                tr.innerHTML = `
+                <td>${item.title}</td>
+                <td>
+                    <button onclick="changeQty(${item.id}, -1)">-</button>
+                    ${item.qty}
+                    <button onclick="changeQty(${item.id}, 1)">+</button>
+                </td>
+                <td>₹${item.price}</td>
+                <td>₹${itemTotal}</td>
+                <td>
+                    <button onclick="removeItem(${item.id})">X</button>
+                </td>
+            `;
+
+                cartList.appendChild(tr);
+            });
+
+            document.getElementById("total").innerText = total.toFixed(2);
+        }
+
+        function removeItem(id) {
+            cart = cart.filter(i => i.id !== id);
+            renderProducts();
+            renderCart();
+        }
+
+        //function nextset() {
+        //  s = s + 10;
+        //getProducts();
+        //}
+
+
+
+        getProducts();
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <img  id="bulb"src="https://www.w3schools.com/js/pic_bulboff.gif"></img>
+        <br><br>
+        <button id="btn1">on</button>
+        <script>
+            let clicked=false
+            let btn1=document.getElementById("btn1")
+            let img=document.getElementById("bulb")
+            btn1.onclick=function(){
+            if(clicked){
+                img.src="https://www.w3schools.com/js/pic_bulbon.gif"
+                btn1.innerText="off"
+                clicked=false
+                
+            }else{
+                img.src="https://www.w3schools.com/js/pic_bulboff.gif"
+                btn1.innerText="on"
+                clicked=true
+            }
+};
+        </script>
+    </body>
+</html>

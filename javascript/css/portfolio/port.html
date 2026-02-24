@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0px;
+            font-size: 23px;
+            ;
+        }
+        
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgb(63, 62, 62);
+            padding: 5px;
+            color: whitesmoke;
+        }
+        
+        #logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+        
+        #navbar {
+            padding-left: 10px;
+        }
+        
+        #logo-container {
+            display: flex;
+            gap: 30px;
+            padding-left: 50px;
+        }
+        
+        #menubar {
+            display: flex;
+            list-style: none;
+            padding-right: 100px;
+        }
+        
+        #menubar li {
+            padding-right: 50px;
+            gap: 30px;
+        }
+        
+        #menubar li:hover {
+            color: rgb(154, 133, 174);
+        }
+        
+        #hamburger,
+        #toggle-menu {
+            display: none;
+        }
+        
+        @media screen and (max-width:768px) {
+            #menubar {
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                position: absolute;
+                margin-top: 110px;
+                background-color: rgb(63, 62, 62);
+                color: whitesmoke;
+                height: 0px;
+                gap: 5px;
+                padding-top: 5px;
+            }
+            #menubar li {
+                padding-left: 20%;
+            }
+            #hamburger {
+                display: flex;
+            }
+            #menubar {
+                display: none;
+            }
+            #toggle-menu:checked~#menubar {
+                display: flex;
+                flex-direction: column;
+                transition: 2s;
+                height: 13%;
+            }
+            /*responsive hero main section*/
+            .heromain {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        /* hero section*/
+        
+        #heromain {
+            width: 100%;
+            height: 100%;
+            background-color: #1abc9c;
+            color: whitesmoke;
+            /* padding-top: 9%;
+            padding-left: 40%;*/
+        }
+        
+        #name {
+            width: 60%;
+            height: 20%;
+            text-align: center;
+            padding-left: 20%;
+            padding-bottom: 5%;
+        }
+        
+        #profile {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            padding-top: 9%;
+            padding-left: 40%;
+        }
+        
+        #profile img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!--header-->
+    <div id="navbar">
+        <div id="logo-container">
+            <img id="logo" src="https://thumbs.dreamstime.com/b/modern-minimalist-seeker-knowledge-logo-design-educational-brand-clean-elegant-minimalist-logo-design-seeker-413542929.jpg">
+            <h1 class="logo">Portfolio</h1>
+        </div>
+        <input type="checkbox" id="toggle-menu">
+        <label for="toggle-menu">
+            <h1 id="hamburger">&#9776;</h1>
+        </label>
+        <ul id="menubar">
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </ul>
+    </div>
+
+    <!--hero content-->
+    <div id="hero">
+        <div id="heromain">
+            <div id="profile">
+                <img src="portfolio_pic.jpeg">
+            </div>
+            <div id="name">
+                <h1>Seetha Chinthala</h1>
+                <h2>&#9472;&#9472;&#9472; &#9733; &#9472;&#9472;&#9472;</h2>
+                <h4>Curiosity fuels my learning,Challenges shape my skills<br/> and Impact defines my work...</h4>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

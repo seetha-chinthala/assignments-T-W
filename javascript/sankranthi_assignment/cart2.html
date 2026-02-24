@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        #ecom {
+            display: flex;
+        }
+        
+        #cart {
+            border: 1px solid;
+            width: 26%
+        }
+        
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 70%;
+        }
+        
+        #products div {
+            width: 150px;
+            text-align: center;
+            box-shadow: 1px 1px 3px 1px;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px;
+        }
+        
+        #products div img {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="d2"></h1>
+    <h3>products</h3>
+    <div id="ecom">
+
+        <div id="products">
+        </div>
+        <div id="cart">
+            <h3>Cart</h3>
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cartList">
+
+                </tbody>
+            </table>
+
+            <h3>Total: ₹<span id="total"></span></h3>
+
+        </div>
+    </div>
+    <button onclick="nextset()">Next</button>
+    <script>
+        var s = 0;
+        var count = 0;
+        var cartItems = [];
+        var quantity = {};
+        console.log(products)
+
+        //display products
+        function genTable(products) {
+            // cartItems[id] = 0
+            document.getElementById('products').innerHTML = ""
+            console.log(products)
+            products.forEach(function(product) {
+                var productCard = document.createElement("div")
+                var productImg = document.createElement("img")
+                productImg.src = product.thumbnail
+                productCard.appendChild(productImg)
+                var productTitle = document.createElement("h4")
+                productTitle.innerText = product.title
+                productCard.appendChild(productTitle)
+                var productPrice = document.createElement("h4")
+                productPrice.innerText = "₹" + product.price;
+                productCard.appendChild(productPrice);
+                var addToCartBtn = document.createElement("button")
+                addToCartBtn.innerText = 'Add To Cart'
+
+                addToCartBtn.addEventListener("click", function(item) {
+                    addToCart(product)
+
+                    qtd.style.display = "block"
+                    addToCartBtn.style.display = "none"
+
+
+                })
+
+                var qtd = document.createElement("tr")
+                var qMinus = document.createElement("button")
+                qMinus.innerText = "-";
+                qMinus.style.marginLeft = "25px"
+                    //  qMinus.addEventListener("click", function() {
+                    //    if (cartItems[id] > 0) {
+                    //      cartItems[id]--;
+                    //    qspan.innerText = cartItems[id]
+                    //}
+                    //})
+                qtd.appendChild(qMinus);
+                var qspan = document.createElement("span")
+                    //qspan.innerText = cartItems[id];
+                qtd.appendChild(qspan);
+                qspan.style.margin = "0 20px";
+                qspan.style.padding = "5px"
+                var qPlus = document.createElement("button")
+                qPlus.innerText = "+"
+                qPlus.style.marginBottom = "5px";
+                // qPlus.addEventListener("click", function() {
+                //   if (!cartItems[id] < 0) {
+                //     cartItems[id] = 0;
+                //}
+                //cartItems[id]++;
+                //qspan.innerText = cartItems[id];
+                //})
+                qtd.appendChild(qPlus);
+                qtd.style.display = "none";
+                productCard.appendChild(qtd);
+
+                productCard.appendChild(addToCartBtn)
+
+                document.getElementById('products').appendChild(productCard)
+            })
+        }
+
+        //add the products to cart
+        function addToCart(item) {
+            //const found = cartItems.find(item => item.id === id);
+            //if (found) {
+            //  found.qty += 1;
+            //} else {
+            //  cartItems.push({
+            //    id: item.id,
+            //  title: item.title,
+            //price: item.price,
+            //qty: item.qty
+            // });
+            //}
+            cartItems.push(item)
+            genCart();
+        }
+
+        //create cart to display
+        function genCart() {
+            var total = 0;
+            document.getElementById("cartList").innerHTML = ""
+            cartItems.forEach(function(item) {
+                t = item.price * item.quantity;
+                total += t;
+                var pCart = document.createElement("tr")
+
+                var pTitle = document.createElement("td")
+                pTitle.innerText = item.title;
+                pCart.appendChild(pTitle)
+
+                // var qtyTd = document.createElement("td")
+                //var minusBtn = document.createElement("button")
+                //minusBtn.textContent = "-";
+                //minusBtn.addEventListener("click", () => changeQty(item.id, 1));
+
+                //var qtyspan = document.createElement("span")
+                //qty.textContent = item.qty;
+                ///qtyspan.style.margin = "0 10px";
+
+                //var plusBtn = document.createElement("button")
+                //plusBtn.textContent = "+";
+                //plusBtn.addEventListener("click", () => changeQty(item.id, 1));
+
+                //qtyTd.appendChild(minusBtn, qtyspan, plusBtn)
+
+                //pCart.appendChild(qtyTd);
+
+                var pPrice = document.createElement("td")
+                pPrice.innerText = "₹" + item.price;
+                pCart.appendChild(pPrice)
+
+                var pTotal = document.createElement("td")
+                pTotal.innerText = "₹" + item.price;
+                pCart.appendChild(pTotal)
+
+                var pAction = document.createElement("button")
+                pAction.innerText = "Remove";
+                pAction.addEventListener("click", function() {
+                    removeItem(item.id)
+                })
+                pCart.appendChild(pAction)
+
+                document.getElementById("cartList").appendChild(pCart);
+
+                //final total element
+                document.getElementById("total").innerHTML = total.toFixed(2)
+            })
+        }
+
+        //remove items from cart
+        function removeItem(id) {
+            cartItems = cartItems.filter(item => item.id !== id)
+            genCart();
+            addToCartBtn.style.display = "block";
+
+            genTable();
+
+            //cartItems.splice(index, 1);
+
+        }
+
+
+
+
+
+
+        //get products from api
+        function getProducts() {
+            fetch("https://dummyjson.com/product?limit=40&skip=" + s)
+                .then(function(res) {
+                    return res.json()
+                })
+                .then(function(data) {
+                    genTable(data.products);
+
+                })
+            console.log("HI");
+
+        }
+
+        function nextset() {
+            s = s + 10;
+            getProducts();
+        }
+
+        getProducts()
+
+
+        // function getProducts() {
+        //     var http = new XMLHttpRequest()
+        //     http.open("GET", "https://dummyjson.com/product?limit=10&skip=" + s, true)
+        //     http.send()
+        //     console.log(http.response);
+        //     http.onreadystatechange = function () {
+        //         if (http.readyState == 4) {
+        //             var products = JSON.parse(http.response).products;
+        //             genTable(products)
+        //         }
+        //     }
+        // }
+
+        // function getProducts() {
+        //     fetch("https://dummyjson.com/product?limit=10&skip=" + s)
+        //         .then(function (res) { return res.json() })
+        //         .then(function (data) { console.log(data.products) })
+        //     console.log("HI");
+        // }
+
+        // http.onloadend = function () {
+        //     console.log(http.response);
+        // }
+
+        // console.log(http.readyState);
+        // console.dir(http)
+        // http.onreadystatechange = function () {
+        //     if (http.readyState === 1) {
+        //         document.getElementById("d1").innerText = "request sent"
+        //     }
+        //     if (http.readyState === 2) {
+        //         document.getElementById("d1").innerText = "request accepted"
+        //     }
+        //     if (http.readyState === 3) {
+        //         document.getElementById("d1").innerText = "Loading...."
+        //     }
+        //     if (http.readyState === 4) {
+        //         document.getElementById("d1").innerText = "Ipoindira chusko"
+        //     }
+        // }
+
+
+        // http.onload = function () {
+        //     // alert("Load Vachindi ramana")
+        //     document.getElementById("d1").innerText = "Loadinguuu.."
+        // }
+        // http.onloadend = function () {
+        //     // alert("Load Ethali ramana")
+        //     document.getElementById("d1").innerText = "Over.."
+
+        // }
+    </script>
+</body>
+
+</html>

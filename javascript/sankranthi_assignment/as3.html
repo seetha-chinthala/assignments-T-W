@@ -1,0 +1,38 @@
+<html>
+<style>
+    .btn {
+        background-color: red;
+    }
+    
+    .color {
+        background-color: yellow;
+    }
+    
+    #d1 {
+        width: 200px;
+        height: 200px;
+        border: 2px solid gray;
+    }
+</style>
+
+<body>
+    <div id="d1"></div>
+    <button id="on" onclick="on()">on</button>
+    <button id="off" onclick="off()">off</button>
+    <script>
+        function on() {
+            var nli = document.getElementById("d1")
+            nli.classList.add("color")
+            document.getElementById("on").classList.add("btn")
+        }
+
+        function off() {
+            document.getElementById("on").classList.remove("btn")
+            var nl = document.getElementById("d1")
+            nl.classList.remove("color")
+            document.getElementById("off").classList.add("btn")
+        }
+    </script>
+</body>
+
+</html>

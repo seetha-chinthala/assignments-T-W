@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        num1 = 25, num2 = 21, num3 = 22;
+        // biggest of two
+        if (num1 > num2) {
+            console.log("biggest of two is:", num1);
+        } else {
+
+            console.log("biggest of two is", num2);
+        }
+
+        //biggest of three
+        if (num1 < num2)
+            console.log("least is", num1);
+        else
+            console.log("least is", num2);
+
+        //ascending order
+        asc = num1 < num2 ? [num1, num2] : [num2, num1];
+        console.log(asc);
+
+        //descending  order
+        desc = num1 > num2 ? [num1, num2] : [num2, num1];
+        console.log(desc)
+
+        //bigg of three
+        if (num1 > num2 && num1 > num3)
+            console.log("big :", num1);
+        else if (num2 > num1 && num2 > num3)
+            console.log("big is:", num2)
+        else
+            console.log("big is", num3);
+
+        //least of 3
+        if (num1 < num2 && num1 < num3)
+            console.log("least is", num1);
+        else if (num2 < num1 && num2 < num3)
+            console.log("least is:", num2)
+        else
+            console.log("least is:", num3);
+
+        //ascending of 3 numbers and for descending use > instead of <
+
+        if (num1 <= num2 && num1 <= num3) {
+            if (num2 <= num3) {
+                console.log("order is:", num1, num2, num3)
+            } else {
+                console.log("order is:", num1, num3, num2)
+            }
+        } else if (num2 <= num1 && num2 <= num3) {
+            if (num1 <= num3) {
+                console.log("order is:", num2, num1, num3)
+            } else {
+                console.log("order is:", num2, num3, num1)
+            }
+        } else {
+            if (num1 <= num2)
+                console.log("order is:", num3, num1, num2)
+            else
+                console.log("order is:", num3, num2, num1)
+        }
+
+
+
+        //check vowel or not
+
+        var ch = prompt("enter character to check");
+        if ("aeiouAEIOU".includes(ch))
+            console.log("yes")
+        else
+            console.log("no");
+
+        //check alphabet or not
+
+        let h = '#';
+
+        if ((h >= 'a' && h <= 'z') || (h >= 'A' && h <= 'Z'))
+            console.log("Alphabet");
+        else
+            console.log("Not an Alphabet");
+
+
+        //check character is uppercase,lowercase or special,or digit
+        let c = 's'; // change the character here
+
+        if (c >= 'A' && c <= 'Z') {
+            console.log(c + " is an Uppercase letter");
+        } else if (c >= 'a' && c <= 'z') {
+            console.log(c + " is a Lowercase letter");
+        } else if (c >= '0' && c <= '9') {
+            console.log(c + " is a Digit");
+        } else {
+            console.log(c + " is a Special character");
+        }
+    </script>
+</body>
+
+</html>

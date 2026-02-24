@@ -1,0 +1,159 @@
+<html>
+
+<body>
+    <!--  1.Use a for loop to print each animal name
+          <script>
+            const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+            for(i=0;i<=animals.length-1;i++){
+                console.log(animals[i])
+            }
+          </script>
+        -->
+    <!--  2.Use a for loop to print each animal name along with its index
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+            for(i=0;i<=animals.length-1;i++){
+                console.log("value:",animals[i],"index:",i)
+            }
+          </script>
+        -->
+    <!--  3.Use a for loop to print only the first 5 animals
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              var b=animals.slice(0,5)
+              console.log(b)
+          </script>
+        -->
+    <!--  4.Use a for loop to print the array in reverse order
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              var b=animals.reverse()
+              console.log(b)
+          </script>
+        -->
+    <!--  5.Use a for loop to count how many animals are in the array
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              console.log("The total aminals in array are",animals.length)
+          </script>
+        -->
+    <!--  6.Use a for loop to find and print the longest animal name
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              var longest=animals[0]
+              for(i=0;i<=animals.length-1;i++){
+                if(animals[i].length>longest.length){
+                  longest=animals[i]
+                }
+              }
+              console.log("The longest animal name in array is",longest)
+          </script>
+        -->
+    <!--  7.Use a for loop to print all animals that contain the letter 'o'
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              var ar=[]
+              for(i=0;i<=animals.length-1;i++){
+                if(animals[i].includes("o")){
+                  ar.push(animals[i])
+                }
+              }console.log("The animals contain the letter 'o' are",ar)
+          </script>
+        -->
+    <!--  8.Use a for loop to remove "Tiger" from array
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              for(i=0;i<=animals.length-1;i++){
+                if(animals[i]=="Tiger"){
+                  animals.splice(i,1)
+                  break;
+                }
+              }console.log("After removing 'Tiger'",animals)
+          </script>
+        -->
+    <!--  9.Use a for loop to count how many animals start wuth "L"
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              count=0
+              ar=[]
+              for(i=0;i<=animals.length-1;i++){
+                if((animals[i].includes("L"))&&(animals[i].charCodeAt("L")==76)){
+                  ar.push(animals[i])
+                  count+=1
+                }
+              }console.log(ar)
+              console.log(count)
+          </script>
+        -->
+    <!--  10.Use a for loop to print all animals that have an even numbers of letters
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              ar=[]
+              for(i=0;i<=animals.length-1;i++){
+                if((animals[i].length)%2==0){
+                  ar.push(animals[i])
+                }
+              }console.log("The animals that have an even number of letters",ar)
+          </script>
+        -->
+    <!--  11.Use a for loop to swap the first and last animals
+          <script>
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+            var i=0
+            var j=animals.length-1
+            var temp=animals[i]
+            animals[i]=animals[j]
+            animals[j]=temp
+            console.log(animals)
+          </script>
+        -->
+    <!--  12.Use a for loop to print the animal names in uppercase
+          <script>
+            var ar=[]
+             const animals = ["Lion","Tiger","Elephant","Giraffe","Monkey","Zebra","Kangaroo","Panda",
+                      "Leopard","Cheetah","Rhinoceros","Hippopotamus","Wolf","Fox","Deer","Rabbit",
+                       "Squirrel","Crocodile","Alligator","Ostrich","Peacock","Eagle","Falcon","Penguin","Dolphin","Shark",
+                       "Whale","Octopus","Jellyfish","Starfish"];
+              for(i=0;i<=animals.length-1;i++){
+                ar.push(animals[i].toUpperCase())
+              }console.log(ar)
+          </script>
+        -->
+
+
+</body>
+
+</html>

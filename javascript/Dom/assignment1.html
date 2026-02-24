@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>DOM Practice</title>
+</head>
+
+<body>
+
+    <!-- Task 1 -->
+    <h1 id="h1text">Hello word</h1>
+
+    <!-- Task 2 -->
+    <h1 class="a">Hello</h1>
+    <h2 class="a">Edupoly</h2>
+    <p class="b">Training</p>
+
+    <!-- Task 3 -->
+    <ul>
+        <li>Apple</li>
+        <li>Mango</li>
+        <li>Orange</li>
+    </ul>
+
+    <!-- Task 4 -->
+    <h1>Hello</h1>
+    <p>Edupoly</p>
+    <p>Training</p>
+    <p>Something</p>
+
+    <script>
+        /* -----------------------------
+                1. h1 operations
+                ----------------------------- */
+        var h1 = document.getElementById("h1text");
+
+        // a. Print text inside h1
+        console.log(h1.innerText);
+
+        // b. Print data type
+        console.log(typeof h1.innerText);
+
+        // c. Print uppercase text
+        console.log(h1.innerText.toUpperCase());
+
+        // d. Change h1 text
+        h1.innerText = "Welcome to Edupoly";
+
+        /* -----------------------------
+        2. Print texts inside h1 & h2 having same class
+        ----------------------------- */
+        var sameClass = document.getElementsByClassName("a");
+
+        for (var i = 0; i < sameClass.length; i++) {
+            console.log(sameClass[i].innerText);
+        }
+
+        /* -----------------------------
+        3. Store li texts into an array
+        ----------------------------- */
+        var liElements = document.getElementsByTagName("li");
+        var fruits = [];
+
+        for (var i = 0; i < liElements.length; i++) {
+            fruits.push(liElements[i].innerText);
+        }
+
+        console.log(fruits);
+
+        /* -----------------------------
+        4. Print first paragraph text
+        ----------------------------- */
+        var firstPara = document.querySelector("p");
+        console.log(firstPara.innerText);
+
+        /* -----------------------------
+        5. Generate HTML elements using document object
+        ----------------------------- */
+        var newH1 = document.createElement("h1");
+        newH1.innerText = "Dynamically Created Heading";
+
+        var newP = document.createElement("p");
+        newP.innerText = "This paragraph is created using JavaScript";
+
+        document.body.appendChild(newH1);
+        document.body.appendChild(newP);
+    </script>
+
+</body>
+
+</html>

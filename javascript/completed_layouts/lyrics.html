@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Lyrics Timer</title>
+    <style>
+        body {
+            font-size: 28px;
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+        
+        #lyricsText {
+            min-height: 20px;
+            font-size: medium;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="lyricsText">Click Start</div>
+
+    <button onclick="startLyrics()">Start</button>
+    <button onclick="stopLyrics()">Stop</button>
+
+    <script>
+        const lyrics = [
+            "Evarikevaru Theliyadhu Munupu",
+            "Adigi Adigi Kalagadhu Valapu",
+            "Okarikokaru Ani Kalapanidhe",
+            "Manani Vadhulunaa..",
+            "Eduru Padina Kshanamoka Malupu",
+            "Adugu Kalipi Kadhilithe Gelupu",
+            "Disalu Rendu Verai Unna",
+            "Payanamaagunaa.."
+        ];
+
+        let index = 0;
+        let timer = null;
+
+        function startLyrics() {
+            stopLyrics(); // prevent multiple timers
+
+            index = 0;
+            document.getElementById("lyricsText").innerText = lyrics[index];
+
+            timer = setInterval(() => {
+                index++;
+
+                if (index < lyrics.length) {
+                    document.getElementById("lyricsText").innerText = lyrics[index];
+                } else {
+                    clearInterval(timer);
+                }
+            }, 3000);
+        }
+
+        function stopLyrics() {
+            clearInterval(timer);
+        }
+    </script>
+
+</body>
+
+</html>

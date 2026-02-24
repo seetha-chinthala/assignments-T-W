@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>People Data</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-bottom: 25px;
+        }
+        
+        th,
+        td {
+            border: 1px solid black;
+            padding: 6px 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Employees Information</h2>
+    <div id="output"></div>
+
+    <script>
+        const employees = [{
+            firstname: "John",
+            lastname: "Doe",
+            age: 30,
+            gender: "Male",
+            city: "New York",
+            salary: 60000
+        }, {
+            firstname: "Jane",
+            lastname: "Smith",
+            age: 25,
+            gender: "Female",
+            city: "Los Angeles",
+            salary: 75000
+        }, {
+            firstname: "Peter",
+            lastname: "Jones",
+            age: 35,
+            gender: "Male",
+            city: "Chicago",
+            salary: 80000
+        }, {
+            firstname: "Alice",
+            lastname: "Williams",
+            age: 28,
+            gender: "Female",
+            city: "Houston",
+            salary: 70000
+        }, {
+            firstname: "Bob",
+            lastname: "Brown",
+            age: 40,
+            gender: "Male",
+            city: "Dallas",
+            salary: 90000
+        }, {
+            firstname: "Charlie",
+            lastname: "Davis",
+            age: 32,
+            gender: "Male",
+            city: "Miami",
+            salary: 65000
+        }, {
+            firstname: "Diana",
+            lastname: "Miller",
+            age: 29,
+            gender: "Female",
+            city: "Seattle",
+            salary: 82000
+        }, {
+            firstname: "Eve",
+            lastname: "Wilson",
+            age: 31,
+            gender: "Female",
+            city: "Boston",
+            salary: 78000
+        }];
+
+        function createTable(title, conditionFn) {
+            var container = document.getElementById("output");
+
+            var heading = document.createElement("h3");
+            heading.innerText = title;
+            container.appendChild(heading);
+
+            var table = document.createElement("table");
+
+            //header row creation
+            var headerRow = document.createElement("tr");
+
+            // an array with all keys in array of object
+            var headers = ["First Name", "Last Name", "Age", "Gender", "City", "Salary"];
+            for (var h of headers) {
+                var th = document.createElement("th");
+                th.innerText = h;
+                headerRow.appendChild(th);
+            }
+            table.appendChild(headerRow);
+
+            for (var i = 0; i < employees.length; i++) {
+                if (conditionFn(people[i])) {
+                    var row = document.createElement("tr");
+
+                    for (var key in people[i]) {
+                        var td = document.createElement("td");
+                        td.innerText = people[i][key];
+                        row.appendChild(td);
+                    }
+
+                    table.appendChild(row);
+                }
+            }
+
+            container.appendChild(table);
+        }
+
+        /* 1. All people */
+        createTable("All People", function() {
+            return true;
+        });
+
+        /* 2. Male and Female separately */
+        createTable("Male People", function(p) {
+            return p.gender === "male";
+        });
+
+        createTable("Female People", function(p) {
+            return p.gender === "female";
+        });
+
+        /* 3. Salary more than 20000 */
+        createTable("Salary Greater Than 20000", function(p) {
+            return p.salary > 20000;
+        });
+
+        /* 4. Male people above age 25 */
+        createTable("Male People Above Age 25", function(p) {
+            return p.gender === "male" && p.age > 25;
+        });
+    </script>
+
+</body>
+
+</html>

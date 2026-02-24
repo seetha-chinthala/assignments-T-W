@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1 {
+            background-color: lightblue;
+            width: 400px;
+            height: 400px;
+            position: relative;
+            margin: 50px;
+        }
+        
+        #d3 {
+            background-color: purple;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        #d4 {
+            background-color: rgb(17, 144, 77);
+            width: 200px;
+            height: 150px;
+        }
+        
+        #d4:hover {
+            transition: 2s;
+            width: 220px;
+            transform: scale(1.1);
+        }
+        
+        #dd:hover {
+            color: red;
+            transition: 2s;
+        }
+        
+        #d3:hover {
+            transition: 2s;
+            transform: translate(-50%, -50%) rotateY(180deg)
+            /* width: 240px;
+            height: 180px; 
+        
+        */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d4">hi</div>
+
+    <h1 id="dd">Hello Subbarao</h1>
+    <div id="d1">
+
+        <img id="d3" src="https://www.talktoangel.com/images/mental/deepika-padukone-on-depression_icon.png"></img>
+
+    </div>
+</body>
+
+</html>

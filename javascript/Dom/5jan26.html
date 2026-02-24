@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Math</th>
+                <th>Science</th>
+                <th>English</th>
+                <th>History</th>
+                <th>Art</th>
+            </tr>
+        </thead>
+        <tbody id="d2">
+
+        </tbody>
+    </table>
+    <script>
+        const students = [{
+            name: "Divya Sri",
+            marks: [{
+                subject: "Math",
+                mark: 85
+            }, {
+                subject: "Science",
+                mark: 90
+            }, {
+                subject: "English",
+                mark: 78
+            }, {
+                subject: "History",
+                mark: 92
+            }, {
+                subject: "Art",
+                mark: 88
+            }]
+        }, {
+            name: "Amrutha",
+            marks: [{
+                subject: "Math",
+                mark: 70
+            }, {
+                subject: "Science",
+                mark: 75
+            }, {
+                subject: "English",
+                mark: 80
+            }, {
+                subject: "History",
+                mark: 65
+            }, {
+                subject: "Art",
+                mark: 72
+            }]
+        }, {
+            name: "Likitha",
+            marks: [{
+                subject: "Math",
+                mark: 95
+            }, {
+                subject: "Science",
+                mark: 88
+            }, {
+                subject: "English",
+                mark: 92
+            }, {
+                subject: "History",
+                mark: 90
+            }, {
+                subject: "Art",
+                mark: 96
+            }]
+        }, {
+            name: "Ahmed",
+            marks: [{
+                subject: "Math",
+                mark: 60
+            }, {
+                subject: "Science",
+                mark: 68
+            }, {
+                subject: "English",
+                mark: 72
+            }, {
+                subject: "History",
+                mark: 55
+            }, {
+                subject: "Art",
+                mark: 63
+            }]
+        }, {
+            name: "Netra",
+            marks: [{
+                subject: "Math",
+                mark: 80
+            }, {
+                subject: "Science",
+                mark: 82
+            }, {
+                subject: "English",
+                mark: 79
+            }, {
+                subject: "History",
+                mark: 85
+            }, {
+                subject: "Art",
+                mark: 83
+            }]
+        }];
+        students.forEach(function(student) {
+            var ntr = document.createElement("tr")
+
+
+            var ntd = document.createElement("td")
+            ntd.innerText = student.name;
+            ntr.appendChild(ntd)
+
+            student.marks.forEach(function(m) {
+                var mtd = document.createElement("td")
+                mtd.innerText = m.mark;
+                ntr.appendChild(mtd);
+            });
+
+            //var std = document.createElement("td")
+            //std.innerText = student.marks[1].mark;
+            //ntr.appendChild(std);
+
+            //var etd = document.createElement("td")
+            //etd.innerText = student.marks[2].mark;
+            //ntr.appendChild(etd);
+
+            //var htd = document.createElement("td")
+            //htd.innerText = student.marks[3].mark;
+            //ntr.appendChild(htd);
+
+            // var atd = document.createElement("td")
+            //atd.innerText = student.marks[4].mark;
+            //ntr.appendChild(atd);
+            document.getElementById("d2").appendChild(ntr)
+        })
+    </script>
+    <div id="d1"></div>
+
+    <script>
+        var imgURLS = ["https://carwow-uk-wp-3.imgix.net/18015-MC20BluInfinito-scaled-e1707920217641.jpg",
+            "https://media.architecturaldigest.com/photos/63079fc7b4858efb76814bd2/16:9/w_4000,h_2250,c_limit/9.%20DeLorean-Alpha-5%20%5BDeLorean%5D.jpg",
+            "https://cdn.motor1.com/images/mgl/MkO9NN/s1/future-supercars.webp"
+        ]
+        imgURLS.forEach(function(img, i) {
+            var x = document.createElement('img');
+            x.src = img;
+
+            document.getElementById('d1').appendChild(x)
+        })
+    </script>
+
+</body>
+
+</html>

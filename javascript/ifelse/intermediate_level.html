@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //leap year or not
+        var year = +prompt("enter the year")
+        if (year % 400)
+            console.log("leap year")
+        else
+            console.log("not a leap year")
+
+        //voe eligibility
+        var age = +prompt("enter age")
+        if (age >= 18)
+            console.log("eligible for vote")
+        else
+            console.log("not eligible for vote")
+            //check date is valid or not
+        function isValidDate(dateString) {
+            const dateObject = new Date(dateString)
+            if (isNaN(dateObject.getTime()))
+                console.log("not valid date")
+            else
+                console.log("valid date")
+        }
+        const date1 = "2026-01-30";
+        isValidDate(date1);
+
+        //input week number and print the day
+        var day = +prompt("enter week day");
+        if (day == 1)
+            console.log("Monday")
+        else if (day == 2)
+            console.log("Tuesday")
+        else if (day == 3)
+            console.log("Wednesday")
+        else if (day == 4)
+            console.log("Thursday")
+        else if (day == 5)
+            console.log("Friday")
+        else if (day == 6)
+            console.log("Saturday")
+        else
+            console.log("Sunday")
+
+        //month number and print days in month
+        var mon = +prompt("enter the month number")
+        if (mon == 1 || mon == 3 || mon == 5 || mon == 7 || mon == 8 || mon == 9 || mon == 12)
+            console.log("31 days")
+        else if (mon == 4 || mon == 6 || mon == 9 || mon == 11)
+            console.log("30 days")
+        else
+            console.log("28/29 days")
+    </script>
+</body>
+
+</html>

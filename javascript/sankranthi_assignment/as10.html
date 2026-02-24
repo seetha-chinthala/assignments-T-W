@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Contact</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .form-box {
+            margin-bottom: 20px;
+        }
+        
+        input {
+            margin: 5px 0;
+            padding: 5px;
+        }
+        
+        button {
+            padding: 6px 12px;
+            margin-top: 10px;
+        }
+        
+        .contact-card {
+            background-color: yellow;
+            border: 3px solid red;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            width: 400px;
+        }
+        
+        .contact-card img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="form-box">
+        <div>
+            <label>Name:</label>
+            <input type="text" id="name">
+        </div>
+
+        <div>
+            <label>Number:</label>
+            <input type="text" id="number">
+        </div>
+
+        <div>
+            <label>Email:</label>
+            <input type="email" id="email">
+        </div>
+
+        <div>
+            <label>Image:</label>
+            <input type="file" id="image">
+        </div>
+
+        <button onclick="addContact()">Add Contact</button>
+    </div>
+
+    <div id="contacts"></div>
+
+    <script>
+        function addContact() {
+            const name = document.getElementById("name").value;
+            const number = document.getElementById("number").value;
+            const email = document.getElementById("email").value;
+            const imageInput = document.getElementById("image");
+
+            if (imageInput.files.length === 0) {
+                alert("Please select an image");
+                return;
+            }
+
+            const imgURL = URL.createObjectURL(imageInput.files[0]);
+
+            const card = document.createElement("div");
+            card.className = "contact-card";
+
+            card.innerHTML = `
+                <img src="${imgURL}">
+                <p><b>Name:</b> ${name}</p>
+                <p><b>Number:</b> ${number}</p>
+                <p><b>Email:</b> ${email}</p>
+            `;
+
+            document.getElementById("contacts").appendChild(card);
+
+            // clear inputs
+            document.getElementById("name").value = "";
+            document.getElementById("number").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("image").value = "";
+        }
+    </script>
+
+</body>
+
+</html>

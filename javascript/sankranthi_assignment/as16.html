@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cricket Score Tracker</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; text-align: center; }
+    .score { font-size: 24px; margin-bottom: 20px; }
+    .buttons button {
+      margin: 5px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .balls { margin-top: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+    .ball {
+      padding: 10px 15px;
+      border-radius: 50%;
+      color: white;
+      font-weight: bold;
+    }
+    .run { background-color: teal; }
+    .wide { background-color: tan; color: black; }
+    .wicket { background-color: red; }
+  </style>
+</head>
+<body>
+
+  <div class="score" id="scoreDisplay">Score: 0-0</div>
+
+  <div class="buttons">
+    <button onclick="addBall(0)">0</button>
+    <button onclick="addBall(1)">1</button>
+    <button onclick="addBall(2)">2</button>
+    <button onclick="addBall(3)">3</button>
+    <button onclick="addBall(4)">4</button>
+    <button onclick="addBall(5)">5</button>
+    <button onclick="addBall(6)">6</button>
+    <button onclick="addBall('Wide')">Wide</button>
+    <button onclick="addBall('Wicket')">Wicket</button>
+  </div>
+
+  <div class="balls" id="ballContainer"></div>
+
+  <script>
+    let runs = 0;
+    let wickets = 0;
+
+    function addBall(value) {
+      const ballContainer = document.getElementById('ballContainer');
+      const ball = document.createElement('div');
+      ball.classList.add('ball');
+
+      if (typeof value === 'number') {
+        runs += value;
+        ball.classList.add('run');
+        ball.textContent = value;
+      } else if (value === 'Wide') {
+        runs += 1;
+        ball.classList.add('wide');
+        ball.textContent = 'Wide';
+      } else if (value === 'Wicket') {
+        wickets += 1;
+        ball.classList.add('wicket');
+        ball.textContent = 'Wicket';
+      }
+
+      ballContainer.appendChild(ball);
+      document.getElementById('scoreDisplay').textContent = `Score: ${runs}-${wickets}`;
+    }
+  </script>
+
+</body>
+</html>

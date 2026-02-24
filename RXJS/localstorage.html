@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.localStorage.setItem("user", "seetha")
+        window.localStorage.setItem("user2", "Swathi")
+        window.localStorage.setItem("user3", "Lidiya")
+        var x = window.localStorage.getItem("user")
+        var y = window.localStorage.getItem("user2")
+        var z = window.localStorage.getItem("user3")
+
+        console.log(z)
+        console.log(x)
+        console.log(y)
+        window.localStorage.removeItem("user2")
+        var b = window.localStorage.getItem("user2")
+        var a = window.localStorage.getItem("user")
+        var c = window.localStorage.getItem("user3")
+        console.log(c)
+        console.log(a)
+        console.log(b)
+        console.log(localStorage)
+    </script>
+</body>
+
+</html>

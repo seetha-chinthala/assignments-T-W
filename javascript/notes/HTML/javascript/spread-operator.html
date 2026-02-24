@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var ar = [12, 23]
+        Object.freeze(ar)
+            // ar.push(55)
+        ar = [...ar, 44]
+        console.log(...ar) //12,23,44
+        console.log(ar) //[12,23,44]
+
+
+
+        // var ar = [10, 20]
+        // var br = ar;
+        // var cr = [...ar]
+        // var dr = ar.slice(0)
+        // var er = ar.concat([])n
+        // var fr = ar.toSpliced(0, 0)
+        // var gr = [];
+        // ar.forEach(function(a) {
+        //     gr.push(a)
+        // })
+        // var hr = ar.map(function(a) {
+        //     return a
+        // })
+        // var ir = ar.filter(function(a) {
+        //     return true
+        // })
+        // ar[1] = 'praveen'
+        // console.log(br);
+        // console.log(cr);
+        // console.log(dr);
+        // console.log(er);
+        // console.log(fr);
+        // console.log(gr);
+        // console.log(hr);
+        // console.log(ir);
+
+        var a = 100;
+        var b = 200;
+
+        [a, b] = [b, a]
+        //console.log(a);
+        //console.log(b);
+
+        var ar = [10, 20, 30]
+        var br = [11, 22, 33]
+        var cr = [ar, br]
+        var dr = ar.concat(br)
+        var er = [...ar, ...br]
+            // console.log(cr);
+            // console.log(dr);
+            // console.log(er);
+            // console.log(ar);
+            // console.log(...ar);
+
+        var fr = [10, 20, 30, 40, 12, 23, 34]
+        var [a, ...x] = fr
+        console.log(a);
+        console.log(x);
+
+        var ob1 = {
+                firstname: "Deepika",
+                lastname: "gubbala",
+                age: 34,
+                place: "East Godavari",
+                likes: "Praveen"
+            }
+            // delete ob1.likes;
+        var {
+            likes,
+            ...ob1
+        } = ob1
+        console.log(ob1);
+
+        var {
+            firstname,
+            ...x
+        } = ob1
+        console.log(firstname);
+        console.log(x);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+        
+        .navbar {
+            width: 100%;
+            height: 80px;
+            background-color: rgb(61, 60, 60);
+            color: whitesmoke;
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+        }
+        
+        .menubar {
+            display: flex;
+            justify-content: space-evenly;
+            gap: 30px;
+            list-style: none;
+            padding: 40px;
+            align-items: flex-end;
+        }
+        
+        .menubar li:hover {
+            color: rgb(151, 116, 185);
+        }
+        
+        #hamburger,
+        #toggle {
+            display: none
+        }
+        
+        @media screen and (max-width:768px) {
+            #menubar {
+                top: 0px;
+                left: 0px;
+                width: 100%;
+                position: absolute;
+                margin-top: 90px;
+                background-color: lightgray;
+                background-color: black;
+                color: white;
+                height: 0px;
+            }
+            .menubar li {
+                display: none;
+            }
+            #hamburger {
+                display: flex;
+            }
+            #toggle:checked~#menubar {
+                display: flex;
+                flex-direction: column;
+                transition: 2s;
+                height: 10%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <h1>Portfolio</h1>
+        <nav class="menubar">
+            <li>Home</li>
+            <li>About</li>
+            <li>Contact</li>
+        </nav>
+        <input type="checkbox" id="toggle">
+        <label for="toggle">
+            <h1 id="hamburger">&#9776;</h1>
+        </label>
+    </header>
+
+</body>
+
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //fond 2 power of 6
+        console.log(Math.pow(2, 2));
+        //increment
+        var a = 5
+        console.log(++a)
+            //decrement
+        var b = 10
+        console.log(--b)
+            //divisible by 7
+        var num = 121
+        if (num % 7 == 0) {
+            console.log(num)
+        }
+        console.log("not divisible")
+            //check num is factor or nots
+        var num1 = +prompt("enter num")
+        val = 84
+        if (num % val == 0) {
+            console.log(num, "is factor of ", val)
+        }
+        console.log(num, "is not a factor of", val)
+            //positive or negative
+        var num2 = +prompt("enter num")
+        if (num2 > 0) {
+            console.log("positive")
+        } else if (num2 < 0) {
+            console.log("negative")
+        } else
+            console.log("zero")
+            //even or not
+        var num3 = +prompt("enter num")
+        if (num3 % 2 == 0)
+            console.log(num3, "is even")
+        else
+            console.log(num3, "is odd")
+            //check unit place is 4 or not
+        var num4 = +prompt("enter num")
+        if (num4 > 0) {
+            unit = num4 % 10
+            if (unit == 4)
+                console.log("units place is", unit)
+            else
+                console.log("unit place is not a 4", unit)
+        } else
+            console.log("not valid")
+            //greatest of twos
+        var num5 = 56
+        var num6 = 34
+        if (num5 > num6)
+            console.log(num5, "is greatest")
+        else
+            console.log(num6, "is greatest")
+            //least of two
+        if (num5 < num6)
+            console.log(num5, "is least")
+        else
+            console.log(num6, "is the least")
+            //check number is three digit number or not
+        var num7 = +prompt("enter num")
+        count = 0
+        while (num7 > 0) {
+            digit = num7 % 10
+            if (digit != null)
+                count = count + 1
+            num7 = num7 / 10
+        }
+        console.log(count)
+
+        //  print the (a+b)^2 value
+        var a = 10,
+            b = 20;
+        var c = 30
+        console.log(a ** 2 + b ** 2 + 2 * a * b);
+
+        //print the (a+b)^3 value
+        console.log(a ** 3 + b ** 3 + 3 * a ** 2 * b + 3 * a * b ** 2);
+
+        //print the (a+b+c)^3 value
+        console.log(a ** 3 + b ** 3 + c ** 3 + 3 * a ** 2 * b + 3 * a ** 2 * b + 3 * b ** 2 * a + 3 * b ** 2 * c + 3 * c ** 2 * a + 3 * c ** 2 * b + 6 * a * b * c);
+
+        //calcu;ate gross salary
+        var sal = +prompt("enter salary");
+        gross_sal = sal + 40 / 100 * sal + 20 / 100 * sal;
+        console.log(gross_sal);
+
+        //conert farenheit to celsius and celsius to farenheit
+        var temp = +prompt("enter farenheit");
+        celsius = 5 / 9 * temp - 32;
+        faren = temp * 9 / 5 + 32;
+        console.log("farenheit of temperature:", faren)
+        console.log("celsius of temperature", celsius);
+
+        //sum of digits in 5 digit number
+        var sum = 0;
+        var x = +prompt("enter 5 digit number");
+        for (i = 0; i < 5; i++) {
+            digit = x % 10;
+            sum += digit;
+            x = x / 10
+        }
+        console.log("sum obtained", sum);
+
+        //reverse a  number
+        var rev = 0;
+        var z = 123,
+            digit = 0;
+        while (z > 0) {
+            digit = z % 10;
+            rev = rev * 10 + digit;
+            z = Math.floor(z / 10);
+        }
+        console.log("after reverse", rev);
+
+        // convert and meters ,feets,inches,and centimeters and miles
+        var km = +prompt("enter distance");
+        console.log("distance in meters: ", km * 1000);
+        console.log("distance in feets:", km * 3280.84);
+        console.log("distance in inches:", km * 39370.1);
+        console.log("distance in centimeters:", km * 100000);
+        console.log("distance in miles:", km * 0.621371);
+
+        //interchange c amd d
+        var c = +prompt("enter c value");
+        var d = +prompt("enter d value");
+        console.log("before interchange:", c, d);
+        var t = c;
+        c = d;
+        d = t;
+        console.log("after interchange:", c, d);
+
+        //obtain sum of first and last digits in a number
+        var sum = 0;
+        var y = +prompt("enter four digit number");
+        for (var i = 0; i < 4; i++) {
+            digit = y % 10
+            if (i == 0 || i == 4 - 1) {
+                sum += digit;
+            }
+            y = Math.floor(y / 10);
+        }
+        console.log("sum of first and last digits in a number is:", sum);
+
+        //find cost of each item among 15 items
+        var profit = +prompt("enter profit earned");
+        var items = 15;
+        var cost = profit / items;
+        console.log("cost of each item:", cost);
+
+        //print a new number by adding 1 to the every digit in given number
+        var new_num = "";
+        var old = +prompt("enter 5 digit number:");
+        num_str = String(old);
+        for (var i = 0; i < num_str.length; i++) {
+            let increment = parseInt(num_str[i]) + 1;
+            new_num += String(increment);
+        }
+        console.log("updated number is:", new_num);
+
+        //hours to minutes and minutes to hours and minutes
+        var h = +prompt("enter hours");
+        var m = +prompt("enter minutes");
+        var total_min = h * 60 + m;
+        console.log("total minutes:", total_min);
+        min = m / 60;
+        console.log("total hours and minutes of time is:", parseInt(min), "hours", min - parseInt(min));
+
+        //biggest of 2
+        a = 10
+        b = 20
+        c = 15
+        a > b ? console.log("biggest:", a) : console.log("biggest:", b);
+        a > b && a > c ? console.log("biggest is", a) : b > a && b > c ? console.log("biggest is", b) : console.log("biggest is:", c);
+
+        // find  the angle in traiangle
+        var a = 50,
+            b = 70;
+        c = a + b;
+        console.log("the third angle of triangle", 180 - c);
+
+        //sort two strings
+        var str1 = "seetha"
+        var str2 = "jasmine";
+        var sorted = (str1 < str2) ? [str1, str2] : [str2, str1];
+        console.log("ascending order of two given strings are:", sorted);
+    </script>
+</body>
+
+</html>

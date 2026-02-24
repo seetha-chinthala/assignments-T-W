@@ -1,0 +1,90 @@
+<html>
+    <body>
+        <!-- Basic level-->
+        <!--  1.Accessing properties -->
+        <!-- Write a Java Script statement to print the Alice's age from person object 
+         <script>
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false};
+            console.log("Alice's age",person.age)
+         </script>
+        -->
+        <!-- How would you change ALice's city to "San Franciso"
+         <script>
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false};
+            person['city']='San Franciso'
+            console.log("Alice's city:",person.city)
+         </script>
+        -->
+        <!--   2.Adding&Removing Properties-->
+        <!--  Add a new property occupation with the value "Software Engineer"
+          <script>
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false};
+            person['occupation']='Software Engineer'
+            console.log(person)
+          </script>
+        -->
+        <!--  Remove the isStudent property from the person object
+          <script>
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false};
+            delete person.isStudent
+            console.log("After removing isStudent",person)
+          </script>
+        -->
+        <!--array operations-->
+                <!--add swimming to alice's hobbies list 
+                <script>
+                    const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false};
+                    person.hobbies.push('swimming')
+                    console.log(person)
+                </script>-->
+        <!--remove the last hobby from hobbies
+            <script>
+             const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false}; 
+             delete person.hobbies.pop();
+             console.log(person)
+            </script>-->
+        <!-- 4.Looping Through object-->
+         <!-- Write a loop to print all properties and their values in the person object 
+          <script>
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false};
+            for(let key in person){
+                 console.log(key,person[key])
+            }
+          </script>
+        -->
+        <!--  Intermediate Level-->
+        <!--  5.Object Methods:-->
+        <!--  Add a method greet() to person that returns "Hello,my name is Alice!"
+          <script>
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false}
+            person['greet']=function (name){
+                console.log("Hello,my name is",name,"!")
+            }
+            person.greet(person.name)
+            console.log(person)
+          </script>
+        -->
+        <!--  Modify greet() to dynamically return "Hello,my name is [name] and I am [age] years old!"
+          <script>
+            var ar=[]
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false}
+            person['greet']=function(name,age){
+                return [person.name,person.age]
+            }
+            ar=person.greet()
+            console.log("Hello,my name is",ar[0],"and I am",ar[1],"years old!")
+          </script>
+        -->
+        <!-- 6.Object Destructing:-->
+        <!--  Use object destructing to extract name and age from person
+          <script>
+            const person = {name:"Alice",age:30,city:"New York",hobbies: ["reading", "hiking", "coding"],isStudent:false}
+            const name=person.name
+            const age=person.age
+            console.log("Name:",name)
+            console.log("Age:",age)
+          </script>
+        -->
+
+    </body>
+</html>

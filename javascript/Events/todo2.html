@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <input type="text" id="d1">
+    <button onclick="addTodo()">Add Todo</button>
+    <ul id="d4"></ul>
+    <script>
+        //state
+        var todos = [];
+
+        function genUI() {
+            document.getElementById("d4").innerText = "";
+            todos.forEach(function(todo) {
+                var nli = document.createElement("li")
+                nli.innerText = todo
+                document.getElementById("d4").appendChild(nli)
+            })
+        }
+        genUI();
+        //actions
+        function addTodo() {
+            var nt = document.getElementById("d1").value;
+            todos.push(nt)
+            genUI();
+            //remove string in input after creation of UI
+            document.getElementById("d1").value = ""
+
+        }
+
+        //elemnt gets added to list when enter clicks
+        function checkEnter(event) {
+            if (ev.target.value == "")
+                document.get
+        }
+    </script>
+</body>
+
+</html>

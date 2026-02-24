@@ -1,0 +1,41 @@
+<html>
+
+<head>
+    <style>
+        #d1 {
+            background-color: aquamarine;
+            width: 250px;
+            height: 200px;
+        }
+        
+        @media screen and (max-width:1000px) {
+            #d1 {
+                background-color: cornflowerblue;
+                image-orientation: flip;
+            }
+            #d1 h1 {
+                font-size: medium;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        }
+        
+        @media screen and (max-width:800px) {
+            #d1 {
+                background-color: chartreuse;
+                image-orientation: flip;
+            }
+            #d1 h1 {
+                font-size: medium;
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="d1">
+        <h1>Hello</h1>
+    </div>
+</body>
+
+</html>

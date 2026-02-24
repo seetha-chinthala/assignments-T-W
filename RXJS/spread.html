@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var ob1 = {
+            firstname: "seetha ",
+            lastname: "chinthala"
+        }
+        var ob2 = {
+            age: 18,
+            company: "ThoughtWorks"
+        }
+        var ob3 = {...ob1,
+            ...ob2
+        }
+        console.log(ob3)
+
+
+        var a = 100;
+        var b = 200;
+        [a.b] = [b, a]
+
+        const arr1 = [1, 2, 3];
+        const arr2 = Array.from(arr1);
+
+        console.log(arr2); // [1, 2, 3]
+
+        var ar = [15, 12, 18, 11, 29, 21, 16]
+        var br = ar.filter(a => a % 2 == 0)
+    </script>
+</body>
+
+</html>
