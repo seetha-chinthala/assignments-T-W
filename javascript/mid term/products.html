@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: grey;
+            margin: 0;
+        }
+        
+        h1 {
+            text-align: center;
+        }
+        
+        #products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+        
+        #products div {
+            width: 150px;
+            text-align: center;
+            box-shadow: 1px 1px 3px 1px;
+            border-radius: 10px;
+            margin: 5px;
+            padding: 5px;
+            background-color: whitesmoke;
+        }
+        
+        #products div img {
+            width: 100%;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1>products</h1>
+
+    <div id="products"> </div>
+
+
+    <script>
+        function genUI(products) {
+            products.forEach(function(product) {
+                var productCard = document.createElement("div")
+                var productImg = document.createElement("img")
+                productImg.src = product.thumbnail;
+                productImg.addEventListener("click", (e) => {
+
+                    showpopup(product, e);
+                })
+                productCard.appendChild(productImg)
+                var productTitle = document.createElement("h4");
+                productTitle.innerText = product.title;
+                productCard.appendChild(productTitle);
+                document.getElementById('products').appendChild(productCard)
+            })
+        }
+
+
+        fetch("https://dummyjson.com/products").then(function(res) {
+            return res.json()
+        }).then(function(data) {
+            genUI(data.products)
+            console.log(data.products)
+        })
+
+        function showpopup(product, e) {
+            var oldPopup = document.querySelector(".popup");
+            if (oldPopup) oldPopup.remove();
+
+
+            var popup = document.createElement("div")
+            popup.className = "popup";
+            popup.style.position = "absolute";
+            popup.style.background = "white";
+            popup.style.padding = "10px";
+            popup.style.border = "1px solid black";
+            popup.style.width = "40%";
+            popup.style.top = e.pageY + 10 + "px";
+            popup.style.left = e.pageX + 10 + "px";
+
+            var poph = document.createElement("h3")
+            poph.innerText = product.title;
+            popup.appendChild(poph);
+            var popimg = document.createElement("img")
+            popimg.src = product.thumbnail;
+            popimg.style.width = "100%";
+            popup.appendChild(popimg);
+            var popt = document.createElement("p")
+            popt.innerText = product.description;
+            popup.appendChild(popt);
+            document.body.appendChild(popup);
+
+
+
+            /*
+            1.fetch data from the api 
+            2.and then create cards wise display of the products using genUI
+            3  write a function  when mouseover the Image in the card .
+            4. in that function call the  showpopup function for popup card
+            5.write a function for popup card display and apply styles.
+            */
+
+        }
+    </script>
+</body>
+
+</html>
