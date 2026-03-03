@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MyShop Advanced</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f5f7fa;
+        }
+        /* NAVBAR */
+        
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(90deg, #141e30, #243b55);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .logo img {
+            width: 35px;
+        }
+        /* CENTER SECTION */
+        
+        .center-section {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            width: 50%;
+        }
+        
+        .search-container {
+            position: relative;
+            flex: 1;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 8px 35px 8px 10px;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: black;
+        }
+        
+        .category-select {
+            padding: 8px;
+            border-radius: 20px;
+            border: none;
+        }
+        /* NAV LINKS */
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 5px #ffcc00;
+        }
+        /* HAMBURGER */
+        
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* MOBILE SIDEBAR */
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 70%;
+            height: 100%;
+            background: #1f1f1f;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transform: translateX(-100%);
+            transition: 0.3s;
+            opacity: 0.95;
+            z-index: 2000;
+        }
+        
+        .sidebar.show {
+            transform: translateX(0);
+        }
+        
+        .sidebar a {
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        /* PRODUCTS */
+        
+        .products {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .heart {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        .liked {
+            color: red;
+        }
+        
+        .not-liked {
+            color: gray;
+        }
+        
+        .pagination {
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .pagination button {
+            padding: 8px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 20px;
+            background: #243b55;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .pagination button:hover {
+            background: #141e30;
+        }
+        /* MOBILE */
+        
+        @media(max-width:768px) {
+            .center-section {
+                display: none;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState,useEffect}=React; function App(){ const [products,setProducts]=useState([]); const [categories,setCategories]=useState([]); const [selectedCategory,setSelectedCategory]=useState("all"); const [page,setPage]=useState(1); const [liked,setLiked]=useState({});
+        const [search,setSearch]=useState(""); const [sidebarOpen,setSidebarOpen]=useState(false); const [view,setView]=useState("home"); const productsPerPage=24; useEffect(()=>{ fetch("https://dummyjson.com/products?limit=200") .then(res=>res.json())
+        .then(data=>{ setProducts(data.products); const uniqueCategories=["all",...new Set(data.products.map(p=>p.category))]; setCategories(uniqueCategories); }); },[]); const toggleLike=id=>{ setLiked(prev=>({...prev,[id]:!prev[id]})); }; const filteredProducts=products
+        .filter(p=>selectedCategory==="all" || p.category===selectedCategory) .filter(p=>p.title.toLowerCase().includes(search.toLowerCase())); const last=page*productsPerPage; const first=last-productsPerPage; const currentProducts=filteredProducts.slice(first,last);
+        const totalPages=Math.ceil(filteredProducts.length/productsPerPage); const wishlistProducts=products.filter(p=>liked[p.id]); const closeSidebar=()=>{ setSidebarOpen(false); }; return(
+        <div>
+
+            {/* NAVBAR */}
+            <div className="navbar">
+
+                <div className="logo" onClick={()=>setView("home")}>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" />
+                    <h2>MyShop</h2>
+                </div>
+
+                {view==="home" && (
+                <div className="center-section">
+
+                    <div className="search-container">
+                        <input placeholder="Search..." value={search} onChange={(e)=>{ setSearch(e.target.value); setPage(1); }} />
+                        <span className="search-icon">🔍</span>
+                    </div>
+
+                    <select className="category-select" value={selectedCategory} onChange={(e)=>{
+                setSelectedCategory(e.target.value);
+                setPage(1);
+              }}
+            >
+              {categories.map(cat=>(
+                <option key={cat} value={cat}>
+                  {cat.toUpperCase()}
+                </option>
+              ))}
+            </select>
+
+                </div>
+                )}
+
+                <div className="nav-links">
+                    <a onClick={()=>setView("home")}>Home</a>
+                    <a onClick={()=>setView("wishlist")}>
+            Wishlist ({wishlistProducts.length})
+          </a>
+                    <a>Cart</a>
+                    <a>Contact</a>
+                </div>
+
+                <div className="hamburger" onClick={()=>setSidebarOpen(true)}> ☰
+                </div>
+
+            </div>
+
+            {/* SIDEBAR MOBILE */}
+            <div className={`sidebar ${sidebarOpen? "show": ""}`}>
+                <a onClick={()=>{setView("home");closeSidebar();}}>Home</a>
+                <a onClick={()=>{setView("wishlist");closeSidebar();}}>
+          Wishlist ({wishlistProducts.length})
+        </a>
+                <a onClick={closeSidebar}>Cart</a>
+                <a onClick={closeSidebar}>Contact</a>
+            </div>
+
+            {/* HOME PAGE */} {view==="home" && (
+            <>
+                <div className="products">
+                    {currentProducts.map(p=>(
+                    <div key={p.id} className="card">
+                        <span className={`heart ${liked[p.id]? "liked": "not-liked"}`} onClick={()=>toggleLike(p.id)}>
+                  ♥
+                </span>
+                        <img src={p.thumbnail}/>
+                        <h4>{p.title}</h4>
+                        <p>${p.price}</p>
+                    </div>
+                    ))}
+                </div>
+
+                <div className="pagination">
+                    <button disabled={page===1} onClick={()=>setPage(page-1)}>
+              Previous
+            </button>
+
+                    <span> Page {page} / {totalPages} </span>
+
+                    <button disabled={page===totalPages} onClick={()=>setPage(page+1)}>
+              Next
+            </button>
+                </div>
+                </> )} {/* WISHLIST PAGE */} {view==="wishlist" && (
+                <div className="products">
+                    {wishlistProducts.length===0 ? (
+                    <h3>No items in Wishlist ❤️</h3>
+                    ) : ( wishlistProducts.map(p=>(
+                    <div key={p.id} className="card">
+                        <span className="heart liked" onClick={()=>toggleLike(p.id)}>
+                  ♥
+                </span>
+                        <img src={p.thumbnail}/>
+                        <h4>{p.title}</h4>
+                        <p>${p.price}</p>
+                    </div>
+                    )) )}
+                </div>
+                )}
+
+        </div>
+        ); } const root=ReactDOM.createRoot(document.getElementById("root")); root.render(
+        <App/>);
+
+    </script>
+</body>
+
+</html>

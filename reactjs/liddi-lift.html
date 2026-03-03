@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elevator Dynamic Stops</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        
+        .building {
+            position: relative;
+            width: 450px;
+            height: 900px;
+            border: 2px solid black;
+            background: #fff;
+        }
+        
+        .floor {
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            border-top: 1px solid gray;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+        
+        .floor span {
+            font-weight: bold;
+        }
+        
+        .floor select,
+        .floor button {
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .lift {
+            width: 50px;
+            height: 90px;
+            position: absolute;
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            line-height: 90px;
+            transition: bottom 1s linear;
+        }
+        
+        #liftA {
+            left: 20px;
+            background: #3498db;
+        }
+        
+        #liftB {
+            left: 90px;
+            background: #2ecc71;
+        }
+        
+        #liftC {
+            right: 90px;
+            background: #e74c3c;
+        }
+        
+        #liftD {
+            right: 20px;
+            background: #f1c40f;
+            color: black;
+        }
+        
+        .lift::before,
+        .lift::after {
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.5);
+            transition: transform 0.5s;
+        }
+        
+        .lift::before {
+            left: 0;
+        }
+        
+        .lift::after {
+            right: 0;
+        }
+        
+        .open::before {
+            transform: translateX(-100%);
+        }
+        
+        .open::after {
+            transform: translateX(100%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="building" id="building">
+        <div id="liftA" class="lift">A</div>
+        <div id="liftB" class="lift">B</div>
+        <div id="liftC" class="lift">C</div>
+        <div id="liftD" class="lift">D</div>
+    </div>
+
+    <script>
+        const building = document.getElementById('building');
+        const floorHeight = 100;
+        const totalFloors = 9;
+
+        // create floors
+        for (let i = totalFloors; i >= 1; i--) {
+            const floorDiv = document.createElement('div');
+            floorDiv.className = 'floor';
+            floorDiv.style.bottom = `${(i-1)*floorHeight}px`;
+            floorDiv.dataset.floor = i;
+            let selectHTML = `<span>Floor ${i}</span><select onchange="requestElevator(${i}, this.value)"><option value="">Go to...</option>`;
+            for (let f = 1; f <= totalFloors; f++) {
+                if (f !== i) selectHTML += `<option value="${f}">${f}</option>`;
+            }
+            selectHTML += `</select>`;
+            floorDiv.innerHTML = selectHTML;
+            building.appendChild(floorDiv);
+        }
+
+        // elevators
+        const lifts = [{
+            id: 'A',
+            el: document.getElementById('liftA'),
+            floor: 1,
+            queue: [],
+            moving: false,
+            direction: 'idle'
+        }, {
+            id: 'B',
+            el: document.getElementById('liftB'),
+            floor: 1,
+            queue: [],
+            moving: false,
+            direction: 'idle'
+        }, {
+            id: 'C',
+            el: document.getElementById('liftC'),
+            floor: 1,
+            queue: [],
+            moving: false,
+            direction: 'idle'
+        }, {
+            id: 'D',
+            el: document.getElementById('liftD'),
+            floor: 1,
+            queue: [],
+            moving: false,
+            direction: 'idle'
+        }, ];
+
+        lifts.forEach(l => l.el.style.bottom = '0px');
+
+        // request from floor
+        function requestElevator(current, dest) {
+            if (!dest) return;
+            dest = parseInt(dest);
+
+            // find lift: prefer moving towards floor or nearest idle
+            let candidates = lifts.filter(l => l.direction === 'idle' || (l.direction === 'up' && l.floor <= current) || (l.direction === 'down' && l.floor >= current));
+            if (candidates.length === 0) candidates = lifts;
+            candidates.sort((a, b) => Math.abs(a.floor - current) - Math.abs(b.floor - current));
+            const lift = candidates[0];
+
+            // insert pick up floor and destination
+            insertFloorInQueue(lift, current);
+            insertFloorInQueue(lift, dest);
+
+            if (!lift.moving) moveLift(lift);
+        }
+
+        // insert floor in queue maintaining direction
+        function insertFloorInQueue(lift, floor) {
+            if (!lift.queue.includes(floor)) lift.queue.push(floor);
+        }
+
+        // move elevator dynamically
+        function moveLift(lift) {
+            if (lift.queue.length === 0) {
+                lift.moving = false;
+                lift.direction = 'idle';
+                return;
+            }
+            lift.moving = true;
+            const target = lift.queue.shift();
+            lift.direction = (target > lift.floor) ? 'up' : 'down';
+            const distance = Math.abs(target - lift.floor);
+            const duration = distance * 1000;
+            lift.el.style.transition = `bottom ${duration}ms linear`;
+            lift.el.style.bottom = `${(target-1)*floorHeight}px`;
+            lift.floor = target;
+
+            setTimeout(() => {
+                lift.el.classList.add('open');
+                setTimeout(() => {
+                    lift.el.classList.remove('open');
+                    moveLift(lift);
+                }, 1500);
+            }, duration);
+        }
+    </script>
+</body>
+
+</html>

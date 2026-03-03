@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- React Library -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- React DOM -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <h1 id="root1"></h1>
+    <h2 id="root2"></h2>
+    <script>
+        // inline styling without babel
+        const styleObj = {
+            color: "white",
+            backgroundColor: "skyblue",
+            padding: "15px",
+            textAlign: "center"
+        };
+
+
+        console.dir(React)
+        var a = React.createElement("h1", {
+            style: styleObj
+        }, null, "Hi Seetha!")
+        var b = React.createElement("h2", null, "Hi React!")
+        console.log(b)
+        console.log(a)
+        ReactDOM.render(a, document.getElementById("root1"))
+        ReactDOM.render(b, document.getElementById("root2"))
+    </script>
+</body>
+
+</html>

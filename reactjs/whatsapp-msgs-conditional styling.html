@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Elegant Chat UI</title>
+
+    <!-- React CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 🌈 Elegant Gradient Background */
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .chat-container {
+            width: 100%;
+            max-width: 420px;
+            height: 85vh;
+            background: #ffffff;
+            border-radius: 18px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+        }
+        
+        .messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f9f9fb;
+        }
+        
+        .message {
+            padding: 10px 14px;
+            margin: 10px 0;
+            border-radius: 15px;
+            max-width: 75%;
+            font-size: 14px;
+            word-wrap: break-word;
+            transition: 0.2s;
+        }
+        
+        .sent {
+            background: linear-gradient(135deg, #84fab0, #8fd3f4);
+            margin-left: auto;
+            text-align: right;
+            color: #222;
+        }
+        
+        .received {
+            background: #ffffff;
+            margin-right: auto;
+            border: 1px solid #eee;
+        }
+        
+        .ticks {
+            font-size: 12px;
+            margin-left: 5px;
+            color: #0078ff;
+        }
+        
+        .input-area {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #ffffff;
+            border-top: 1px solid #eee;
+        }
+        
+        .input-box {
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 25px;
+            border: 1px solid #ddd;
+            outline: none;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        
+        .input-box:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.5);
+        }
+        
+        .send-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: white;
+            transition: 0.3s;
+        }
+        
+        .send-btn:hover {
+            transform: scale(1.1);
+        }
+        /* 📱 Responsive */
+        
+        @media (max-width: 480px) {
+            .chat-container {
+                height: 100vh;
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function ChatApp() { const [messages, setMessages] = React.useState([]); const [input, setInput] = React.useState(""); const sendMessage = () => { if (input.trim() === "") return; const newMessage = { id: Date.now(), text: input, type: "sent" }; setMessages([...messages,
+        newMessage]); setInput(""); setTimeout(() => { const reply = { id: Date.now() + 1, text: "Auto reply: " + newMessage.text, type: "received" }; setMessages(prev => [...prev, reply]); }, 1000); }; return (
+        <div className="chat-container">
+            <div className="messages">
+                {messages.map(msg => (
+                <div key={msg.id} className={`message ${msg.type==="sent" ? "sent" : "received"}`}>
+                    {msg.text} {msg.type === "sent" && <span className="ticks"> ✓✓</span>}
+                </div>
+                ))}
+            </div>
+
+            <div className="input-area">
+                <input type="text" className="input-box" value={input} onChange={(e)=> setInput(e.target.value)} onKeyDown={(e) => e.key === "Enter" && sendMessage()} placeholder="Type a message" />
+
+                <button className="send-btn" onClick={sendMessage}>
+                            ➤
+                        </button>
+            </div>
+        </div>
+        ); } ReactDOM.createRoot(document.getElementById("root")).render(
+
+        <ChatApp />);
+    </script>
+
+</body>
+
+</html>

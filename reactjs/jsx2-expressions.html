@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Babel Example</title>
+
+    <!-- React CDN -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <!-- React DOM -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel CDN -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+    <div id="root2"></div>
+
+    <script type="text/babel">
+
+        const element =
+        <h1>Hello React using Babel {10+20}🚀</h1>; ReactDOM.createRoot( document.getElementById("root") ).render(element); /*var arr=[10,3,56,89,2,23]; var ele=(
+        <ul>{ arr.map(ele=>{
+            <li>{ele}</li>
+            }) }
+        </ul>); const root=ReactDOM.createRoot(document.getElementById("root2")); root.render(ele)*/
+
+    </script>
+
+</body>
+
+</html>

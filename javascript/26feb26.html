@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>Id <span></span></th>
+                <th>Name
+                    <span></span></th>
+                <th>Calories<span></span></th>
+                <th>Duration<span></span></th>
+                <th>Rating<span></span></th>
+            </tr>
+        </thead>
+        <tbody id="table">
+        </tbody>
+    </table>
+    <button id="previous">Prev</button>
+    <button id="next">Next</button>
+    <script>
+        var i = 0,
+            count = 10;
+
+
+        const apiUrl = "https://dummyjson.com/";
+
+        fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.getElementById("tableBody");
+
+                data.forEach(user => {
+
+                    const row = document.createElement("tr");
+
+                    row.innerHTML = `
+                <td>${user.id}</td>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.address.city}</td>
+            `;
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.log("Error:", error));
+
+        // const skip = currentPage * pageSize;
+        // fetch(`https://dummyjson.com//recipes?limit=${pageSize}&skip=${skip}`)
+        //     .then(resp => resp.json())
+        //     .then(data => {
+        //         const table = document.getElementById('recipes-table');
+        //         table.querySelectorAll('tr.data').forEach(row => row.remove());
+        //         data.recipes.forEach(recipe => {
+        //             const row = document.createElement('tr');
+        //             row.classList.add('data');
+        //             row.innerHTML = `
+        //                     <td>${recipe.name}</td>
+        //                     <td>${recipe.caloriesPerServing}</td>
+        //                     <td>${recipe.cookTimeMinutes}</td>
+        //                     <td>${recipe.rating}</td>
+        //                 `;
+        //             table.appendChild(row);
+        //         });
+        //     })
+
+        //     fetch("http://dummyjson.com/recipes").then(response => response.json()).then(data => {
+        //         // recipies = data;
+        //         console.log(data)
+        //         data.recipes.forEach(data => {
+        //             var ntd = document.createElement("tr")
+        //             ntd.innerHTML = `<td>${data.id}</td>
+        //         <td>${data.name}</td>
+        //         <td>${data.calories}</td>
+        //         <td>${data.preptimeduration}</td>
+        //         <td>${data.rating}</td>`;
+
+
+        // document.getElementById("table").appendChild(ntd)
+        //         })
+        //     })
+
+
+
+
+
+
+
+
+
+        //     recipies.forEach(() =>
+        //         var ntr = document.createElement("tr")
+        //         var ntdid = document.createElement("td")
+        //         ntdid.innerText = recipies.id; ntr.appendChild(ntdid);
+
+        //         var ntdname = document.createElement("td")
+        //         ntdname.innerText = recipies.name;
+        //         // ntdname.appendChild(ntr);
+
+        //         // var ntdcalories = document.createElement("td")
+        //         // ntdcalories.innerText = recipies.calories;
+        //         // ntdcalories.appendChild(ntr);
+
+        //         // var ntdduration = document.createElement("td")
+        //         // ntdduration.innerText = recipies.duration;
+        //         // ntdduration.appendChild(ntr);
+
+        //         // var ntdrating = document.createElement("td")
+        //         // ntdrating.innerText = recipies.ratings;
+        //         // ntdrating.appendChild(ntr);
+
+
+
+
+        }
+    </script>
+</body>
+
+</html>

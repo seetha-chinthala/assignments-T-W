@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d2 {
+            background-color: cyan;
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form onsubmit="addTodo(event)">
+        <input type="text" name="title" id="title">
+        <br>
+        <input type="text" name="status" id="status">
+        <br>
+        <button>Add Todo</button>
+    </form>
+    <h1>All Todos</h1>
+    <a href="https://dummyjson.com/products">Vasthuvulu Thechuko Po</a>
+    <div id="d2">
+        <form action="https://dummyjson.com/products" onsubmit="showProducts()">
+            <button>Products Thechuko</button>
+        </form>
+    </div>
+    <ul id="todos"></ul>
+    <script>
+        function getAllTodos() {
+            document.getElementById("todos").innerHTML = ""
+            fetch("http://localhost:3000/todos")
+                .then(res => res.json())
+                .then(data => {
+                    data.forEach((todo) => {
+                        var nli = document.createElement("li")
+                        nli.innerText = todo.title;
+                        var delBtn = document.createElement("button")
+                        delBtn.innerText = "Delete"
+                        nli.appendChild(delBtn)
+                        delBtn.onclick = function() {
+                            deleteTodo(todo.id)
+                        }
+                        document.getElementById("todos").appendChild(nli)
+                    })
+                })
+        }
+
+        function addTodo(ev) {
+            ev.preventDefault()
+            fetch("http://localhost:3000/todos", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        title: document.getElementById("title").value,
+                        status: document.getElementById("status").value
+                    })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    getAllTodos()
+                })
+        }
+
+        function deleteTodo(id) {
+            fetch(`http://localhost:3000/todos/${id}`, {
+                    method: "DELETE"
+                })
+                .then(() => {
+                    alert("Delete ipoindirooyyy...")
+                    getAllTodos();
+                })
+        }
+        getAllTodos();
+    </script>
+</body>
+
+</html>

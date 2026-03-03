@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MyShop</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+        /* NAVBAR */
+        
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: #1f1f1f;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo img {
+            width: 35px;
+        }
+        
+        .search-container {
+            position: relative;
+            width: 40%;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 8px 35px 8px 10px;
+            border-radius: 20px;
+            border: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: black;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* PRODUCTS */
+        
+        .products {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        
+        .card {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .heart {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        .liked {
+            color: red;
+        }
+        
+        .not-liked {
+            color: gray;
+        }
+        
+        .pagination {
+            text-align: center;
+            margin: 20px;
+        }
+        /* MOBILE */
+        
+        @media(max-width:768px) {
+            .search-container {
+                width: 60%;
+            }
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                right: 0;
+                top: 60px;
+                background: #333;
+                padding: 10px;
+                width: 160px;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState,useEffect}=React; function App(){ const [products,setProducts]=useState([]); const [page,setPage]=useState(1); const [liked,setLiked]=useState({}); const [search,setSearch]=useState(""); const [menuOpen,setMenuOpen]=useState(false); const
+        [currentPageView,setCurrentPageView]=useState("home"); /*home | wishlist*/ const productsPerPage=4; useEffect(()=>{ fetch("https://dummyjson.com/products?limit=100") .then(res=>res.json()) .then(data=>setProducts(data.products)); },[]); const
+        toggleLike=id=>{ setLiked(prev=>({...prev,[id]:!prev[id]})); }; const filtered=products.filter(p => p.title.toLowerCase().includes(search.toLowerCase()) ); const last=page*productsPerPage; const first=last-productsPerPage; const currentProducts=filtered.slice(first,last);
+        const totalPages=Math.ceil(filtered.length/productsPerPage); const wishlistProducts=products.filter(p=>liked[p.id]); return(
+        <div>
+
+            {/* NAVBAR */}
+            <div className="navbar">
+
+                <div className="logo" onClick={()=>setCurrentPageView("home")}>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" />
+                    <h2>MyShop</h2>
+                </div>
+
+                {currentPageView==="home" && (
+                <div className="search-container">
+                    <input placeholder="Search products..." value={search} onChange={(e)=>{ setSearch(e.target.value); setPage(1); }} />
+                    <span className="search-icon">🔍</span>
+                </div>
+                )}
+
+                <div className={`nav-links ${menuOpen? "show": ""}`}>
+                    <a onClick={()=>setCurrentPageView("home")}>Home</a>
+                    <a onClick={()=>setCurrentPageView("wishlist")}>
+            Wishlist ({wishlistProducts.length})
+          </a>
+                    <a>Cart</a>
+                    <a>Contact</a>
+                </div>
+
+                <div className="hamburger" onClick={()=>setMenuOpen(!menuOpen)}> ☰
+                </div>
+
+            </div>
+
+            {/* HOME PAGE */} {currentPageView==="home" && (
+            <>
+                <div className="products">
+                    {currentProducts.map(p=>(
+                    <div key={p.id} className="card">
+                        <span className={`heart ${liked[p.id]? "liked": "not-liked"}`} onClick={()=>toggleLike(p.id)}>
+                  ♥
+                </span>
+
+                        <img src={p.thumbnail}/>
+                        <h4>{p.title}</h4>
+                        <p>${p.price}</p>
+                    </div>
+                    ))}
+                </div>
+
+                <div className="pagination">
+                    <button disabled={page===1} onClick={()=>setPage(page-1)}>
+              Previous
+            </button>
+
+                    <span> Page {page} / {totalPages} </span>
+
+                    <button disabled={page===totalPages} onClick={()=>setPage(page+1)}>
+              Next
+            </button>
+                </div>
+                </> )} {/* WISHLIST PAGE */} {currentPageView==="wishlist" && (
+                <div className="products">
+                    {wishlistProducts.length===0 ? (
+                    <h3 style={{textAlign: "center"}}>No items in Wishlist ❤️</h3>
+                    ) : ( wishlistProducts.map(p=>(
+                    <div key={p.id} className="card">
+                        <span className="heart liked" onClick={()=>toggleLike(p.id)}>
+                  ♥
+                </span>
+
+                        <img src={p.thumbnail}/>
+                        <h4>{p.title}</h4>
+                        <p>${p.price}</p>
+                    </div>
+                    )) )}
+                </div>
+                )}
+
+        </div>
+        ); } const root=ReactDOM.createRoot(document.getElementById("root")); root.render(
+        <App/>);
+
+    </script>
+</body>
+
+</html>

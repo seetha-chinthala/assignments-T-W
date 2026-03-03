@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>MyShop Elegant</title>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        /* GLOBAL */
+        
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #eef2f3, #dfe9f3);
+        }
+        /* NAVBAR */
+        
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(90deg, #2c3e50, #4ca1af);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        
+        .logo img {
+            width: 35px;
+        }
+        
+        .search-container {
+            position: relative;
+            width: 40%;
+        }
+        
+        .search-container input {
+            width: 100%;
+            padding: 8px 35px 8px 12px;
+            border-radius: 25px;
+            border: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #333;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #ffe082;
+            text-shadow: 0 0 5px #ffe082;
+        }
+        /* HAMBURGER */
+        
+        .hamburger {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        /* SIDEBAR RIGHT */
+        
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 70%;
+            height: 100%;
+            background: #2c3e50;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            transform: translateX(100%);
+            transition: 0.3s;
+            opacity: 0.97;
+            z-index: 2000;
+        }
+        
+        .sidebar.show {
+            transform: translateX(0);
+        }
+        
+        .sidebar a {
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        /* PRODUCTS */
+        
+        .products {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+        }
+        
+        .card {
+            background: linear-gradient(145deg, #ffffff, #f0f4f8);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+        
+        .card h4 {
+            margin: 10px 0 5px;
+            color: #2c3e50;
+        }
+        
+        .card p {
+            color: #4ca1af;
+            font-weight: bold;
+        }
+        
+        .heart {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        
+        .liked {
+            color: red;
+        }
+        
+        .not-liked {
+            color: gray;
+        }
+        /* PAGINATION */
+        
+        .pagination {
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .pagination button {
+            padding: 8px 18px;
+            margin: 5px;
+            border: none;
+            border-radius: 25px;
+            background: #4ca1af;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .pagination button:hover {
+            background: #2c3e50;
+        }
+        /* FOOTER */
+        
+        .footer {
+            background: linear-gradient(90deg, #2c3e50, #4ca1af);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 40px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .footer h3 {
+            margin-bottom: 10px;
+        }
+        
+        .footer p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        /* MOBILE */
+        
+        @media(max-width:768px) {
+            .search-container {
+                display: none;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hamburger {
+                display: block;
+            }
+            .sidebar a {
+                font-size: 14px;
+                /* smaller nav links */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        const {useState,useEffect}=React; function App(){ const [products,setProducts]=useState([]); const [page,setPage]=useState(1); const [liked,setLiked]=useState({}); const [search,setSearch]=useState(""); const [sidebarOpen,setSidebarOpen]=useState(false);
+        const [view,setView]=useState("home"); const productsPerPage=24; useEffect(()=>{ fetch("https://dummyjson.com/products?limit=200") .then(res=>res.json()) .then(data=>setProducts(data.products)); },[]); const toggleLike=id=>{ setLiked(prev=>({...prev,[id]:!prev[id]}));
+        }; const filteredProducts=products.filter(p => p.title.toLowerCase().includes(search.toLowerCase()) ); const last=page*productsPerPage; const first=last-productsPerPage; const currentProducts=filteredProducts.slice(first,last); const totalPages=Math.ceil(filteredProducts.length/productsPerPage);
+        const wishlistProducts=products.filter(p=>liked[p.id]); const closeSidebar=()=>setSidebarOpen(false); return(
+        <div>
+
+            {/* NAVBAR */}
+            <div className="navbar">
+
+                <div className="logo" onClick={()=>setView("home")}>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3081/3081559.png" />
+                    <h2>Nova Store</h2>
+                </div>
+
+                <div className="search-container">
+                    <input placeholder="Search products..." value={search} onChange={(e)=>{ setSearch(e.target.value); setPage(1); }} />
+                    <span className="search-icon">🔍</span>
+                </div>
+
+                <div className="nav-links">
+                    <a onClick={()=>setView("home")}>Home</a>
+                    <a onClick={()=>setView("wishlist")}>
+            Wishlist ({wishlistProducts.length})
+          </a>
+                    <a>Cart</a>
+                    <a>Contact</a>
+                </div>
+
+                <div className="hamburger" onClick={()=>setSidebarOpen(true)}> ☰
+                </div>
+
+            </div>
+
+            {/* SIDEBAR RIGHT */}
+            <div className={`sidebar ${sidebarOpen? "show": ""}`}>
+                <a onClick={()=>{setView("home");closeSidebar();}}>Home</a>
+                <a onClick={()=>{setView("wishlist");closeSidebar();}}>
+          Wishlist ({wishlistProducts.length})
+        </a>
+                <a onClick={closeSidebar}>Cart</a>
+                <a onClick={closeSidebar}>Contact</a>
+            </div>
+
+            {/* HOME PAGE */} {view==="home" && (
+            <>
+                <div className="products">
+                    {currentProducts.map(p=>(
+                    <div key={p.id} className="card">
+                        <span className={`heart ${liked[p.id]? "liked": "not-liked"}`} onClick={()=>toggleLike(p.id)}>
+                  ♥
+                </span>
+                        <img src={p.thumbnail}/>
+                        <h4>{p.title}</h4>
+                        <p>${p.price}</p>
+                    </div>
+                    ))}
+                </div>
+
+                <div className="pagination">
+                    <button disabled={page===1} onClick={()=>setPage(page-1)}>
+              Previous
+            </button>
+
+                    <span> Page {page} / {totalPages} </span>
+
+                    <button disabled={page===totalPages} onClick={()=>setPage(page+1)}>
+              Next
+            </button>
+                </div>
+                </> )} {/* WISHLIST PAGE */} {view==="wishlist" && (
+                <div className="products">
+                    {wishlistProducts.length===0 ? (
+                    <h3>No items in Wishlist ❤️</h3>
+                    ) : ( wishlistProducts.map(p=>(
+                    <div key={p.id} className="card">
+                        <span className="heart liked" onClick={()=>toggleLike(p.id)}>
+                  ♥
+                </span>
+                        <img src={p.thumbnail}/>
+                        <h4>{p.title}</h4>
+                        <p>${p.price}</p>
+                    </div>
+                    )) )}
+                </div>
+                )} {/* FOOTER */}
+                <div className="footer">
+                    <h3>Nova Store</h3>
+                    <p>Elegant Shopping Experience</p>
+                    <p>© 2026 Nova Store. All Rights Reserved.</p>
+                </div>
+
+        </div>
+        ); } const root=ReactDOM.createRoot(document.getElementById("root")); root.render(
+        <App/>);
+
+    </script>
+</body>
+
+</html>

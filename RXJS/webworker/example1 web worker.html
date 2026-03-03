@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="maid worker.js"></script>
+</head>
+
+<body>
+    <script>
+        //without promise using callback
+        // console.log("hello seetha")
+
+        // function add(cb) {
+        //     var maidworker = new Worker("maid worker.js")
+
+        //     maidworker.postMessage(5);
+
+        //     maidworker.onmessage = (e) => {
+        //         //console.log(e.data)
+        //         cb(e.data)
+
+        //     }
+
+        // }
+        // add(function(data) {
+        //     console.log(data)
+        // })
+        // console.log("thank you")
+
+
+        //with promise
+        console.log("hello seetha")
+
+        function add(cb) {
+            var maidworker = new Worker("maid worker.js")
+            var pr = new Promise((resolve, reject) => {
+                maidworker.postMessage(5);
+
+                maidworker.onmessage = (x) => {
+                    //console.log(e.data)
+                    resolve(x.data)
+                }
+            })
+            return pr;
+
+        }
+        add().then(s => console.log(s))
+        console.log("thank you")
+    </script>
+</body>
+
+</html>
