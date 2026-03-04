@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        #parent {
+            margin: 0;
+        }
+        
+        .male {
+            background-color: lightblue;
+        }
+        
+        .female {
+            background-color: lightsalmon;
+        }
+        
+        #table {
+            margin-left: 30%;
+            margin-top: 3%;
+        }
+        
+        #search {
+            margin-top: 15%;
+            margin-left: 30%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const actors = [ { pin:1, fullname: "Prasanna Pilli", gender: "female", age: 18, placeOfBirth: "Rajamundry" }, { Pin:2,fullname: "Srilatha Pilli", gender: "female", age: 17, placeOfBirth: "Macherla" }, {Pin:3, fullname: "SeethaChinthala", gender: "female",
+        age: 18, placeOfBirth: "Macherla" }, { Pin:4,fullname: "Ram", gender: "male", age: 19, placeOfBirth: "Narasarao Peta"}, { Pin:5,fullname: "Ravi", gender: "male", age: 17, placeOfBirth: "Madras",}, {Pin:5, fullname: "Indu Priya", gender: "male",
+        age: 17, placeOfBirth: "Chennai" }, { Pin:6,fullname: "Sridevi", gender: "female", age: 22, placeOfBirth: "Meenampatti"}, { Pin:7,fullname: "Nani", gender: "male", age: 20, placeOfBirth: "Karamchedu" }, { Pin:8,fullname: "Pawan Kalyan", gender:
+        "male", age:21, placeOfBirth: "Bapatla"}, {Pin:9, fullname: "Jasmine", gender: "female", age: 16, placeOfBirth: "Darsi" }, { Pin:9,fullname: "Netra", gender: "female", age: 18, placeOfBirth: "Kadapa"}, {Pin:10, fullname: "Balaji", gender: "male",
+        age: 19, placeOfBirth: "Nellore" }, {Pin:11, fullname: "Hemanth", gender: "male", age: 17, placeOfBirth: "Vijayanagaram"}, {Pin:12, fullname: "Jhansi", gender: "female", age: 20, placeOfBirth: "Hyderabad" }, {Pin:13, fullname: "Ram Charan", gender:
+        "male", age: 18, placeOfBirth: "Kuppam" }, {Pin:14, fullname: "hariyana", gender: "male", age: 20, placeOfBirth: "Hyderabad" }, {Pin:15, fullname: "Vijay ", gender: "male", age: 24, placeOfBirth: "Achampet" }, {Pin:16, fullname: " Teja", gender:
+        "female", age: 16, placeOfBirth: "Jaggampeta" } ]; function genStudents(){ var jsx1 =
+        <div id="parent">
+            <input type="text" id="search" placeholder="search..." /><br/>
+            <table border="3" id="table">
+                <thead>
+                    <tr>
+                        <th onClick={()=>asc()}>Full Name<span></span></th>
+                        <th>Gender<span></span></th>
+                        <th>Age<span></span></th>
+                        <th>Place of Birth<span></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    { actors.map((actor) => { return (
+                    <tr className={actor.gender=="male" ? "male" : 'female'}>
+                        <td>{actor.fullname}</td>
+                        <td>{actor.gender}</td>
+                        <td>{actor.age}</td>
+                        <td>{actor.placeOfBirth}</td>
+                        <td>{actor.movies}</td>
+                    </tr>
+                    ) }) }
+                </tbody>
+            </table>
+        </div>
+        ReactDOM.render(jsx1, document.getElementById("root")) } genStudents()
+    </script>
+</body>
+
+</html>
