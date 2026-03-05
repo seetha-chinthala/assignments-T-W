@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Indian Cricket</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            background: #f4f6f9;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        /* NAVBAR */
+        
+        .navbar {
+            background: #0b3d91;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 40px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 50%;
+        }
+        
+        .logo img {
+            width: 40px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links li {
+            cursor: pointer;
+            transition: 0.3s;
+            padding: 5px 8px;
+            border-radius: 5px;
+        }
+        
+        .nav-links li:hover {
+            background: white;
+            color: #0b3d91;
+        }
+        /* HERO */
+        
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(to right, #1e90ff, #00c6ff);
+            color: white;
+            flex: 1;
+        }
+        /* CARDS */
+        
+        .card-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            width: 260px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            transition: 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-6px);
+        }
+        
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 15px;
+        }
+        
+        .card-content h3 {
+            color: #0b3d91;
+            margin-bottom: 10px;
+        }
+        /* FOOTER */
+        
+        .footer {
+            background: #0b3d91;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /* NAVBAR */ function Navbar(){ return(
+
+        <div className="navbar">
+
+            <div className="logo">
+                <img src="https://5.imimg.com/data5/ECOM/Default/2023/1/AG/DF/KP/14558342/25plasticflagsatyamevjayte1-500x500.jpg" />
+                <h2>Team India</h2>
+            </div>
+
+            <ul className="nav-links">
+                <li>Home</li>
+                <li>Matches</li>
+                <li>Players</li>
+                <li>Gallery</li>
+                <li>Contact</li>
+            </ul>
+
+        </div>
+
+        ) } /* CARD */ function MatchCard({type,desc,img}){ return(
+
+        <div className="card">
+
+            <img src={img}/>
+
+            <div className="card-content">
+                <h3>{type}</h3>
+                <p>{desc}</p>
+            </div>
+
+        </div>
+
+        ) } /* HERO */ function Hero(){ const [matches] = React.useState([ { type:"Test Cricket", desc:"The longest format played up to 5 days showing true cricket skills.", img:"https://images.unsplash.com/photo-1593766827228-8737b4534aa6" }, { type:"ODI Cricket",
+        desc:"50 overs format where India has won multiple world cups.", img:"https://images.unsplash.com/photo-1540747913346-19e32dc3e97e" }, { type:"T20 Cricket", desc:"Fastest cricket format with explosive batting and thrilling finishes.", img:"https://images.unsplash.com/photo-1587280501635-68a0e82cd5ff"
+        }, { type:"ICC World Cup", desc:"The biggest cricket tournament where India competes globally.", img:"https://images.unsplash.com/photo-1624880357913-a8539238245b" } ]); return(
+
+        <div className="hero">
+
+            <h1>Indian Cricket Team</h1>
+            <p>Explore the different formats of cricket played by Team India</p>
+
+            <div className="card-container">
+
+                {matches.map((m,i)=>(
+                <MatchCard key={i} type={m.type} desc={m.desc} img={m.img} /> ))}
+
+            </div>
+
+        </div>
+
+        ) } /* FOOTER */ function Footer(){ return(
+        <div className="footer">
+            <p>© 2026 Indian Cricket Team | Built with React</p>
+        </div>
+        ) } /* APP */ function App(){ return(
+
+        <>
+
+            <Navbar/>
+
+            <Hero/>
+
+            <Footer/>
+
+            </> ) } /* RENDER */ ReactDOM.createRoot(document.getElementById("root")).render(
+
+            <App/>)
+
+    </script>
+
+</body>
+
+</html>

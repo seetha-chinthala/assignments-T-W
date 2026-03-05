@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        #click {
+            background-color: lightblue;
+            border: 2px solid black;
+            width: 300px;
+            height: 200px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="d3"></div>
+
+    <script type="text/babel">
+        /*function abc(){ console.log(e) };*/ var jh1 =
+        <div id="click" onClick={(e)=>{console.log(e.target.innerHTML)}}>Click here to see alert</div>; ReactDOM.render(jh1,document.getElementById("d3"))
+
+
+    </script>
+</body>
+
+</html>

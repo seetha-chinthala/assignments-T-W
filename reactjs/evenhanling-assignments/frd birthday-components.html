@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Birthday Month Gallery</title>
+
+    <!-- React CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial;
+            text-align: center;
+            background-image: url("https://images.unsplash.com/photo-1513151233558-d860c5398176");
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .container {
+            margin-top: 60px;
+        }
+        
+        img {
+            width: 300px;
+            height: 220px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .month {
+            font-size: 28px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px black;
+        }
+        
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .popup-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 350px;
+            box-shadow: 0px 10px 30px black;
+        }
+        
+        .popup-box img {
+            width: 120px;
+            margin-top: 10px;
+        }
+        
+        h2 {
+            color: #ff4081;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function MonthGallery(){ const months=[ "January","February","March","April","May","June", "July","August","September","October","November","December" ]; const images=[ "https://jecrcuniversity.edu.in/wp-content/uploads/2023/02/7-THINGS-TO-MAKE-STUDENTS-LIFE-EASIER.jpg.webp",
+        "https://lens.usercontent.google.com/image?vsrid=CIaPwfKwpbCOuQEQAhgBIiQ3MmZmZjc3OC0xYTY2LTQzYzQtYTllMC0wNzIwYTM2ODg4Y2EyBiICc2woADjPm8Kw9IiTAw&gsessionid=NxeP7PHUf6OVVSQRkpahcnVAbRuulV3nhPd8cQ0voTc15KwOKyXruw", "https://lens.usercontent.google.com/image?vsrid=CJmM2fSY9b_hYxACGAEiJGFlNjk3MmQ0LWFmZTQtNDUwMy05MGUxLTU3NTg4MzVlOGVmYTIGIgJzbChIOPCPg830iJMD&gsessionid=xS36-fnEg4jhaW38LGbsU2qHKnZK9zyTcZjkPp9YG8LoSENFYS6XWA",
+        "https://studyportals.com/app/uploads/2025/06/shutterstock_2484576879-1-640x560.jpg","https://hellomongoose.com/wp-content/uploads/shutterstock_2475278123.jpg", "https://assets.ajio.com/medias/sys_master/root/20231124/RNvb/65607be5ddf779151998be78/-473Wx593H-466821700-indigo-MODEL.jpg",
+        "https://lens.usercontent.google.com/image?vsrid=CMuRzdy9x5ailwEQAhgBIiRkOTQ4OGNlYy05NjM0LTRkMjQtYTc0Yi0wOTI2ODJlMDkwZjcyBiICc2woBDjUoPPV9YiTAw&gsessionid=unSO_50WDqFiyTr9CZjNTxWVC7iAc_pm5g1yqjQO8XH9UWxmMHZpEQ", "https://www.investopedia.com/thmb/3JQJYFFHZso0y9Buf99OkTSmNWA=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/StudentVisaMeaningApplicationExamples-48b7bb51f6ee4860a2bfe30aaf9a576b.jpg",
+        "https://assets.kpmg.com/is/image/kpmgcloud/women-walking-and-laughing-with-books:cq5dam-web-656-656?wid=328&hei=328", "https://andythomascareersnow.com/wp-content/uploads/2021/10/andy-thomas-careers-now-college-student-coaching-1.jpg", "https://static.wixstatic.com/media/da0b03_6eae0bd9ed7546a895cc4524b382daed~mv2_d_5760_3840_s_4_2.jpg/v1/crop/x_642,y_0,w_4730,h_3806/fill/w_280,h_228,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/da0b03_6eae0bd9ed7546a895cc4524b382daed~mv2_d_5760_3840_s_4_2.jpg",
+        "https://timeshighereducation.com/campus/sites/default/files/2023-02/Campus%20design%20for%20access%20and%20inclusion.jpg" ]; const [index,setIndex]=React.useState(0); const [showPopup,setShowPopup]=React.useState(false); React.useEffect(()=>{
+        if(index
+        <12){ const timer=setTimeout(()=>{ setIndex(index+1); },1000); return ()=>clearTimeout(timer); }else{ setShowPopup(true); } },[index]); return(
+
+            <div className="container">
+
+                {index
+                <12 && <div>
+
+                    <img src={images[index]} />
+
+                    <div className="month">
+                        {months[index]}
+                    </div>
+
+            </div>
+
+            } {showPopup &&
+            <div className="popup">
+
+                <div className="popup-box">
+
+                    <h2>🎉 Happy Birthday 🎂</h2>
+
+                    <p>
+                        Wishing you happiness, joy and lots of success. May your year be filled with wonderful moments!
+                    </p>
+
+                    <img src="https://cdn-icons-png.flaticon.com/512/3468/3468379.png" />
+
+                </div>
+
+            </div>
+
+            }
+
+            </div>
+
+            ); } function App(){ return
+            <MonthGallery/>; } const root=ReactDOM.createRoot(document.getElementById("root")); root.render(
+            <App/>);
+
+    </script>
+
+</body>
+
+</html>
