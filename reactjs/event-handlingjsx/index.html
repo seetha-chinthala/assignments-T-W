@@ -12,7 +12,7 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: Arial;
             background-image: url(https://lens.usercontent.google.com/image?vsrid=CMSR-YjYtZn6ygEQAhgBIiQ2MmJkMWJmZi01OTgzLTRiMzktODFkYS0zODgxMmJjNTM0MTIyBiICc2woJTjuwPOSwIaTAw&gsessionid=susih5pIuaMmkbJUf1ShN6LgZea5LAHWdNSS1u2ffiOBULNArqCMvg);
         }
         
@@ -48,43 +48,51 @@
 
     <script type="text/babel">
 
-        const actorsData = [ { fullname: "NTR", gender: "male", age: 72, placeOfBirth: "Nimmakuru", movies: 300 }, { fullname: "ANR", gender: "male", age: 90, placeOfBirth: "Ramapuram", movies: 255 }, { fullname: "Chiranjeevi", gender: "male", age: 68, placeOfBirth:
-        "Mogalthur", movies: 155 }, { fullname: "Savitri", gender: "female", age: 45, placeOfBirth: "Chirravuru", movies: 250 }, { fullname: "Balakrishna", gender: "male", age: 63, placeOfBirth: "Madras", movies: 108 }, { fullname: "Sridevi", gender:
-        "female", age: 54, placeOfBirth: "Meenampatti", movies: 300 }, { fullname: "Pawan Kalyan", gender: "male", age: 52, placeOfBirth: "Bapatla", movies: 28 }, { fullname: "Mahesh Babu", gender: "male", age: 48, placeOfBirth: "Chennai", movies: 27
-        }, ]; function App() { const [actors, setActors] = React.useState(actorsData); const [sortField, setSortField] = React.useState(null); const [sortOrder, setSortOrder] = React.useState("asc"); const [searchText, setSearchText] = React.useState("");
-        /* Sorting function*/ function handleSort(field) { let order = "asc"; if (sortField === field && sortOrder === "asc") { order = "desc"; } setSortField(field); setSortOrder(order); const sortedData = [...actors].sort((a, b) => { if (a[field]
-        < b[field]) return order==="asc" ? -1 : 1; if (a[field]> b[field]) return order === "asc" ? 1 : -1; return 0; }); setActors(sortedData); } /*Search Filter*/ const filteredActors = actors.filter(actor => Object.values(actor).join(" ").toLowerCase() .includes(searchText.toLowerCase()) ); return (
+        const actorsData = [ { fullname:"NTR", gender:"male", age:72, placeOfBirth:"Nimmakuru"}, { fullname:"ANR", gender:"male", age:90, placeOfBirth:"Ramapuram"}, { fullname:"Chiranjeevi", gender:"male", age:68, placeOfBirth:"Mogalthur"}, { fullname:"Savitri",
+        gender:"female", age:45, placeOfBirth:"Chirravuru"}, { fullname:"Balakrishna", gender:"male", age:63, placeOfBirth:"Madras"}, { fullname:"Sridevi", gender:"female", age:54, placeOfBirth:"Meenampatti"}, { fullname:"Pawan Kalyan", gender:"male",
+        age:52, placeOfBirth:"Bapatla"}, { fullname:"Mahesh Babu", gender:"male", age:48, placeOfBirth:"Chennai"} ]; let actors = [...actorsData]; let sortField = null; let sortOrder = "asc"; let searchText = ""; function handleSort(field){ let order="asc";
+        if(sortField===field && sortOrder==="asc"){ order="desc"; } sortField=field; sortOrder=order; actors.sort((a,b)=>{ if(a[field]
+        < b[field]) return order==="asc" ?-1:1; if(a[field]> b[field]) return order==="asc"?1:-1; return 0; }); renderApp(); } function handleSearch(e){ searchText = e.target.value.toLowerCase(); renderApp(); } function App(){ const filteredActors = actors.filter(actor => Object.values(actor).join(" ").toLowerCase().includes(searchText)
+            ); return(
+
             <div>
-                <input type="text" id="search" placeholder="Search..." onChange={(e)=> setSearchText(e.target.value)} />
+
+                <input type="text" id="search" placeholder="Search..." onChange={handleSearch} />
 
                 <table border="2" id="table">
+
                     <thead>
                         <tr>
-                            <th onClick={()=> handleSort("fullname")}>Full Name</th>
-                            <th onClick={()=> handleSort("gender")}>Gender</th>
-                            <th onClick={()=> handleSort("age")}>Age</th>
-                            <th onClick={()=> handleSort("placeOfBirth")}>Place</th>
-
-
+                            <th onClick={()=>handleSort("fullname")}>Full Name</th>
+                            <th onClick={()=>handleSort("gender")}>Gender</th>
+                            <th onClick={()=>handleSort("age")}>Age</th>
+                            <th onClick={()=>handleSort("placeOfBirth")}>Place</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        { filteredActors.map((actor, index) => (
-                        <tr key={index} className={actor.gender==="male" ? "male" : "female"}>
+
+                        {filteredActors.map((actor,index)=>(
+
+                        <tr key={index} className={actor.gender==="male" ? "male": "female"}>
+
                             <td>{actor.fullname}</td>
                             <td>{actor.gender}</td>
                             <td>{actor.age}</td>
                             <td>{actor.placeOfBirth}</td>
 
-
                         </tr>
-                        )) }
-                    </tbody>
-                </table>
-            </div>
-            ); } ReactDOM.render(
 
-            <App />, document.getElementById("root"));
+                        ))}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            ); } function renderApp(){ ReactDOM.render(
+            <App/>,document.getElementById("root")); } renderApp();
 
     </script>
 
