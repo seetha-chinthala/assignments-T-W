@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parent Child Communication</title>
+
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        
+        .box {
+            border: 2px solid gray;
+            padding: 20px;
+            margin: 20px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        /*Child Component */function Child(props){ function sendData(){ props.sendMessage("Hello Parent, message from Child"); } return(
+        <div className="box">
+            <h2>Child Component</h2>
+
+            <p>Message from Parent: {props.message}</p>
+
+            <button onClick={sendData}>
+Send Message To Parent
+</button>
+        </div>); } ;/* Parent Component*/ function Parent(){ const [childMsg,setChildMsg] = React.useState(""); function receiveMessage(data){ setChildMsg(data); } return(
+
+        <div className="box">
+
+            <h1>Parent Component</h1>
+
+            <p>Message from Child: {childMsg}</p>
+
+            <Child message="Hello Child, message from Parent" sendMessage={receiveMessage} />
+
+        </div>
+
+        ); } /* Rendering*/ const root = ReactDOM.createRoot(document.getElementById("root")); root.render(
+        <Parent />);
+
+    </script>
+
+</body>
+
+</html>
