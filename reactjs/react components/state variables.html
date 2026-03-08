@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        #card {
+            border: 1px solid #464545;
+            padding: 20px;
+            height: 200px;
+            width: 300px;
+            border-radius: 20px;
+            margin-top: 200px;
+            margin-left: 550px;
+            background-color: #b7b8b9;
+        }
+        
+        #card h1 {
+            font-size: 30px;
+            margin-top: 50px;
+            margin-left: 70px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        
+        #collection {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            margin-top: 20px;
+            margin-left: 40px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        function Counter(){ var [c,sc]=React.useState(0); function inc(){ sc(c+1); }; function dec(){ if(c>0){ sc(c-1); }; c=0; } return (
+        <div id="card">
+            <h1>Counter:{c}</h1>
+            <div id="collection">
+                <button onClick={inc}>Inc</button><br/>
+                <button onClick={dec}>Dec</button>
+            </div>
+        </div>
+        ); } const root = ReactDOM.createRoot(document.getElementById("root")); root.render(
+        <Counter></Counter>);
+        <h1>State Variables</h1>
+    </script>
+
+</body>
+
+</html>
